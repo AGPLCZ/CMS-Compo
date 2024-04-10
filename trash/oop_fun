@@ -1,0 +1,127 @@
+<?php
+class Database {
+    private $conn;
+    private $allowedTables = ["table1", "table2", "name_tabulky"];
+
+    public function __construct($host, $user, $pass, $dbname) {
+        // Navážeme spojení s databází při vytvoření instance třídy
+        $this->conn = new mysqli($host, $user, $pass, $dbname);
+        if ($this->conn->connect_error) {
+            die("Chyba spojení: " . $this->conn->connect_error);
+        }
+    }
+
+    private function checkTable($table) {
+        // Zkontrolujte, zda je název tabulky v bílém seznamu
+        if (!in_array($table, $this->allowedTables)) {
+            die("Nepovolená tabulka.");
+        }
+    }
+
+    public function insert($table, $data) {
+        $this->checkTable($table);
+
+        $fields = array_keys($data);
+        $placeholders = array_fill(0, count($data), '?');
+        $types = str_repeat('s', count($data));
+
+        $sql = "INSERT INTO `$table` (`" . implode('`, `', $fields) . "`) VALUES (" . implode(', ', $placeholders) . ")";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param($types, ...array_values($data));
+        $stmt->execute();
+
+        return $stmt->affected_rows > 0;
+    }
+
+    public function select($table, $id) {
+        $this->checkTable($table);
+
+        $sql = "SELECT * FROM `$table` WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function update($table, $data, $id) {
+        $this->checkTable($table);
+
+        $fields = array_keys($data);
+        $placeholders = array_map(function ($field) {
+            return "`$field`=?";
+        }, $fields);
+        $types = str_repeat('s', count($data));
+
+        $sql = "UPDATE `$table` SET " . implode(', ', $placeholders) . " WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+        //$stmt->bind_param($types . 'i', ...array_values($data), $id);
+        $stmt->execute();
+
+        return $stmt->affected_rows > 0;
+    }
+
+    public function delete($table, $id) {
+        $this->checkTable($table);
+
+        $sql = "DELETE FROM `$table` WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        return $stmt->affected_rows > 0;
+    }
+}
+
+
+
+
+
+require 'Database.php';
+
+$db = new Database('localhost', 'username', 'password', 'dbname');
+
+// Vložení dat
+$dataToInsert = [
+    'columnName1' => 'value1',
+    'columnName2' => 'value2'
+];
+$db->insert('table1', $dataToInsert);
+
+// Výběr dat
+$data = $db->select('table1', 1);  // ID = 1
+echo $data['columnName1'];
+
+// Aktualizace dat
+$dataToUpdate = [
+    'columnName1' => 'new_value1'
+];
+$db->update('table1', $dataToUpdate, 1);  // ID = 1
+
+// Smazání dat
+$db->delete('table1', 1);  // ID = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+

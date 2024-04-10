@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Compo\\": "src/"
+        }
+    },
+    "require": {
+        "kielabokkie/bitcoin-address-validator": "^2.2",
+        "comgate/sdk": "^1.0"
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "application_type": "web",
+  "client_id": "cc_classic_FeLi53Y8O8sU8OMeE1vSPCq8nFWVC",
+  "client_secret": "cc_sk_classic_NwJsBTGGMCug4D2Ug33o3byhGpIeWhdnrc2OeVGaUs1zIIv2H3",
+  "id": "CCCEQDHDQ",
+  "name": "Petr Lízal",
+  "redirect_uris": [
+    "https://info.dobrodruzi.cz/callback"
+  ]
+}
