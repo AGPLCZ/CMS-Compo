@@ -6,7 +6,8 @@ use Compo\Navigation\UrlManager;
 use Compo\Navigation\MenuManager2;
 use DB;
 
-final class PageRenderer {
+final class PageRenderer
+{
     private $template;
     private $componentData;
     private $urls;
@@ -16,7 +17,8 @@ final class PageRenderer {
     private $menu;
     private $menuManager;
 
-    public function __construct($template) {
+    public function __construct($template)
+    {
         if (empty($template)) {
             throw new \InvalidArgumentException("Template nesmí být prázdný");
         }
@@ -26,7 +28,7 @@ final class PageRenderer {
         $this->urlManager = new UrlManager();
         $this->urls = $this->urlManager->getSegment(0);
         $this->urlss = $this->urlManager->getSegment(1);
-        
+
         if ($this->urls === null) {
             $this->urls = "index";
         }
@@ -40,30 +42,31 @@ final class PageRenderer {
 
     private function loadComponentData() {
         $this->componentData = DB::query("
-            SELECT 
-                lc.name AS componentName,
-                c.contents_id AS contentId,
-                c.order AS componentOrder,
-                c.pages_id AS pageId,
-                c.components_id AS componentsId
-            FROM 
-                pages AS p
-            JOIN 
-                components AS c ON p.pages_id = c.pages_id
-            JOIN 
-                list_components AS lc ON c.list_components_id = lc.list_components_id
-            WHERE 
-                p.uri = %s
-            ORDER BY 
-                c.order
-        ", $this->urls);
+        SELECT 
+            lc.name AS componentName,
+            c.contents_id AS contentId,
+            c.order AS componentOrder,
+            c.pages_id AS pageId,
+            c.components_id AS componentsId
+        FROM 
+            pages AS p
+        JOIN 
+            components AS c ON p.pages_id = c.pages_id
+        JOIN 
+            list_components AS lc ON c.list_components_id = lc.list_components_id
+        WHERE 
+            p.uri = %s
+        ORDER BY 
+            c.order
+    ", $this->urls);
 
         if (empty($this->componentData)) {
             $this->render404();
         }
     }
 
-    public function renderComponents() {
+    public function renderComponents()
+    {
         if (!empty($this->componentData)) {
             foreach ($this->componentData as $data) {
                 $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
@@ -85,7 +88,8 @@ final class PageRenderer {
         }
     }
 
-    private function render404() {
+    private function render404()
+    {
         header("HTTP/1.1 404 Not Found");
         require_once "components/"  . $this->template . "/head.php";
         require_once "components/"  . $this->template . "/navigation.php";
@@ -94,8 +98,10 @@ final class PageRenderer {
         exit; // Zajistíme, aby se další kód neprovedl po zobrazení 404 stránky
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         // Implementace, pokud je potřeba
         return '';
     }
 }
+

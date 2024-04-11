@@ -13,6 +13,7 @@ use Compo\Registry;
 
 $config = new Registry();
 $config->set("path","CMS/CMS-Compo");
+$config->set("template","green");
 
 $userDatabaseId = "";
 

@@ -4,15 +4,16 @@ namespace Compo\Rendering;
 
 use DB;
 use Compo\Navigation\UrlManager;
+use Compo\Registry;
 
 
 
 class Template
 {
-    public $urlManager;
-    public $urls;
-    public $template;
-    public $result;
+    private $urlManager;
+    private $urls;
+    private $template;
+    private $result;
 
 
     public function __construct()
@@ -45,10 +46,10 @@ class Template
                 echo "Page ID: " . $this->result['pageId'] . ", Page URI: " . $this->result['pageUri'] . ", Template Name: " . $this->result['templateName'] . "<br>";
                 return $this->template = $this->result['templateName'];
             } else {
-                return $this->template = "green";
+                return $this->template = Registry::get('template');
             }
         } else {
-            return $this->template = "green";
+            return $this->template =  Registry::get('template');
         }
     }
 }
