@@ -1,47 +1,66 @@
 <?php
 
 namespace Compo\Navigation;
+
 use Compo\Registry;
+
 class UrlManager
 {
     private $urlSegments;
-    public $index;
-    public $index_path;
 
     public function __construct()
     {
         $this->parseUrl();
     }
 
-    // Odstranění počátečního a koncového lomítka z URI a rozdělení cesty URL na segmenty - např. z 'http://example.com/posts/123' na ['posts', '123'],  
+    /**
+     * Removes leading and trailing slashes from the URI and splits the URL path into segments.
+     * For example, 'http://example.com/posts/123' is split into ['posts', '123'].
+     */
     private function parseUrl()
     {
         $urlPath = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         $this->urlSegments = explode('/', $urlPath);
     }
 
-    // Získání segmentu URL na zadaném indexu, pokud existuje
+    /**
+     * Retrieves a URL segment at the given index, if it exists.
+     * If the CMS is located in a higher directory/in a folder (e.g., 'http://localhost/CMS/CMS-Compo/'),
+     * 'path' will be 'CMS/CMS-Compo'.
+     * 
+     * @param int $index Index segmentu URL.
+     * @return string|null Returns the URL segment or NULL if the segment does not exist.
+     */
     public function getSegment($index)
     {
+        $path = Registry::get('path');
+        $pathSegments = explode('/', $path);
+        $pathOffset = count($pathSegments);
 
-    
-        $this->index = $index;
-        $this->index_path = $this->index +  Registry::get('pathOffset');
-        if (isset($this->urlSegments[$this->index_path])) {
-            return $this->urlSegments[$this->index_path];
-        };
+        $targetIndex = $index + $pathOffset;
 
-        return 0;
+        if (isset($this->urlSegments[$targetIndex])) {
+            return $this->urlSegments[$targetIndex];
+        }
+
+        return NULL;
     }
 
-    //           return 0;   Potřeboval bych vymyslet jak mám udělat aby $this->path= číslo co nastaví uživatel   aby platilo pro všechny objekty  Kdyby to číslo path bylo jako parametr funkce tak bych v kodu jsem musel nějaké zadat, ale já chci aby uživatel mohl jej měnit a platilo to pro všechny vytvořené objekty.  Jak to mám udělat?  
-
+    /**
+     * Returns the base name of the PHP file without the .php extension.
+     * 
+     * @return string 
+     */
     public function baseUrl()
     {
         return basename($_SERVER['PHP_SELF'], '.php');
     }
 
-    // vrátí řetězec, který obsahuje základní URL a všechny segmenty URL
+    /**
+     * Returns a string that includes the base URL and all URL segments.
+     * 
+     * @return string A formatted string containing the base URL and segments.
+     */
     public function __toString()
     {
         return "Základní URL: " . $this->baseUrl() . ", Segmenty: " . implode(', ', $this->urlSegments);

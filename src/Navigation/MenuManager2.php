@@ -50,6 +50,7 @@ namespace Compo\Navigation {
                 }
                 $children[$parentId][] = $page;
             }
+            //var_dump($children);
 
             // Nyní rekurzivně postavíme strom začínající od stránek bez rodičů (kořenové stránky)
             foreach ($children[null] as $rootPage) {
@@ -97,3 +98,17 @@ namespace Compo\Navigation {
         }
     }
 }
+/*
+$children:
+│
+├── "" (kořenové stránky, tj. stránky bez parentId)
+│   ├── [0] Úvod (pages_id: 1, uri: index)
+│   ├── [1] Bitcoin VexlATM (pages_id: 2, uri: bitcoin)
+│   ├── [2] Blog (pages_id: 6, uri: blog)
+│   ├── [3] Lektorské služby pro děti (pages_id: 5, uri: https://dobrodruzi.cz)
+│   └── [4] Cestovní zápisky (pages_id: 10, uri: nic)
+│
+└── "10" (děti stránky s pages_id: 10, tj. Cestovní zápisky)
+    ├── [0] Cestovní deník (pages_id: 9, uri: travel, parentId: 10)
+    └── [1] Cestovní časová osa (pages_id: 8, uri: timeline, parentId: 10)
+*/

@@ -11,64 +11,10 @@ use Compo\Rendering\PageRenderer;
 use Compo\Registry;
 
 
-/*
-$address = "bc1q9aslcgj4203926f45aazn2cnzmvwhc0g5d5h5j";
-$validator = new Kielabokkie\Bitcoin\AddressValidator();
-if ($validator->isValid($address)) {
-    echo "OK";
-} else {
-    echo "NE";
-}
-
-*/
-
-
-/*
-spl_autoload_register(function ($class) {
-    $prefix = 'Comgate\\';
-    $base_dir = __DIR__ . '/src/';
-
-    $len = strlen($prefix);
-    if (strncmp($prefix, $class, $len) !== 0) {
-        return;
-    }
-
-    $relative_class = substr($class, $len);
-    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-
-    if (file_exists($file)) {
-        require $file;
-    }
-});
-
-*/
-
-
-use Compo\Test;
-//$test = new Test();
-//echo $test->hello();
-
-/*
-use Compo\Navigation\UrlManager; 
-$urlManager = new UrlManager();
-
-$path = 1;
-$urls = $urlManager->getSegment($path + 0);
-$urlss = $urlManager->getSegment($path + 1);
-*/
-
 $config = new Registry();
-$config->set("pathOffset",1);
-$config->set("path","CMS");
-
-
-
-
-
+$config->set("path","CMS/CMS-Compo");
 
 $userDatabaseId = "";
-
-
 
 $whatTemplate = new Template();
 $template = $whatTemplate->TemplateName();
