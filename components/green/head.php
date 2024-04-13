@@ -11,22 +11,22 @@
   <meta name="author" content="dobrodruzi.cz">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="<?php echo $this->url ?>/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="<?php echo $this->url ?>/images/favicon.png" type="image/x-icon">
 
 
 
   <!-- plugins -->
-  <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="/plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/plugins/slick/slick.css">
-  <link href="/iconpro/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo $this->url ?>/plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="<?php echo $this->url ?>/plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="<?php echo $this->url ?>/plugins/slick/slick.css">
+  <link href="<?php echo $this->url ?>/iconpro/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-  <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo $this->url ?>/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Green CSS -->
-  <link rel="stylesheet" href="/assets/template/green/css/style.css" media="screen">
+  <link rel="stylesheet" href="<?php echo $this->url ?>/assets/template/green/css/style.css" media="screen">
   <style>
     .icon-sm {
       width: 1.5rem;

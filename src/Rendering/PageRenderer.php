@@ -4,6 +4,7 @@ namespace Compo\Rendering;
 
 use Compo\Navigation\UrlManager;
 use Compo\Navigation\MenuManager2;
+use Compo\Registry;
 use DB;
 
 final class PageRenderer
@@ -16,9 +17,33 @@ final class PageRenderer
     private $base_url;
     private $menu;
     private $menuManager;
+    private $slash;
+    public $baseUrl;
+    public $url;
+    public $page_content;
+
+    const COMPONENT_QUERY = "
+    SELECT 
+        lc.name AS componentName,
+        c.contents_id AS contentId,
+        c.order AS componentOrder,
+        c.pages_id AS pageId,
+        c.components_id AS componentsId
+    FROM 
+        pages AS p
+    JOIN 
+        components AS c ON p.pages_id = c.pages_id
+    JOIN 
+        list_components AS lc ON c.list_components_id = lc.list_components_id
+    WHERE 
+        p.uri = %s
+    ORDER BY 
+        c.order
+    ";
 
     public function __construct($template)
     {
+
         if (empty($template)) {
             throw new \InvalidArgumentException("Template nesmí být prázdný");
         }
@@ -28,54 +53,62 @@ final class PageRenderer
         $this->urlManager = new UrlManager();
         $this->urls = $this->urlManager->getSegment(0);
         $this->urlss = $this->urlManager->getSegment(1);
+        $this->slash = $this->urlManager->getSegmentSlash();
 
         if ($this->urls === null) {
             $this->urls = "index";
         }
 
-        $this->base_url = $this->urlManager->baseUrl();
+        $this->url = $this->urlManager->getUrl();
+
+
         $this->menuManager = new MenuManager2();
         $this->menu = $this->menuManager->buildMenuPrimary();
 
         $this->loadComponentData();
     }
 
-    private function loadComponentData() {
-        $this->componentData = DB::query("
-        SELECT 
-            lc.name AS componentName,
-            c.contents_id AS contentId,
-            c.order AS componentOrder,
-            c.pages_id AS pageId,
-            c.components_id AS componentsId
-        FROM 
-            pages AS p
-        JOIN 
-            components AS c ON p.pages_id = c.pages_id
-        JOIN 
-            list_components AS lc ON c.list_components_id = lc.list_components_id
-        WHERE 
-            p.uri = %s
-        ORDER BY 
-            c.order
-    ", $this->urls);
+
+    private function loadComponentData()
+    {
+        $this->componentData = DB::query(self::COMPONENT_QUERY, $this->urls);
 
         if (empty($this->componentData)) {
             $this->render404();
         }
     }
 
+    public function renderComponentEdit($column){
+        //kam
+        $form = '<form method="POST" action="'. $this->url . '/admin/edit.php">';   
+        //akce
+        $form .= '<input type="hidden" name="akce" value="edit">';
+        //co
+        $form .= '<input type="hidden" name="contents_id" value="' . $this->page_content['contents_id'] . '">';
+        $form .= '<input type="hidden" name="column" value="'. $column . '">';
+        // button
+        $form .= '<button type="submit">Upravit' . $this->page_content[$column] . '</button>';
+        $form .= '</form>';
+
+    return $form;
+
+    }
+
     public function renderComponents()
     {
+
+        
         if (!empty($this->componentData)) {
             foreach ($this->componentData as $data) {
                 $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
 
                 if ($contentData) {
                     $page_content = $contentData;
+                    $this->page_content = $page_content;
 
                     echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
-
+                    
+                    
                     $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
 
                     if (file_exists($filePath)) {
@@ -104,4 +137,3 @@ final class PageRenderer
         return '';
     }
 }
-

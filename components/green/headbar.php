@@ -5,7 +5,7 @@
               <div class="col-lg-9 mx-auto">
                   <h1 class="mb-5">Nabízím nástroje na udržení osobní svobody</h1>
                   <ul class="list-inline widget-list-inline">
-                      <li class="list-inline-item"><a href="/articles/open-source/">Návody
+                      <li class="list-inline-item"><a href="<?php echo $this->url ?>/articles/open-source/">Návody
                               na VexlATM</a></li>
                       <li class="list-inline-item"><a href="/articles/vybaveni-na-cesty/">Vybavení na cesty</a></li>
                       <li class="list-inline-item"><a href="/articles/technicke-vybaveni/">Technické vybavení</a>
@@ -62,7 +62,7 @@
 
                   <article class="card">
                       <div class="post-slider slider-sm">
-                          <img src="/images/post/ja_skala.jpg" class="card-img-top" alt="post-thumb">
+                          <img src="<?php echo $this->url ?>/images/post/ja_skala.jpg" class="card-img-top" alt="post-thumb">
                       </div>
                       <div class="card-body">
                           <h3 class="h4 mb-3"><a class="post-title" href="#">Svobodu lze pouze
@@ -173,7 +173,7 @@
 
                   <!-- Promotion -->
                   <div class="promotion">
-                      <img src="/images/post/trezormat.jpeg" class="img-fluid w-100">
+                      <img src="<?php echo $this->url ?>/images/post/trezormat.jpeg" class="img-fluid w-100">
                       <div class="promotion-content">
                           <h5 class="text-white mb-3">VexlATM</h5>
                           <p class="text-white mb-4">Postavte si vlastní Bitcoin směnárnu.</p>
@@ -187,7 +187,7 @@
                   </h2>
                   <article class="card">
                       <div class="post-slider slider-sm">
-                          <img src="/images/post/luptak.jpg" class="card-img-top" alt="post-thumb">
+                          <img src="<?php echo $this->url ?>/images/post/luptak.jpg" class="card-img-top" alt="post-thumb">
                       </div>
                       <div class="card-body">
                           <h3 class="h4 mb-3"><a class="post-title" href="/#">Globální

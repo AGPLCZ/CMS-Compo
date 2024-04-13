@@ -6,11 +6,15 @@ use Compo\Registry;
 
 class UrlManager
 {
+
     private $urlSegments;
+    private $pathOffset;
+    static $url;
 
     public function __construct()
     {
         $this->parseUrl();
+        $this->pathOffset();
     }
 
     /**
@@ -23,6 +27,20 @@ class UrlManager
         $this->urlSegments = explode('/', $urlPath);
     }
 
+
+    /**
+     * 
+     * 
+     * @return string 
+     */
+
+    private function pathOffset()
+    {
+        $path = Registry::get('path');
+        $pathSegments = explode('/', $path);
+        $this->pathOffset = count($pathSegments);
+    }
+
     /**
      * Retrieves a URL segment at the given index, if it exists.
      * If the CMS is located in a higher directory/in a folder (e.g., 'http://localhost/CMS/CMS-Compo/'),
@@ -33,11 +51,7 @@ class UrlManager
      */
     public function getSegment($index)
     {
-        $path = Registry::get('path');
-        $pathSegments = explode('/', $path);
-        $pathOffset = count($pathSegments);
-
-        $targetIndex = $index + $pathOffset;
+        $targetIndex = $index + $this->pathOffset;
 
         if (isset($this->urlSegments[$targetIndex])) {
             return $this->urlSegments[$targetIndex];
@@ -47,14 +61,84 @@ class UrlManager
     }
 
     /**
-     * Returns the base name of the PHP file without the .php extension.
-     * 
-     * @return string 
+     * @return string Returns the base name of the PHP file without the .php extension.
      */
-    public function baseUrl()
+    public function getUrl()
+    {
+        // Získání protokolu
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+
+        // Sestavení plné URL
+        $url = $protocol . '://' . $_SERVER['SERVER_NAME'];
+
+        // Přidání portu, pokud je to potřeba (pro nestandardní porty)
+        if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
+            $url .= ':' . $_SERVER['SERVER_PORT'];
+        }
+
+        $url = $url . '/' . Registry::get('path');
+
+        return $url;
+    }
+
+        /**
+     * @return string Returns  full url adress
+     */
+    public function getFullUrl()
+    {
+        //return __DIR__ . '/'. Registry::get('path') .'/';
+        // Získání protokolu
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+
+        // Sestavení plné URL
+        $url = $protocol . '://' . $_SERVER['SERVER_NAME'];
+
+        // Přidání portu, pokud je to potřeba (pro nestandardní porty)
+        if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
+            $url .= ':' . $_SERVER['SERVER_PORT'];
+        }
+
+        // Přidání URI
+        $url .= $_SERVER['REQUEST_URI'];
+
+        return $url;
+    }
+
+
+    public function getBaseName()
     {
         return basename($_SERVER['PHP_SELF'], '.php');
     }
+
+    /** Odkud uživatel přišel */
+    public function getBackPage()
+    {
+        return $_SERVER["HTTP_REFERER"];
+    }
+
+
+
+    /**
+     * @return string 
+     */
+    public function getSegmentSlash()
+    {
+        $result = "";  // Inicializace proměnné $result
+        $targetIndex0 = 0 + $this->pathOffset;
+        $targetIndex1 = 1 + $this->pathOffset;
+
+        // Kontrola existence segmentů a jejich přidání do výsledku
+        if (isset($this->urlSegments[$targetIndex0])) {
+            $result .=  '<li class="list-inline-item text-primary">' . $this->urlSegments[$targetIndex0] . '</li>' . "&nbsp; &nbsp; / ";
+        }
+        if (isset($this->urlSegments[$targetIndex1])) {
+            $result .= $this->urlSegments[$targetIndex1] . " / ";
+        }
+
+        return $result;
+    }
+
+
 
     /**
      * Returns a string that includes the base URL and all URL segments.
@@ -63,6 +147,6 @@ class UrlManager
      */
     public function __toString()
     {
-        return "Základní URL: " . $this->baseUrl() . ", Segmenty: " . implode(', ', $this->urlSegments);
+        return "Základní URL: " . $this->getBaseName() . ", Segmenty: " . implode(', ', $this->urlSegments);
     }
 }

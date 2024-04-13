@@ -6,9 +6,13 @@ require_once 'db.meekro.php';
 require_once "config.php";
 require_once 'vendor/autoload.php';
 
+use Compo\Navigation\UrlManager;
 use Compo\Rendering\Template;
 use Compo\Rendering\PageRenderer;
 use Compo\Registry;
+
+// $urlManager = new UrlManager;
+// echo $baseUrl = $urlManager->baseUrl();
 
 
 $config = new Registry();

@@ -7,7 +7,8 @@
                 <ul class="list-inline">
                     <li class="list-inline-item"><a class="text-default" href="/">Úvod
                             &nbsp; &nbsp; /</a></li>
-                    <li class="list-inline-item text-primary"><?php echo $this->urls; ?></li> / <li class="list-inline-item text-primary"><?php echo $this->urlss; ?> </li> <?php if ($this->urlss !== ""){echo " /";} ?>
+                   <!-- <li class="list-inline-item text-primary"><?php echo $this->urls; ?></li> / <li class="list-inline-item text-primary"><?php echo $this->urlss; ?> </li> <?php if ($this->urlss !== NULL){echo " /";} ?>-->
+                    <?php echo $this->slash; ?>
                 </ul>
             </div>
         </div>

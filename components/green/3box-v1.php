@@ -10,8 +10,9 @@
 
                 </div>
                 <div>
-                    <h2><?php echo $page_content["content1"]; ?></h2>
-                    <p><?php echo $page_content["content2"]; ?></p>
+    
+                    <h2><?php echo $page_content["content1"]; ?></h2><?php echo $this->renderComponentEdit("content1"); ?>
+                    <p><?php echo $page_content["content2"]; ?></p><?php echo $this->renderComponentEdit("content2"); ?>
 
                 </div>
             </div>

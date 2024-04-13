@@ -51,7 +51,7 @@ ORDER BY pages.pages_id, components.order
 $results2 = DB::query($query2);
 
 
-
+DB::query("SELECT * FROM tabulka WHERE sloupec=%s", $hodnota");
 
 ?>
 
