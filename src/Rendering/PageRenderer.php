@@ -65,6 +65,7 @@ final class PageRenderer
         $this->menuManager = new MenuManager2();
         $this->menu = $this->menuManager->buildMenuPrimary();
 
+
         $this->loadComponentData();
     }
 

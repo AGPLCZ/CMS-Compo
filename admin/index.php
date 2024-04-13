@@ -51,7 +51,6 @@ ORDER BY pages.pages_id, components.order
 $results2 = DB::query($query2);
 
 
-DB::query("SELECT * FROM tabulka WHERE sloupec=%s", $hodnota");
 
 ?>
 
@@ -222,15 +221,6 @@ DB::query("SELECT * FROM tabulka WHERE sloupec=%s", $hodnota");
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- Javascript -->
-	<script src=" assets/plugins/popper.min.js">
-	</script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Page Specific JS -->
-	<script src="assets/js/app.js"></script>
-
-	</body>
-
-	</html>
+<?php require_once "footer.php"; ?>

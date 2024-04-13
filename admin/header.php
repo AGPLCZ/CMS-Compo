@@ -86,8 +86,6 @@ if (in_array($userRole, $allowedRoles)) {
 
             <!--//col-->
             <div class="col-auto">
-
-
             </div>
 
             <!--//app-search-box-->
