@@ -65,6 +65,7 @@ if (in_array($userRole, $allowedRoles)) {
 
 
   <title>Redakční systém</title>
+
 </head>
 
 

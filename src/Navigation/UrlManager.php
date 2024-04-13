@@ -63,6 +63,28 @@ class UrlManager
     /**
      * @return string Returns the base name of the PHP file without the .php extension.
      */
+    public function getUrlName()
+    {
+        // Získání protokolu
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+
+        // Sestavení plné URL
+        $url = $protocol . '://' . $_SERVER['SERVER_NAME'];
+
+        // Přidání portu, pokud je to potřeba (pro nestandardní porty)
+        if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
+            $url .= ':' . $_SERVER['SERVER_PORT'];
+        }
+
+        $url = $url;
+
+        return $url;
+    }
+
+
+    /**
+     * @return string Returns the base name of the PHP file without the .php extension.
+     */
     public function getUrl()
     {
         // Získání protokolu

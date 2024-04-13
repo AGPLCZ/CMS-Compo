@@ -11,8 +11,8 @@
                 </div>
                 <div>
     
-                    <h2><?php echo $page_content["content1"]; ?></h2><?php echo $this->renderComponentEdit("content1"); ?>
-                    <p><?php echo $page_content["content2"]; ?></p><?php echo $this->renderComponentEdit("content2"); ?>
+                    <h2><?php echo $page_content["content1"]; ?><?php echo $this->renderComponentEditButton("content1"); ?></h2>
+                    <p><?php echo $page_content["content2"]; ?><?php echo $this->renderComponentEditButton("content2"); ?></p>
 
                 </div>
             </div>
