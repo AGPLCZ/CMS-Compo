@@ -86,7 +86,7 @@ final class PageRenderer
     $form .= '<input type="hidden" name="akce" value="edit">';
     $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
     $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
-    $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px;"><i class="fa fa-edit"></i></button>';
+    $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px; opacity: 20%"><i class="fa fa-edit"></i></button>';
     $form .= '</form>';
 
     return $form;

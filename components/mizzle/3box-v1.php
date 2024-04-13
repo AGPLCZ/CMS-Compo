@@ -1,46 +1,399 @@
-<conteiner>
-    <div class="container px-4 mt-4 my-3 py-0" id="hanging-icons">
+
+<!-- =======================
+Feature section 2 START 
+
+Otevřete svůj internetový obchod ještě dnes!
+
+Je to ZDARMA a trvá 5 minut. Není nutná žádná kreditní karta.
+
+Všechno, co byste mohli kdy chtít
+Vytvořte krásný obchod
+Bez námahy vytvořte krásný obchod, který vyniká a představuje vaši značku jedinečným způsobem.
 
 
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-            <div class="col d-flex align-items-start">
-                <div class="icon-square text-dark flex-shrink-0 me-3">
-                    <i class="fad fa-hiking  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+Připojte svou doménu
+Připojte k sobě existující doménu Obchod Sellfy, abyste posílili svou značku a zajistili hladký uživatelský dojem.
+ 
+
+Úplné přizpůsobení
+Přidejte své logo, změňte barvy nebo uložte jazyk. Vytvořte rozvržení, které chcete přizpůsobit vaší značce, a vložte svůj obchod kamkoli.
 
 
-                </div>
-                <div>
+Prodávejte jakýkoli typ produktu online
+Prodávejte tisk na vyžádání, digitální zboží nebo získávejte opakující se příjmy s předplatným.
 
-                    <h5 class="mb-3"><?php echo $page_content["content1"]; ?><?php echo $this->renderComponentEditButton("content1"); ?></h5>
-                    <p class="mb-0"><?php echo $page_content["content2"]; ?><?php echo $this->renderComponentEditButton("content2"); ?></p>
 
-                </div>
-            </div>
-            <div class="col d-flex align-items-start">
-                <div class="icon-square text-dark flex-shrink-0 me-3">
-                    <i class="fad fa-campground  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
-                </div>
-                <div>
-                    <h5 class="mb-3"><?php echo $page_content["content3"]; ?><?php echo $this->renderComponentEditButton("content3"); ?></h5>
-                    <p class="mb-0"><?php echo $page_content["content4"]; ?><?php echo $this->renderComponentEditButton("content4"); ?></p>
-                </div>
-            </div>
-            <div class="col d-flex align-items-start">
-                <div class="icon-square text-dark flex-shrink-0 me-3">
-                    <i class="fad fa-axe rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
-                </div>
-                <div>
-                    <h5 class="mb-3"><?php echo $page_content["content5"]; ?><?php echo $this->renderComponentEditButton("content5"); ?></h5>
-                    <p class="mb-0"><?php echo $page_content["content6"]; ?><?php echo $this->renderComponentEditButton("content6"); ?></p>
+Digitální produkty a předplatné
+Prodávejte online předplatné a digitální produkty všech typů: elektronické knihy, videa, zvuk, hudba a další.
+
+
+Vyrovnejte svou marketingovou hru
+Získejte všechny prodejní nástroje, které potřebujete, na jednom místě.
+
+
+Zaregistrujte se zdarma. Udržujte to tak dlouho, jak budete chtít.
+Připravte si internetový obchod během několika minut a začněte prodávat kdekoli — vaše vlastní web, sociální média jako Facebook a Instagram, tržiště a více — ne požadovaná zkušenost. 
+
+Začněte prodávat
+
+Vytvořte internetový obchod
+
+-->
+<section class="overflow-hidden">
+	<div class="container">
+
+
+		<div class="row g-4">
+			<!-- Feature content START -->
+			<div class="col-lg-6 mb-sm-6 mb-lg-0">
+				<!-- Title -->
+				<h2 class="mb-4">Vytvořte moderní e-shop</h2>
+				<p class="mb-0">Redakční systém obsahuje veškeré funkce pro správu e-shopu.</p>
+
+				<hr class="my-4 my-sm-5"> <!-- Divider -->
+
+				<!-- Features item -->
+				<div class="row g-4 mb-4 mb-sm-5">
+					<div class="col-sm-6">
+						<!-- Items -->
+						<div class="d-flex mb-4 mb-sm-5">
+							<!-- Icon -->
+							<div class="icon-md flex-shrink-0 text-primary bg-primary bg-opacity-10 rounded-circle"><i class="bi bi-diagram-3 fa-xl"></i></div>
+							<!-- Content -->
+							<div class="ms-3">
+								<h6 class="mb-0 mb-sm-2">Odesílání zboží</h6>
+								<p class="mb-0">Možnost napojení na dopravní společnosti jako je Zásilkovna.</p>
+							</div>
+						</div>
+
+						<!-- Items -->
+						<div class="d-flex">
+							<!-- Icon -->
+							<div class="icon-md flex-shrink-0 text-primary bg-primary bg-opacity-10 rounded-circle"><i class="bi bi-boxes fa-xl"></i></div>
+							<!-- Content -->
+							<div class="ms-3">
+								<h6 class="mb-0 mb-sm-2">Propojení s bankou</h6>
+								<p class="mb-0">Automatické párování všech plateb s objednávkami.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<!-- Items -->
+						<div class="d-flex mb-4 mb-sm-5">
+							<!-- Icon -->
+							<div class="icon-md flex-shrink-0 text-primary bg-primary bg-opacity-10 rounded-circle"><i class="bi bi-people fa-xl"></i></div>
+							<!-- Content -->
+							<div class="ms-3">
+								<h6 class="mb-0 mb-sm-2">Platební brána</h6>
+								<p class="mb-0">Zákazníci mohou platit kartou, převodem, i Bitcoinem.</p>
+							</div>
+						</div>
+
+						<!-- Items -->
+						<div class="d-flex">
+							<!-- Icon -->
+							<div class="icon-md flex-shrink-0 text-primary bg-primary bg-opacity-10 rounded-circle"><i class="bi bi-shield-check fa-xl"></i></div>
+							<!-- Content -->
+							<div class="ms-3">
+								<h6 class="mb-0 mb-sm-2">Vedení učetnictví </h6>
+								<p class="mb-0">Vedení daňové evidence dokážeme z automatizovat.</p>
+							</div>
+						</div>
+					</div>
+				</div> <!-- Row END -->
+
+				<!-- Button -->
+				<a href="https://mizzle.webestica.com/about-v2.html" class="btn btn-dark mb-0">Zjistit více informací</a>
+			</div>
+			<!-- Feature content END -->
+
+			<!-- Feature image & decoration START -->
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="col-lg-11 col-xl-9 position-relative ms-auto">
+						<!-- SVG decoration -->
+						<figure class="position-absolute top-50 start-0 translate-middle z-index-2">
+							<svg width="159" height="155" viewBox="0 0 159 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path class="fill-primary" d="M14.2394 111.637C13.5965 111.365 12.9265 111.083 12.2734 110.839C10.1612 110.017 8.07613 109.206 5.88225 108.354C6.18466 107.629 6.68446 107.288 7.12302 106.862C8.19051 105.834 9.28521 104.815 10.1758 103.596C10.9576 102.585 11.4775 101.445 11.7254 100.202C11.7797 99.9745 11.7898 99.6988 11.5177 99.597C11.3272 99.5257 11.0449 99.4511 10.8681 99.5091C10.4294 99.6864 10.035 99.9113 9.6304 100.163C6.57033 102.123 4.06486 104.755 1.43689 107.217C1.2567 107.367 1.12074 107.565 0.984778 107.762C0.525929 108.491 0.553501 109.495 1.0979 110.195C1.43134 110.63 1.85998 110.977 2.36679 111.198C5.43823 112.441 8.5844 113.401 11.9004 113.742C12.5874 113.813 13.3322 113.812 13.985 113.56C14.4509 113.393 14.8385 113.103 14.8213 112.569C14.8551 112.147 14.6374 111.817 14.2394 111.637Z"></path>
+								<path class="fill-primary" d="M14.8846 105.45C20.7137 105.459 26.5019 105.079 32.2524 104.22C34.1942 103.923 36.1122 103.523 37.9995 102.957C45.8716 100.656 51.4064 95.6497 55.0392 88.3477C56.5889 85.2023 57.6011 81.9178 58.2869 78.511C58.8572 75.7441 59.3459 72.9467 59.889 70.1696C60.4084 67.5388 60.9822 64.9284 62.0933 62.4571C64.0642 58.1033 67.4234 55.7593 72.1948 55.5273C73.3 55.4753 74.3815 55.5697 75.4767 55.7933C77.9595 56.288 80.2996 57.164 82.5752 58.2951C84.5345 59.2769 86.521 60.2688 88.4904 61.2233C92.5722 63.2479 96.5579 62.877 100.461 60.7368C101.709 60.0552 102.879 59.2511 104.004 58.3995C105.252 57.4694 106.449 56.4272 107.662 55.4224C109.492 53.9338 111.348 52.4554 113.221 51.0145C114.612 49.9517 116.104 49.1133 117.703 48.4076C121.273 46.8257 124.759 47.0439 128.126 48.9874C129.63 49.8606 131.066 50.8326 132.521 51.7501C134.651 53.106 136.821 54.353 139.287 55.0587C142.28 55.9306 145.171 55.8329 147.949 54.2959C148.231 54.3705 148.445 54.2955 148.557 53.9959L148.595 53.9789C149.016 54.0126 149.329 53.7571 149.649 53.5663C151.278 52.5305 152.773 51.3518 154.086 49.9182C155.694 48.6884 156.7 47.0781 157.349 45.1788C156.06 46.4661 154.888 47.8588 153.786 49.3093C152.154 50.9338 150.077 51.9258 148.183 53.1728C147.877 53.2445 147.571 53.3162 147.282 53.4254C144.551 54.4213 141.902 54.2058 139.259 53.0613C137.286 52.1987 135.585 50.9411 133.874 49.7107C132.36 48.6163 130.887 47.413 129.278 46.4072C125.251 43.9062 121.054 43.515 116.671 45.4447C115.223 46.0822 113.879 46.8524 112.577 47.762C110.775 49.0123 109.086 50.4599 107.45 51.9279C105.815 53.3959 104.153 54.8537 102.5 56.2842C101.303 57.3265 100.011 58.2089 98.58 58.8839C95.8563 60.1928 93.1459 60.3891 90.4213 58.9656C88.8158 58.1163 87.268 57.1955 85.6625 56.3462C82.4617 54.6203 79.2404 52.9489 75.6217 52.3394C69.4351 51.2966 64.2324 53.0126 60.4832 58.222C59.2425 59.9619 58.3896 61.909 57.8258 63.9953C56.7458 67.8754 56.1861 71.8571 55.4529 75.8049C54.6655 79.9807 53.6773 84.1125 51.662 87.9219C48.8956 93.1576 45.0678 97.251 39.5354 99.6818C37.349 100.633 35.1251 101.353 32.8161 101.886C29.1435 102.746 25.4062 103.365 21.6654 103.828C19.3189 104.129 16.9928 104.376 14.6463 104.678C14.2586 104.719 13.7553 104.655 13.5616 105.172C13.9324 105.59 14.4255 105.433 14.8846 105.45Z"></path>
+								<path class="fill-primary" d="M157.352 45.087C157.342 45.1142 157.314 45.104 157.304 45.1313C157.294 45.1585 157.284 45.1857 157.274 45.213C157.284 45.1857 157.321 45.1687 157.321 45.1687C157.331 45.1414 157.342 45.1142 157.352 45.087Z"></path>
+								<path class="fill-primary" d="M157.889 43.6438C157.655 44.2701 157.502 44.6786 157.349 45.087C157.91 44.583 157.92 44.5557 157.889 43.6438Z"></path>
+							</svg>
+						</figure>
+
+						<!-- Card START -->
+						<div class="card border p-4">
+
+
+							<img src="<?php echo $this->url ?>/assets/template/mizzle/images/saas-bg.jpg">
+
+
+
+						</div>
+					</div>
+				</div>
+				<!-- Feature image & decoration END -->
+			</div> <!-- Row END -->
+		</div>
+</section>
+<!-- =======================
+Feature section 2 END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =======================
+Feature section integration START -->
+<section class="pt-5 pt-sm-0">
+	<div class="container">
+		<div class="row align-items-center">
+			<!-- Integration icons -->
+			<div class="col-lg-6 pe-xl-5 order-2">
+				<div class="row align-items-sm-center">
+
+					<!-- Item -->
+
+					<img src="<?php echo $this->url ?>/assets/template/mizzle/images/saas-bg.jpg">
+
+
+
+
+				</div>
+			</div>
+
+			<!-- Integration content -->
+			<div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0 ps-xl-5">
+				<!-- Title -->
+				<h2 class="mb-4">Seamless connections for enhanced performance</h2>
+				<p class="mb-4">Explore our array of integrations that effortlessly connect with your existing tools and amplify your workflow efficiency.</p>
+				<!-- List -->
+				<ul class="list-group list-group-borderless mb-4">
+					<li class="list-group-item heading-color d-flex mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Connect with a wide range of third-party applications</li>
+					<li class="list-group-item heading-color d-flex mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Automate tasks and reduce manual data entry</li>
+					<li class="list-group-item heading-color d-flex mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Rest assured that your data remains safe and protected</li>
+				</ul>
+				<!-- Button -->
+				<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-dark mb-0">Know more</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- =======================
+Feature section integration END -->
+</div>
+</section>
+</main>
+
+
+
+
+<section class="pt-0">
+	<div class="container">
+		<!-- Title -->
+		<div class="inner-container-small text-center mb-4 mb-sm-5">
+			<h2 class="mb-4">Discover our competitive plans</h2>
+			<p class="mb-0">Your agency's success deserves a pricing strategy that aligns with your goals. We offer a range of pricing plans crafted to meet your unique needs.</p>
+		</div>
+
+		<!-- Slider START -->
+		<div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden" data-swiper-options="{
+			&quot;loop&quot;: false,
+			&quot;spaceBetween&quot;: 40,
+			&quot;pagination&quot;:{
+				&quot;el&quot;:&quot;.swiper-pagination&quot;
+			},
+			&quot;breakpoints&quot;: {
+				&quot;576&quot;: {&quot;slidesPerView&quot;: 1}, 
+				&quot;768&quot;: {&quot;slidesPerView&quot;: 2}, 
+				&quot;992&quot;: {&quot;slidesPerView&quot;: 3}
+			}}">
+
+			<!-- Slider items -->
+			<div class="swiper-wrapper" id="swiper-wrapper-0068ec8c5b077838" aria-live="off">
+				<!-- Slider item -->
+				<div class="swiper-slide swiper-slide-active" style="width: 396.667px; margin-right: 40px;" role="group" aria-label="1 / 3">
+					<!-- Pricing item -->
+					<div class="card card-body border rounded p-md-4">
+						<h6 class="mb-2">Basic Plan</h6>
+						<!-- Price -->
+						<div class="d-flex align-items-center">
+							<span class="h1 mb-0">$25</span>
+							<div class="ms-3">
+								<p class="heading-color mb-0">Per user</p>
+								<p class="heading-color mb-0">Per month</p>
+							</div>
+						</div>
+						<span>Basic feature for up to 10 users</span>
+
+						<!-- Buttons -->
+						<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-dark mt-4">Get started</a>
+						<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-outline-light">Chat to sales</a>
+
+						<hr class="my-4"> <!-- Divider -->
+
+						<h6 class="mb-0">Features</h6>
+						<span>Everything in basic plan</span>
+
+						<!-- List -->
+						<ul class="list-group list-group-borderless border-0 mb-0 mt-2">
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Access to basic feature</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Basic reporting and analytics</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Up to 10 individual users</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>20GB individual data each year</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Basic chat and email support</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Ongoing best practices and reviews</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Slider item -->
+				<div class="swiper-slide swiper-slide-next" style="width: 396.667px; margin-right: 40px;" role="group" aria-label="2 / 3">
+					<!-- Pricing item -->
+					<div class="card card-body border rounded p-md-4">
+						<h6 class="mb-2 text-primary">Business Plan</h6>
+						<!-- Price -->
+						<div class="d-flex align-items-center">
+							<span class="h1 mb-0">$50</span>
+							<div class="ms-3">
+								<p class="heading-color mb-0">Per user</p>
+								<p class="heading-color mb-0">Per month</p>
+							</div>
+						</div>
+						<span>Basic feature for up to 10 users</span>
+
+						<!-- Buttons -->
+						<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-dark mt-4">Get started</a>
+						<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-outline-light">Chat to sales</a>
+
+						<hr class="my-4"> <!-- Divider -->
+
+						<h6 class="mb-0">Features</h6>
+						<span>Everything in basic plan and</span>
+
+						<!-- List -->
+						<ul class="list-group list-group-borderless border-0 mb-0 mt-2">
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>200+ integrations</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Basic reporting and analytics</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Up to 10 individual users</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>40GB individual data each year</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Priority chat and email support</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Ongoing best practices and reviews</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Slider item -->
+				<div class="swiper-slide" role="group" aria-label="3 / 3" style="width: 396.667px; margin-right: 40px;">
+					<!-- Pricing item -->
+					<div class="card card-body border rounded p-md-4">
+						<h6 class="mb-2">Enterprise Plan</h6>
+						<!-- Price -->
+						<div class="d-flex align-items-center">
+							<span class="h1 mb-0">$85</span>
+							<div class="ms-3">
+								<p class="heading-color mb-0">Per user</p>
+								<p class="heading-color mb-0">Per month</p>
+							</div>
+						</div>
+						<span>Basic feature for up to 10 users</span>
+
+						<!-- Buttons -->
+						<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-dark mt-4">Get started</a>
+						<a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-outline-light">Chat to sales</a>
+
+						<hr class="my-4"> <!-- Divider -->
+
+						<h6 class="mb-0">Features</h6>
+						<span>Everything in business and</span>
+
+						<!-- List -->
+						<ul class="list-group list-group-borderless border-0 mb-0 mt-2">
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Advanced custom field</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Audit log and data history</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Ultimate individual users</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>60GB individual data each year</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Basic chat and email support</li>
+							<li class="list-group-item d-flex mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i>Ongoing best practices and reviews</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Slider Pagination -->
+			<div class="swiper-pagination swiper-pagination-primary position-relative mt-4 swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-current="true"></span></div>
+			<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="pt-0">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="container px-4 mt-4 my-3 py-0" id="hanging-icons">
+
+
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-dark flex-shrink-0 me-3">
+                            <i class="fad fa-hiking  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+
+
+                        </div>
+                        <div>
+
+                            <h5 class="mb-3"><?php echo $page_content["content1"]; ?><?php echo $this->renderComponentEditButton("content1"); ?></h5>
+                            <p class="mb-0"><?php echo $page_content["content2"]; ?><?php echo $this->renderComponentEditButton("content2"); ?></p>
+
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-dark flex-shrink-0 me-3">
+                            <i class="fad fa-campground  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+                        </div>
+                        <div>
+                            <h5 class="mb-3"><?php echo $page_content["content3"]; ?><?php echo $this->renderComponentEditButton("content3"); ?></h5>
+                            <p class="mb-0"><?php echo $page_content["content4"]; ?><?php echo $this->renderComponentEditButton("content4"); ?></p>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-dark flex-shrink-0 me-3">
+                            <i class="fad fa-axe rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+                        </div>
+                        <div>
+                            <h5 class="mb-3"><?php echo $page_content["content5"]; ?><?php echo $this->renderComponentEditButton("content5"); ?></h5>
+                            <p class="mb-0"><?php echo $page_content["content6"]; ?><?php echo $this->renderComponentEditButton("content6"); ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</conteiner>
+</section>
 
 
-<!-- =======================
-Feature and integration START -->
+
+
+
+
 <section class="pb-0">
     <div class="container">
         <!-- Title -->
@@ -109,5 +462,3 @@ Feature and integration START -->
 
     </div>
 </section>
-<!-- =======================
-Feature and integration END -->

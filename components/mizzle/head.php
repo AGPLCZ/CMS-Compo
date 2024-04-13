@@ -32,9 +32,6 @@
   <link href="<?php echo $this->url ?>/iconpro/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-  	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->url ?>/assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->url ?>/assets/vendor/bootstrap-icons/bootstrap-icons.css">
 
 
 

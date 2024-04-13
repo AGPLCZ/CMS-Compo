@@ -6,8 +6,10 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand me-0" href="index.html">
-			lnlkjljk
+			<a class="navbar-brand me-0" href="#">
+			
+      <div style="display: flex; align-items: center;">
+      <div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>Compo.io </div>
 			</a>
 			<!-- Logo END -->
 
@@ -67,11 +69,11 @@
 
 				<!-- Sign up button -->
 				<li class="nav-item me-2 d-none d-sm-block">
-					<a href="sign-up.html" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Sign up</a>
+					<a href="sign-up.html" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Přihláčení</a>
 				</li>
 				<!-- Buy now button -->
 				<li class="nav-item d-none d-sm-block">
-					<button class="btn btn-sm btn-primary mb-0">Buy now!</button>
+					<button class="btn btn-sm btn-primary mb-0">Registrace</button>
 				</li>
 				<!-- Responsive navbar toggler -->
 				<li class="nav-item">
