@@ -4021,9 +4021,13 @@ textarea.form-control-lg {
   border-bottom: 0;
   border-left: 0.3em solid transparent;
 }
+
+
+
 .dropdown-toggle:empty::after {
   margin-left: 0;
 }
+
 
 .dropdown-menu {
   --bs-dropdown-zindex: 1000;
@@ -4175,6 +4179,8 @@ textarea.form-control-lg {
   margin-top: 0;
   margin-bottom: var(--bs-dropdown-spacer);
 }
+
+
 .dropup .dropdown-toggle::after {
   display: inline-block;
   margin-left: 0.255em;
@@ -4244,6 +4250,8 @@ textarea.form-control-lg {
 .dropstart .dropdown-toggle::before {
   vertical-align: 0;
 }
+
+
 
 .dropdown-divider {
   height: 0;
@@ -4378,6 +4386,8 @@ textarea.form-control-lg {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+
 
 .dropdown-toggle-split {
   padding-right: 0.75rem;
@@ -19556,8 +19566,8 @@ video {
 }
 
 section {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  padding-top: 0.5rem; /* -----------------------------------------   mezera mezi příspěvky */
+  padding-bottom: 0.5rem;
 }
 
 @media (max-width: 1199.98px) {

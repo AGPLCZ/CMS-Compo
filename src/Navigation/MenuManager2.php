@@ -76,7 +76,9 @@ namespace Compo\Navigation {
             foreach ($pages as $page) {
                 if (!empty($page['children'])) {
                     $html .= '<li class="nav-item dropdown">';
-                    $html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '</a>';
+                    //$html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '<i class="fas fa-chevron-down"></i></a>';
+                    // dropdown-toggle - přidat pro jiné šablony.  Tohle je náhrada pro Mizzle <i class="fas fa-chevron-down"> 
+                    $html .= '<a class="nav-link" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . ' <i class="fas fa-chevron-down"></i></a>';
                     $html .= $this->buildHtmlMenu($page['children'], true);
                     $html .= '</li>';
                 } else {
@@ -86,6 +88,7 @@ namespace Compo\Navigation {
                     $html .= $isSubmenu ? '</a>' : '</a></li>';
                 }
             }
+    
 
             $html .= $isSubmenu ? '</div>' : '</ul>';
 

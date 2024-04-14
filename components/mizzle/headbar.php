@@ -38,7 +38,7 @@
 
 				<!-- List -->
 				<ul class="list-inline d-flex flex-wrap justify-content-center gap-2 gap-sm-5 mb-0">
-					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i> 100 Kč / měsíc</li>
+					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i> Od 50 Kč / měsíc</li>
 					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i>Trvá to 5 minut</li>
 				</ul>
 			</div>
@@ -54,7 +54,8 @@
 				</svg>
 			</figure>
 
-			<div style="margin-bottom: 20px;"></div>
+			<div style="margin-bottom: 130px;"></div>
+			
 		</div>
 	</section>
 </main>
