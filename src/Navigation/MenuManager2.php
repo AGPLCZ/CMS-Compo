@@ -5,6 +5,7 @@ namespace Compo\Navigation {
     use Compo\Registry;
     use DB;
 
+
     class MenuManager2
     {
         private $pages = [];
@@ -71,6 +72,14 @@ namespace Compo\Navigation {
 
         private function buildHtmlMenu($pages, $isSubmenu = false)
         {
+            $path = Registry::get('path');
+            if ($path == ""){
+            $path="";
+            }else{
+            $path= $path . "/";   
+            }
+            
+            
             $html = $isSubmenu ? '<div class="dropdown-menu">' : '<ul class="navbar-nav mx-auto">';
 
             foreach ($pages as $page) {
@@ -82,7 +91,8 @@ namespace Compo\Navigation {
                     $html .= $this->buildHtmlMenu($page['children'], true);
                     $html .= '</li>';
                 } else {
-                    $href = !empty($page['uri']) && strpos($page['uri'], 'http') !== false ? $page['uri'] : '/' . Registry::get('path') . '/' . trim($page['uri'], '/') . '/';
+                    //
+                    $href = !empty($page['uri']) && strpos($page['uri'], 'http') !== false ? $page['uri'] : '/' . $path . trim($page['uri'], '/') . '/';
                     $html .= $isSubmenu ? '<a class="dropdown-item" href="' . $href . '">' : '<li class="nav-item"><a class="nav-link" href="' . $href . '">';
                     $html .= $page['title'];
                     $html .= $isSubmenu ? '</a>' : '</a></li>';

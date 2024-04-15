@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Sob 13. dub 2024, 13:31
+-- Vytvořeno: Pon 15. dub 2024, 17:46
 -- Verze serveru: 10.4.24-MariaDB
 -- Verze PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databáze: `green2`
+-- Databáze: `green`
 --
 
 -- --------------------------------------------------------
@@ -189,8 +189,8 @@ CREATE TABLE `contents` (
 
 INSERT INTO `contents` (`contents_id`, `page_id`, `name`, `content1`, `content2`, `content3`, `content4`, `content5`, `content6`, `content7`, `content8`, `content9`, `content10`, `content11`, `content12`) VALUES
 (1, 1, 'nula', '', '', '', '', '', '', '', '', '', '', '', ''),
-(6, 1, 'jedna', 'Výlety', 'Cestovatelské a tábornické znalosti, dovednosti přežití. Zkušený průvodce, respektující přístup a spousta zábavy.​', 'Kroužky​', 'Většinu času trávíme v pohybu, v přírodě, za každého počasí. Věnujeme se, pohybovým hrám a vzdělávacím činnostem.​', 'Kurzy', 'Nabízím vzdělávací činnosti, výuku programování, sjíždění řek na nafukovacích kánojích, cestovatelské dovednosti a znalosti. ​', 'fad fa-hiking', 'fad fa-hiking', 'fad fa-hiking', '', '0', ''),
-(7, 1, 'tři', 'Výlety6', 'Cestovatelské a tábornické znalosti, dovednosti přežití. Zkušený průvodce, respektující přístup a spousta zábavy.​...', 'Kroužky​', 'Většinu času trávíme v pohybu, v přírodě, za každého počasí. Věnujeme se, pohybovým hrám a vzdělávacím činnostem.​', 'Kurzy', 'Nabízím vzdělávací činnosti, výuku programování, sjíždění řek na nafukovacích kánojích, cestovatelské dovednosti a znalosti. ​', 'fad fa-hiking', 'fad fa-hiking', 'fad fa-hiking', '', '0', '');
+(6, 1, 'jedna', 'Výlety', 'Cestovatelské a tábornické znalosti, dovednosti přežití. Zkušený průvodce, respektující přístup a spousta zábavy.​', 'Kroužky​kk', 'Většinu času trávíme v pohybu, v přírodě, za každého počasí. Věnujeme se, pohybovým hrám a vzdělávacím činnostem.​', 'Kurzy', 'Nabízím vzdělávací činnosti, výuku programování, sjíždění řek na nafukovacích kánojích, cestovatelské dovednosti a znalosti. ​', 'fad fa-hiking', 'fad fa-hiking', 'fad fa-hiking', '', '0', ''),
+(7, 1, 'tři', 'Výlety109', 'Cestovatelské a tábornické znalosti, dovednosti přežití. Zkušený průvodce, respektující přístup a spousta zábavy.​.', 'Kroužky​', 'Většinu času trávíme v pohybu, v přírodě, za každého počasí. Věnujeme se, pohybovým hrám a vzdělávacím činnostem.​', 'Kurzy', 'Nabízím vzdělávací činnosti, výuku programování, sjíždění řek na nafukovacích kánojích, cestovatelské dovednosti a znalosti. ​', 'fad fa-hiking', 'fad fa-hiking', 'fad fa-hiking', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -266,7 +266,7 @@ CREATE TABLE `pages` (
 
 INSERT INTO `pages` (`pages_id`, `title`, `uri`, `menu_order`, `visible_in_menu`, `parent_id`) VALUES
 (1, 'Úvod', 'index', 1, 1, NULL),
-(2, 'Bitcoin VexlATM', 'bitcoin', 2, 1, NULL),
+(2, 'Produkty', 'produkty', 2, 1, NULL),
 (3, 'Vybavení', 'vybaveni', 3, 0, NULL),
 (4, 'Příspěvky', 'articles', 4, 0, NULL),
 (5, 'Lektorské služby pro děti', 'https://dobrodruzi.cz', 5, 1, NULL),

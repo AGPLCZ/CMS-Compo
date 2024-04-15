@@ -2,6 +2,7 @@
 
 namespace Compo\Navigation;
 
+
 use Compo\Registry;
 
 class UrlManager
@@ -36,8 +37,17 @@ class UrlManager
 
     private function pathOffset()
     {
+
+        // Získání cesty z registru
         $path = Registry::get('path');
+
+        // Rozdělení cesty na segmenty podle lomítek
         $pathSegments = explode('/', $path);
+
+        // Odfiltrování prázdných segmentů z pole
+        $pathSegments = array_filter($pathSegments);
+
+        // Spočítání počtu segmentů
         $this->pathOffset = count($pathSegments);
     }
 
@@ -103,7 +113,7 @@ class UrlManager
         return $url;
     }
 
-        /**
+    /**
      * @return string Returns  full url adress
      */
     public function getFullUrl()

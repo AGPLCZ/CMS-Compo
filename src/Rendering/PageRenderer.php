@@ -7,6 +7,9 @@ use Compo\Navigation\MenuManager2;
 use Compo\Registry;
 use DB;
 
+
+
+
 final class PageRenderer
 {
     private $template;
@@ -56,7 +59,7 @@ final class PageRenderer
         $this->urlss = $this->urlManager->getSegment(1);
         $this->slash = $this->urlManager->getSegmentSlash();
 
-        if ($this->urls === null) {
+        if ($this->urls == null) {
             $this->urls = "index";
         }
 
@@ -74,7 +77,23 @@ final class PageRenderer
 
     private function loadComponentData()
     {
-        $this->componentData = DB::query(self::COMPONENT_QUERY, $this->urls);
+        $this->componentData = DB::query("SELECT 
+        lc.name AS componentName,
+        c.contents_id AS contentId,
+        c.order AS componentOrder,
+        c.pages_id AS pageId,
+        c.components_id AS componentsId
+    FROM 
+        pages AS p
+    JOIN 
+        components AS c ON p.pages_id = c.pages_id
+    JOIN 
+        list_components AS lc ON c.list_components_id = lc.list_components_id
+    WHERE 
+        p.uri = %s
+    ORDER BY 
+        c.order
+    ", $this->urls);
 
         if (empty($this->componentData)) {
             $this->render404();

@@ -5,6 +5,7 @@ namespace Compo\Navigation {
     use Compo\Registry;
     use DB;
 
+    
     // *** NAVIGATION ***
     class MenuManager
     {

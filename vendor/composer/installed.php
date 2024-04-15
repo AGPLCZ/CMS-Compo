@@ -136,6 +136,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'sergeytsalkov/meekrodb' => array(
+            'pretty_version' => 'v2.5.1',
+            'version' => '2.5.1.0',
+            'reference' => '08b683a274365983aaf033cf9c589dcbe5190028',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../sergeytsalkov/meekrodb',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'v3.4.0',
             'version' => '3.4.0.0',

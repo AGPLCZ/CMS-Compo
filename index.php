@@ -2,7 +2,7 @@
 //session_start();
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
-require_once 'db.meekro.php'; 
+
 require_once "config.php";
 require_once 'vendor/autoload.php';
 
@@ -11,15 +11,29 @@ use Compo\Rendering\Template;
 use Compo\Rendering\PageRenderer;
 use Compo\Registry;
 
+
+
 // $urlManager = new UrlManager;
-// echo $baseUrl = $urlManager->baseUrl();
+// echo $baseUrl = $urlManager->getUrl();
 
 
+$folder_located_project = "cms/CMS-Compo";
+$tamplate = "mizzle";
+
+
+
+// Oříznutí lomítek na začátku a na konci řetězce
+$trimmed_folder_located_project = trim($folder_located_project, '/');
 $config = new Registry();
-$config->set("path","CMS/CMS-Compo");
-$config->set("template","mizzle");
+$config->set("template",$tamplate);
+if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+    $config->set("path",$trimmed_folder_located_project);
+}else{
+    $config->set("path","");
+}
 
-$userDatabaseId = "";
+
+
 
 $whatTemplate = new Template();
 $template = $whatTemplate->TemplateName();
