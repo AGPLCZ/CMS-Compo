@@ -1,7 +1,7 @@
 <?php
-//session_start();
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
+session_start();
 
 require_once "config.php";
 require_once 'vendor/autoload.php';
@@ -10,7 +10,7 @@ use Compo\Navigation\UrlManager;
 use Compo\Rendering\Template;
 use Compo\Rendering\PageRenderer;
 use Compo\Registry;
-
+use Compo\Admin\Auth\Auth;
 
 
 // $urlManager = new UrlManager;

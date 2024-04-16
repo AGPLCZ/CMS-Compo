@@ -69,7 +69,7 @@
 
 				<!-- Sign up button -->
 				<li class="nav-item me-2 d-none d-sm-block">
-					<a href="sign-up.html" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Přihláčení</a>
+					<a href="<?php echo $this->url ?>/admin/login.php" class="btn btn-sm btn-light mb-0"><i class="bi bi-person-circle me-1"></i>Přihláčení</a>
 				</li>
 				<!-- Buy now button -->
 				<li class="nav-item d-none d-sm-block">

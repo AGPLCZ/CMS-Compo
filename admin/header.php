@@ -1,45 +1,22 @@
 <?php
-//session_start();
 
 // Nebezpečné zobrazovat
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
-
-require_once '../db.meekro.php'; 
+require_once '../vendor/autoload.php';
+//require_once '../db.meekro.php'; 
 require_once "../config.php";
-// end
-
-//require_once "session.php";
 
 
-/*
-if (!isset($_SESSION['userId'])) {
-  header("Location: logout.php");
-  exit; 
-}
-*/
+use Compo\Admin\Auth\Auth;
 
-/*
-// Získání role uživatele z databáze (pseudokód)
-$userRole = getRoleFromDatabase($_SESSION['userId']);
 
-if (!$userRole) {
-  header("Location: logout.php");
-  exit;
-}
 
-// Kontrola oprávnění
-$allowedRoles = ['admin', 'redaktor']; // můžete rozšířit podle potřeby
+// if (Auth::isLoggedIn()) {
+//   $timeLeft = Auth::getTimeUntilLogout();
+// }
 
-if (in_array($userRole, $allowedRoles)) {
-  // zobrazí to na co má práva
-} else {
-  header("Location: logout.php");
-  exit;
-}
-
-*/
-
+//Warning: session_id(): Session ID cannot be changed when a session is active in C:\xampp\htdocs\cms\CMS-Compo\src\Admin\Auth\Auth.php on line 63
 
 ?>
 
@@ -87,6 +64,8 @@ if (in_array($userRole, $allowedRoles)) {
 
             <!--//col-->
             <div class="col-auto">
+              <!-- <?php echo "Zbývající čas do odhlášení: " . $timeLeft . " sekund"; ?> -->
+
             </div>
 
             <!--//app-search-box-->
@@ -257,37 +236,37 @@ if (in_array($userRole, $allowedRoles)) {
 
 
 
-        
+
         <!--//app-branding-->
         <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
           <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-           
-          
-          
-          
-          
-          <li class="nav-item">
+
+
+
+
+
+            <li class="nav-item">
               <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-              <a class="nav-link" href="../index.php" target="_blank">
+              <a class="nav-link" href="../index" target="_blank">
                 <span class="nav-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane" viewBox="0 0 16 16">
-                <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z"/>
-              </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane" viewBox="0 0 16 16">
+                    <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z" />
+                  </svg>
                 </span>
                 <span class="nav-link-text">Zobrazit web</span>
               </a>
               <!--//nav-link-->
             </li>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          <li class="nav-item">
+
+
+
+
+
+
+
+
+
+            <li class="nav-item">
               <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
               <a class="nav-link" href="index.php">
                 <span class="nav-icon">
@@ -303,43 +282,43 @@ if (in_array($userRole, $allowedRoles)) {
 
 
 
-              
-                    
-
-              <!--//nav-item-->
-              <li class="nav-item">
-                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link" href="#.php">
-                  <span class="nav-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                      <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
-                    </svg>
-                  </span>
-                  <span class="nav-link-text">Nemáte žádné práva</span>
-                </a>
-                <!--//nav-link-->
-              </li>
-              <!--//nav-item-->
 
 
-    
 
-              <!--//nav-item-->
-              <li class="nav-item">
-                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link" href="userVypis.php">
-                  <span class="nav-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                      <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
-                    </svg>
-                  </span>
-                  <span class="nav-link-text">Uživatelé</span>
-                </a>
-                <!--//nav-link-->
-              </li>
-              <!--//nav-item-->
+            <!--//nav-item-->
+            <li class="nav-item">
+              <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+              <a class="nav-link" href="#.php">
+                <span class="nav-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                  </svg>
+                </span>
+                <span class="nav-link-text">Nemáte žádné práva</span>
+              </a>
+              <!--//nav-link-->
+            </li>
+            <!--//nav-item-->
 
-            
+
+
+
+            <!--//nav-item-->
+            <li class="nav-item">
+              <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+              <a class="nav-link" href="userVypis.php">
+                <span class="nav-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                  </svg>
+                </span>
+                <span class="nav-link-text">Uživatelé</span>
+              </a>
+              <!--//nav-link-->
+            </li>
+            <!--//nav-item-->
+
+
 
             <!--//nav-item-->
             <li class="nav-item">
@@ -490,7 +469,7 @@ if (in_array($userRole, $allowedRoles)) {
                 <!--//nav-link-->
               </li>
 
-          
+
 
               <!--//nav-item-->
               <li class="nav-item">

@@ -6,6 +6,7 @@ use Compo\Navigation\UrlManager;
 use Compo\Navigation\MenuManager2;
 use Compo\Registry;
 use DB;
+use Compo\Admin\Auth\Auth;
 
 
 
@@ -101,6 +102,7 @@ final class PageRenderer
     }
 
    public function renderComponentEditButton($column) {
+    if  (Auth::isLoggedIn()) {
     $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">'; // Inline styl pro vyhnutí se zalomení
     $form .= '<input type="hidden" name="akce" value="edit">';
     $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
@@ -109,7 +111,8 @@ final class PageRenderer
     $form .= '</form>';
 
     return $form;
-
+    }
+    return NULL;
 
 
     }
