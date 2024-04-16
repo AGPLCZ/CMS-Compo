@@ -117,12 +117,20 @@ final class PageRenderer
 
     }
 
+    public function getLocalizedContent($contents_id, $field, $language = 'en') {
+        $sql = "SELECT content FROM content_localizations WHERE contents_id = ? AND field_name = ? AND language = ?";
+        return DB::queryFirstField($sql, $contents_id, $field, $language);
+    }
+
+    
+
     public function renderComponents()
     {
 
         
         if (!empty($this->componentData)) {
             foreach ($this->componentData as $data) {
+                
                 $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
 
                 if ($contentData) {
