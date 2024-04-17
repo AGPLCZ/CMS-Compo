@@ -10,7 +10,7 @@ $formData = $editContent->handleRequest();
 
 
 if (is_array($formData)) :
-	require_once "header.php";
+require_once "header.php";
 
 ?>
 
@@ -61,6 +61,7 @@ if (is_array($formData)) :
 
 														<div class="mb-3">
 															<input type="hidden" name="akce" value="update">
+															<input type="hidden" name="language" value="<?php echo htmlspecialchars($formData['language']); ?>">
 															<input type="hidden" name="back" value="<?php echo htmlspecialchars($formData['back_url']); ?>">
 															<input type="hidden" name="contents_id" value="<?php echo htmlspecialchars($formData['contents_id']); ?>">
 															<input type="hidden" name="column" value="<?php echo htmlspecialchars($formData['column']); ?>">
