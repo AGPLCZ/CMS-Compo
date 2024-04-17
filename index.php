@@ -19,7 +19,7 @@ use Compo\Admin\Auth\Auth;
 
 $folder_located_project = "cms/CMS-Compo";
 $tamplate = "mizzle";
-$language = "cz";
+$language = "en";
 
 
 // Oříznutí lomítek na začátku a na konci řetězce

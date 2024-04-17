@@ -104,35 +104,36 @@ final class PageRenderer
         }
     }
 
-    public function renderComponentEditButton($column)
-    {
-        if (Auth::isLoggedIn()) {
-            $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">';
-            $form .= '<input type="hidden" name="akce" value="edit">';
-            $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
-            $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
-            $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px; opacity: 20%"><i class="fa fa-edit"></i></button>';
-            $form .= '</form>';
 
-            return $form;
-        }
-        return NULL;
-    }
-
-    public function renderComponentEditButtonLang($contents_id, $column, $language) {
-        $form = '<form method="POST" action="' . $this->url . '/admin/edit_lang.php">';
+    public function renderComponentEditButton($contents_id, $column, $language) {
+        $form = '<form method="POST" action="' . $this->url . '/admin/edit_lang.php" style="display: inline;">';
         $form .= '<input type="hidden" name="akce" value="edit">';
         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
         $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
-        $form .= '<button type="submit" class="btn btn-primary">Edit</button>';
+        $form .= '<button type="submit" class="btn btn-primary" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
         $form .= '</form>';
     
         return $form;
     }
+
+    public function getContentOnly($field) {
+        if (isset($this->page_content[$field])) {
+            echo htmlspecialchars($this->page_content[$field]);
+        }
+    }
     
+    public function getEditButton($field) {
+        echo $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
+    }
+    
+    public function getContent($field) {
+        if (isset($this->page_content[$field])) {
+            echo htmlspecialchars($this->page_content[$field]) . $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
+        }
+    }
 
-
+    
     public function setLanguage($lang)
     {
         $this->language = $lang;
@@ -169,11 +170,6 @@ final class PageRenderer
                             
                         }
                     }
-
-
-
-               
-
                     $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
                     if (file_exists($filePath)) {
                         require $filePath;
@@ -231,4 +227,21 @@ final class PageRenderer
     //             }
     //         }
     //     }
+    // }
+
+
+
+    // public function renderComponentEditButton($column)
+    // {
+    //     if (Auth::isLoggedIn()) {
+    //         $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">';
+    //         $form .= '<input type="hidden" name="akce" value="edit">';
+    //         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
+    //         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
+    //         $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px; opacity: 20%"><i class="fa fa-edit"></i></button>';
+    //         $form .= '</form>';
+
+    //         return $form;
+    //     }
+    //     return NULL;
     // }

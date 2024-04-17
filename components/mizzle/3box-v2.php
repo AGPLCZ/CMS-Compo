@@ -17,63 +17,58 @@
             <div class="container px-4 py-0" id="featured-3">
                 <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
                     <div class="feature col">
-                        <p><i class="<?php echo $this->page_content["content7"]; ?> text-primary" style="font-size: 45px"></i></p>
-                        <h5 class="mb-3"><?php echo $this->page_content["content1"]; ?><?php echo $this->renderComponentEditButton("content1"); ?></h5>
-                        <p class="mb-0"><?php echo $this->page_content["content2"]; ?><?php echo $this->renderComponentEditButton("content2"); ?></p>
+                        <p><?php $this->getEditButton('content7'); ?><i class="<?php $this->getContentOnly('content7'); ?> text-primary" style="font-size: 45px"></i></p>
+                        <h5 class="mb-3"><?php $this->getContent('content1'); ?></h5>
+                        <p class="mb-0"><?php $this->getContent('content2'); ?></p>
                     </div>
                     <div class="feature col">
-                        <p><i class="<?php echo $this->page_content["content8"]; ?> text-primary" style="font-size: 45px"></i></p>
-                        <h5 class="mb-3"><?php echo $this->page_content["content3"]; ?><?php echo $this->renderComponentEditButton("content3"); ?></h5>
-                        <p class="mb-0"><?php echo $this->page_content["content4"]; ?><?php echo $this->renderComponentEditButton("content4"); ?></p>
+                        <p><?php $this->getEditButton('content8'); ?><i class="<?php $this->getContentOnly('content8'); ?> text-primary" style="font-size: 45px"></i></p>
+                        <h5 class="mb-3"><?php $this->getContent('content3'); ?></h5>
+                        <p class="mb-0"><?php $this->getContent('content4'); ?></p>
                     </div>
                     <div class="feature col">
-                        <p><i class="<?php echo $this->page_content["content9"]; ?> text-primary" style="font-size: 45px"></i></p>
-                        <h5 class="mb-3"><?php echo $this->page_content["content5"]; ?><?php echo $this->renderComponentEditButton("content5"); ?></h5>
-                        <p class="mb-0"><?php echo $this->page_content["content6"]; ?><?php echo $this->renderComponentEditButton("content6"); ?></p>
+                        <p><?php $this->getEditButton('content9'); ?><i class="<?php $this->getContentOnly('content9'); ?> text-primary" style="font-size: 45px"></i></p>
+                        <h5 class="mb-3"><?php $this->getContent('content5'); ?></h5>
+                        <p class="mb-0"><?php $this->getContent('content6'); ?></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section> 
-<!-- 
+
 <section class="pt-0">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="container px-4 py-0" id="featured-3">
                 <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
                     <div class="feature col">
-                        <p><i class="<?php echo $this->page_content["content7"]; ?> text-primary" style="font-size: 45px"></i></p>
+                        <p><i class="<?php $this->getContentOnly('content7'); ?> text-primary" style="font-size: 45px"></i></p>
                         <h5 class="mb-3">
                             
-                            <?php echo $this->page_content["content1"]; ?>
-                            <?php echo $this->renderComponentEditButton($this->page_content["contents_id"], "content1", $this->language); ?>
+                        <?php $this->getContent('content1'); ?>
+                         
                         </h5>
                         <p class="mb-0">
-                            <?php echo $this->page_content["content2"]; ?>
-                            <?php echo $this->renderComponentEditButton($this->page_content["contents_id"], "content2", $this->language); ?>
+                        <?php $this->getContent('content2'); ?>
                         </p>
                     </div>
                     <div class="feature col">
-                        <p><i class="<?php echo $this->page_content["content8"]; ?> text-primary" style="font-size: 45px"></i></p>
+                        <p><i class="<?php $this->getContentOnly('content8'); ?> text-primary" style="font-size: 45px"></i></p>
                         <h5 class="mb-3">
-                            <?php echo $this->page_content["content3"]; ?>
-                            <?php echo $this->renderComponentEditButton($this->page_content["contents_id"], "content3", $this->language); ?>
+                        <?php $this->getContent('content3'); ?>
                         </h5>
                         <p class="mb-0">
-                            <?php echo $this->page_content["content4"]; ?>
-                            <?php echo $this->renderComponentEditButton($this->page_content["contents_id"], "content4", $this->language); ?>
+                        <?php $this->getContent('content4'); ?>
                         </p>
                     </div>
                     <div class="feature col">
-                        <p><i class="<?php echo $this->page_content["content9"]; ?> text-primary" style="font-size: 45px"></i></p>
+                        <p><i class="<?php $this->getContentOnly('content9'); ?> text-primary" style="font-size: 45px"></i></p>
                         <h5 class="mb-3">
-                            <?php echo $this->page_content["content5"]; ?>
-                            <?php echo $this->renderComponentEditButton($this->page_content["contents_id"], "content5", $this->language); ?>
+                        <?php $this->getContent('content5'); ?>
                         </h5>
                         <p class="mb-0">
-                            <?php echo $this->page_content["content6"]; ?>
-                            <?php echo $this->renderComponentEditButton($this->page_content["contents_id"], "content6", $this->language); ?>
+                        <?php $this->getContent('content6'); ?>
                         </p>
                     </div>
                 </div>
@@ -83,7 +78,7 @@
 </section>
 
 
- -->
+
 
 <section class="pt-0">
     <div class="container">

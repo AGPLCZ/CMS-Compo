@@ -388,9 +388,9 @@ Feature section integration END -->
 
                         </div>
                         <div>
-
-                            <h5 class="mb-3"><?php echo $this->page_content["content1"]; ?><?php echo $this->renderComponentEditButton("content1");  echo $this->renderComponentEditButtonLang($this->page_content['contents_id'], "content1", $this->language); ?> </h5>
-                            <p class="mb-0"><?php echo $this->page_content["content2"]; ?><?php echo $this->renderComponentEditButton("content2");  echo $this->renderComponentEditButtonLang($this->page_content['contents_id'], "content2", $this->language); ?></p>
+                        
+                            <h5 class="mb-3"><?php $this->getContent('content1'); ?> </h5>
+                            <p class="mb-0"><?php $this->getContent('content2'); ?></p>
 
                         </div>
                     </div>
@@ -399,8 +399,8 @@ Feature section integration END -->
                             <i class="fad fa-campground  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
                         </div>
                         <div>
-                            <h5 class="mb-3"><?php echo $this->page_content["content3"]; ?><?php echo $this->renderComponentEditButton("content3"); ?></h5>
-                            <p class="mb-0"><?php echo $this->page_content["content4"]; ?><?php echo $this->renderComponentEditButton("content4"); ?></p>
+                            <h5 class="mb-3"><?php $this->getContent('content3'); ?></h5>
+                            <p class="mb-0"><?php $this->getContent('content4'); ?></p>
                         </div>
                     </div>
                     <div class="col d-flex align-items-start">
@@ -408,8 +408,8 @@ Feature section integration END -->
                             <i class="fad fa-axe rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
                         </div>
                         <div>
-                            <h5 class="mb-3"><?php echo $this->page_content["content5"]; ?><?php echo $this->renderComponentEditButton("content5"); ?></h5>
-                            <p class="mb-0"><?php echo $this->page_content["content6"]; ?><?php echo $this->renderComponentEditButton("content6"); ?></p>
+                            <h5 class="mb-3"><?php $this->getContent('content5'); ?></h5>
+                            <p class="mb-0"><?php $this->getContent('content6'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -449,8 +449,8 @@ Feature section integration END -->
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3"><?php echo $this->page_content["content1"]; ?><?php echo $this->renderComponentEditButton("content1"); ?></h5>
-                    <p class="mb-0"><?php echo $this->page_content["content2"]; ?><?php echo $this->renderComponentEditButton("content2"); ?></p>
+                    <h5 class="mb-3"><?php $this->getContent('content1'); ?></h5>
+                    <p class="mb-0"><?php $this->getContent('content2'); ?></p>
                 </div>
             </div>
 
@@ -465,8 +465,8 @@ Feature section integration END -->
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3"><?php echo $this->page_content["content3"]; ?><?php echo $this->renderComponentEditButton("content3"); ?></h5>
-                    <p class="mb-0"><?php echo $this->page_content["content4"]; ?><?php echo $this->renderComponentEditButton("content4"); ?></p>
+                    <h5 class="mb-3"><?php $this->getContent('content3'); ?></h5>
+                    <p class="mb-0"><?php $this->getContent('content4'); ?></p>
                 </div>
             </div>
 
@@ -482,8 +482,8 @@ Feature section integration END -->
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3"><?php echo $this->page_content["content5"]; ?><?php echo $this->renderComponentEditButton("content5"); ?></h5>
-                    <p class="mb-0"><?php echo $this->page_content["content6"]; ?><?php echo $this->renderComponentEditButton("content6"); ?></p>
+                    <h5 class="mb-3"><?php $this->getContent('content5'); ?></h5>
+                    <p class="mb-0"><?php $this->getContent('content6'); ?></p>
                 </div>
             </div>
 
