@@ -26,29 +26,7 @@ final class PageRenderer
     public $url;
     public $urlName;
     public $page_content;
-    private $language = 'cz';  // Výchozí jazyk
-
-    
-
-
-    const COMPONENT_QUERY = "
-    SELECT 
-        lc.name AS componentName,
-        c.contents_id AS contentId,
-        c.order AS componentOrder,
-        c.pages_id AS pageId,
-        c.components_id AS componentsId
-    FROM 
-        pages AS p
-    JOIN 
-        components AS c ON p.pages_id = c.pages_id
-    JOIN 
-        list_components AS lc ON c.list_components_id = lc.list_components_id
-    WHERE 
-        p.uri = %s
-    ORDER BY 
-        c.order
-    ";
+    private $language = 'cz';
 
     public function __construct($template)
     {
@@ -180,8 +158,7 @@ final class PageRenderer
             }
         }
     }
-
-    
+   
     
     private function render404()
     {
@@ -229,19 +206,3 @@ final class PageRenderer
     //     }
     // }
 
-
-
-    // public function renderComponentEditButton($column)
-    // {
-    //     if (Auth::isLoggedIn()) {
-    //         $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">';
-    //         $form .= '<input type="hidden" name="akce" value="edit">';
-    //         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
-    //         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
-    //         $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px; opacity: 20%"><i class="fa fa-edit"></i></button>';
-    //         $form .= '</form>';
-
-    //         return $form;
-    //     }
-    //     return NULL;
-    // }
