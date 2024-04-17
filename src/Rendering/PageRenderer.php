@@ -26,6 +26,10 @@ final class PageRenderer
     public $url;
     public $urlName;
     public $page_content;
+    private $language = 'cz';  // Výchozí jazyk
+
+    
+
 
     const COMPONENT_QUERY = "
     SELECT 
@@ -75,7 +79,6 @@ final class PageRenderer
         $this->loadComponentData();
     }
 
-
     private function loadComponentData()
     {
         $this->componentData = DB::query("SELECT 
@@ -101,57 +104,89 @@ final class PageRenderer
         }
     }
 
-   public function renderComponentEditButton($column) {
-    if  (Auth::isLoggedIn()) {
-    $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">'; // Inline styl pro vyhnutí se zalomení
-    $form .= '<input type="hidden" name="akce" value="edit">';
-    $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
-    $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
-    $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px; opacity: 20%"><i class="fa fa-edit"></i></button>';
-    $form .= '</form>';
+    public function renderComponentEditButton($column)
+    {
+        if (Auth::isLoggedIn()) {
+            $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">';
+            $form .= '<input type="hidden" name="akce" value="edit">';
+            $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($this->page_content['contents_id']) . '">';
+            $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
+            $form .= '<button type="submit" class="btn btn-primary" aria-label="Edit" style="padding: 2px 4px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 10px; border:0px; opacity: 20%"><i class="fa fa-edit"></i></button>';
+            $form .= '</form>';
 
-    return $form;
+            return $form;
+        }
+        return NULL;
     }
-    return NULL;
+
+    public function renderComponentEditButtonLang($contents_id, $column, $language) {
+        $form = '<form method="POST" action="' . $this->url . '/admin/edit_lang.php">';
+        $form .= '<input type="hidden" name="akce" value="edit">';
+        $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
+        $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
+        $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
+        $form .= '<button type="submit" class="btn btn-primary">Edit</button>';
+        $form .= '</form>';
+    
+        return $form;
+    }
+    
 
 
+    public function setLanguage($lang)
+    {
+        $this->language = $lang;
     }
 
-    public function getLocalizedContent($contents_id, $field, $language = 'en') {
-        $sql = "SELECT content FROM content_localizations WHERE contents_id = ? AND field_name = ? AND language = ?";
+    public function getLocalizedContent($contents_id, $field, $language = 'cz')
+    {
+        $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
         return DB::queryFirstField($sql, $contents_id, $field, $language);
     }
 
-    
 
     public function renderComponents()
     {
-
-        
         if (!empty($this->componentData)) {
             foreach ($this->componentData as $data) {
-                
                 $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
 
                 if ($contentData) {
                     $page_content = $contentData;
-                    $this->page_content = $page_content;
 
-                  //  echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
-                    
-                    
+                    //echo pro ladění systému
+                    echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
+
+
+                    // Načtení překladů pro dané komponenty
+                    foreach ($contentData as $field => $value) {
+                        // kontrola, zda je pole 'contentX'
+                        if (strpos($field, 'content') === 0) {
+                            // Získání lokalizovaného obsahu z databáze
+                            $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
+                            // Přepis původního obsahu, pokud existuje překlad
+                            $this->page_content[$field] = $localizedContent ?: $value;
+                            
+                        }
+                    }
+
+
+
+               
+
                     $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
-
                     if (file_exists($filePath)) {
                         require $filePath;
                     } else {
-                        echo "Komponenta <b>{$data['componentName']}</b> neexistuje pro šablonu <b>{$this->template}</b>.";
+                        echo "Component <b>{$data['componentName']}</b> does not exist for template <b>{$this->template}</b>.";
                     }
                 }
             }
         }
     }
 
+    
+    
     private function render404()
     {
         header("HTTP/1.1 404 Not Found");
@@ -168,3 +203,32 @@ final class PageRenderer
         return '';
     }
 }
+
+
+    // public function renderComponentsOld()
+    // {
+
+        
+    //     if (!empty($this->componentData)) {
+    //         foreach ($this->componentData as $data) {
+                
+    //             $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
+
+    //             if ($contentData) {
+    //                 $page_content = $contentData;
+    //                 $this->page_content = $page_content;
+
+    //               //  echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
+                    
+                    
+    //                 $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
+
+    //                 if (file_exists($filePath)) {
+    //                     require $filePath;
+    //                 } else {
+    //                     echo "Komponenta <b>{$data['componentName']}</b> neexistuje pro šablonu <b>{$this->template}</b>.";
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }

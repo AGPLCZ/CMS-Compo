@@ -19,7 +19,7 @@ use Compo\Admin\Auth\Auth;
 
 $folder_located_project = "cms/CMS-Compo";
 $tamplate = "mizzle";
-
+$language = "cz";
 
 
 // Oříznutí lomítek na začátku a na konci řetězce
@@ -35,12 +35,16 @@ if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.
 
 
 
+
+
 $whatTemplate = new Template();
 $template = $whatTemplate->TemplateName();
 
 
 $pageRenderer = new PageRenderer($template);
+$pageRenderer->setLanguage($language);  // Nastavit jazyk na češtinu
 $pageRenderer->renderComponents();
+
 
 //components - to jsou jména komponent které jdou vložit na různé stránky, komponenty to jsou html šablony pro kousky / části stránky
 //pages - to je hlavní menu ale zároveň se tím vytvoří stránka na kterou jde vkládat mnoho komponentů a tím se seskládá obsah stránky
