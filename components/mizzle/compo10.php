@@ -1,0 +1,59 @@
+<section>
+    <div class="container">
+        <!-- Title -->
+        <div class="inner-container-small text-center mb-4 mb-md-6">
+            <h2>How it works in <span class="text-primary">4</span> easy steps</h2>
+        </div>
+
+        <div class="row step-process">
+            <!-- Step item -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-body bg-transparent text-center">
+                    <!-- Icon -->
+                    <div class="icon-lg bg-dark text-white rounded-circle mb-3 mx-auto">
+                        <i class="bi bi-search fa-lg"></i>
+                    </div>
+                    <h5>Discovery and Consultation</h5>
+                    <p>We begin by getting to know your unique requirements, goals, and challenges. </p>
+                </div>
+            </div>
+
+            <!-- Step item -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-body bg-transparent text-center">
+                    <!-- Icon -->
+                    <div class="icon-lg bg-dark text-white rounded-circle mb-3 mx-auto">
+                        <i class="bi bi-bullseye fa-lg"></i>
+                    </div>
+                    <h5>Planning and Strategy</h5>
+                    <p>We define project milestones and deliverables to keep the process on track.</p>
+                </div>
+            </div>
+
+            <!-- Step item -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-body bg-transparent text-center">
+                    <!-- Icon -->
+                    <div class="icon-lg bg-dark text-white rounded-circle mb-3 mx-auto">
+                        <i class="bi bi-rocket-takeoff fa-lg"></i>
+                    </div>
+                    <h5>Deployment and Launch</h5>
+                    <p>We ensure a smooth transition to the live, providing support every step of the way.</p>
+                </div>
+            </div>
+
+            <!-- Step item -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card card-body bg-transparent text-center">
+                    <!-- Icon -->
+                    <div class="icon-lg bg-dark text-white rounded-circle mb-3 mx-auto">
+                        <i class="bi bi-headset fa-lg"></i>
+                    </div>
+                    <h5>Support and Maintenance</h5>
+                    <p>We offer ongoing support and maintenance services to keep your software running.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -9,8 +9,6 @@ use DB;
 use Compo\Admin\Auth\Auth;
 
 
-
-
 final class PageRenderer
 {
     private $template;
@@ -83,7 +81,8 @@ final class PageRenderer
     }
 
 
-    public function renderComponentEditButton($contents_id, $column, $language) {
+    public function renderComponentEditButton($contents_id, $column, $language)
+    {
         $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">';
         $form .= '<input type="hidden" name="akce" value="edit">';
         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
@@ -91,27 +90,30 @@ final class PageRenderer
         $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
         $form .= '<button type="submit" class="btn btn-primary" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
         $form .= '</form>';
-    
+
         return $form;
     }
 
-    public function getContentOnly($field) {
+    public function getContentOnly($field)
+    {
         if (isset($this->page_content[$field])) {
             echo htmlspecialchars($this->page_content[$field]);
         }
     }
-    
-    public function getEditButton($field) {
+
+    public function getEditButton($field)
+    {
         echo $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
     }
-    
-    public function getContent($field) {
+
+    public function getContent($field)
+    {
         if (isset($this->page_content[$field])) {
             echo htmlspecialchars($this->page_content[$field]) . $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
         }
     }
 
-    
+
     public function setLanguage($lang)
     {
         $this->language = $lang;
@@ -124,6 +126,32 @@ final class PageRenderer
     }
 
 
+    public function CreateContentButon($pages_id,$order)
+    {
+
+        $form = '<section>
+        <div class="container">
+            <div class="inner-container-small text-center mb-4 mb-md-6">
+        ';
+        $form .= '<form method="POST" action="' . $this->url . '/admin/createContent.php">';
+        $form .= '<input type="hidden" name="pages_id" value="' . htmlspecialchars($pages_id) . '">';
+        $form .= '<input type="hidden" name="order" value="' . htmlspecialchars($order) . '">';
+        $form .= '<button type="submit" name="submitPageRender" class="btn btn-primary">+</button>';
+        $form .= '</form>';
+        $form .= '</div></div>
+    </section>
+    <section class="pt-0">
+	<div class="container">
+		<div class="row g-4 g-sm-6" style="margin-bottom: 150px;">
+		</div>
+	</div>
+</section>
+
+    ';
+
+        return $form;
+    }
+
     public function renderComponents()
     {
         if (!empty($this->componentData)) {
@@ -134,7 +162,7 @@ final class PageRenderer
                     $page_content = $contentData;
 
                     //echo pro ladění systému
-                    echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
+                    //echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
 
 
                     // Načtení překladů pro dané komponenty
@@ -145,7 +173,6 @@ final class PageRenderer
                             $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
                             // Přepis původního obsahu, pokud existuje překlad
                             $this->page_content[$field] = $localizedContent ?: $value;
-                            
                         }
                     }
                     $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
@@ -158,8 +185,8 @@ final class PageRenderer
             }
         }
     }
-   
-    
+
+
     private function render404()
     {
         header("HTTP/1.1 404 Not Found");
@@ -205,4 +232,3 @@ final class PageRenderer
     //         }
     //     }
     // }
-

@@ -7,10 +7,10 @@ use Compo\Admin\EditContent;
 
 $editContent = new EditContent();
 $formData = $editContent->handleRequest();
-
+var_dump($formData);
 
 if (is_array($formData)) :
-require_once "header.php";
+//require_once "header.php";
 
 ?>
 
