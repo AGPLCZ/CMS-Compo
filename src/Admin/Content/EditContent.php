@@ -1,6 +1,6 @@
 <?php
 
-namespace Compo\Admin;
+namespace Compo\Admin\Content;
 
 use Compo\Navigation\UrlManager;
 use DB;
@@ -31,7 +31,7 @@ class EditContent
         $contents_id = $_POST['contents_id'];
         $column = $_POST['column'];
         $language = $_POST['language'] ?? 'cz';  // Default to 'cz' if not set
-    
+
         if ($language === 'cz') {
             $data = DB::queryFirstRow("SELECT %b FROM contents WHERE contents_id=%i", $column, $contents_id);
             $data = [$column => $data[$column] ?? ''];  // Abychom se vyhnuli chybám, zkontrolujeme a nastavíme defaultní hodnotu
@@ -44,11 +44,11 @@ class EditContent
                 $data = [$column => $data['content']];  // Ujistěte se, že data jsou správně formátovaná
             }
         }
-    
+
         if (!$data || !isset($data[$column])) {
             return "Záznam nebyl nalezen.";
         }
-    
+
         return [
             'action_url' => htmlspecialchars($this->urlManager->getFullUrl()),
             'back_url' => htmlspecialchars($this->urlManager->getBackPage()),
@@ -58,59 +58,43 @@ class EditContent
             'language' => htmlspecialchars($language)
         ];
     }
-    
+
 
     private function handleUpdate()
-{
-    $contents_id = $_POST['contents_id'];
-    $column = $_POST['column'];
-    $value = $_POST['value'];
-    $language = $_POST['language'] ?? 'cz';
-    $back = $_POST['back'];
+    {
+        $contents_id = $_POST['contents_id'];
+        $column = $_POST['column'];
+        $value = $_POST['value'];
+        $language = $_POST['language'] ?? 'cz';
+        $back = $_POST['back'];
 
-    if ($language === 'cz') {
-        DB::update('contents', [
-            $column => $value
-        ], "contents_id=%i", $contents_id);
-    } else {
-        echo "kontroluji.";
-        // Zkontrolujeme, zda už existuje překlad
-        $exists = DB::queryFirstField("SELECT content FROM content_localizations WHERE contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
-       
-       var_dump($exists);
-        if ($exists !== null) {
-            // Aktualizace existujícího překladu
-            DB::update('content_localizations', [
-                'content' => $value
-            ], "contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+        if ($language === 'cz') {
+            DB::update('contents', [
+                $column => $value
+            ], "contents_id=%i", $contents_id);
         } else {
-            // Vytvoření nového překladu
-            DB::insert('content_localizations', [
-                'contents_id' => $contents_id,
-                'field_name' => $column,
-                'language' => $language,
-                'content' => $value
-            ]);
+            echo "kontroluji.";
+            // Zkontrolujeme, zda už existuje překlad
+            $exists = DB::queryFirstField("SELECT content FROM content_localizations WHERE contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+
+            var_dump($exists);
+            if ($exists !== null) {
+                // Aktualizace existujícího překladu
+                DB::update('content_localizations', [
+                    'content' => $value
+                ], "contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+            } else {
+                // Vytvoření nového překladu
+                DB::insert('content_localizations', [
+                    'contents_id' => $contents_id,
+                    'field_name' => $column,
+                    'language' => $language,
+                    'content' => $value
+                ]);
+            }
         }
+
+        header("Location: " . htmlspecialchars($back));
+        exit;
     }
-
-    header("Location: " . htmlspecialchars($back));
-    exit;
 }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

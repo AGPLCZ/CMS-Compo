@@ -1,6 +1,6 @@
 <?php
 
-namespace Compo\Admin;
+namespace Compo\Admin\Content;
 
 use Compo\Navigation\UrlManager;
 use DB;
@@ -20,16 +20,16 @@ class CreateContent
     {
         $formData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['submitPageRender'])) {
-                $formData = $this->prepareComponentSelection();
-            } elseif (isset($_POST['submitCreateContent'])) {
-                $formData = $this->createComponent();
+            if (isset($_POST['submitCreateContent'])) {
+                $formData = $this->prepareComponent();
+            } elseif (isset($_POST['submitCreateContentExecute'])) {
+                $formData = $this->createComponentExecute();
             }
         }
         return $formData;
     }
 
-    public function prepareComponentSelection()
+    public function prepareComponent()
 {
     $pages_id = $_POST['pages_id'];
     $order = $_POST['order'] + 1;
@@ -38,7 +38,7 @@ class CreateContent
     return ['pages_id' => $pages_id, 'order' => $order, 'back' => $back];
 }
 
-    private function createComponent()
+    private function createComponentExecute()
     {
         $back = $_POST['back'] ?? '../index.php';
         $pages_id = $_POST['pages_id'];

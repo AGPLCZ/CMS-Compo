@@ -3,11 +3,15 @@ require_once '../db.meekro.php';
 require_once "../config.php";
 require_once '../vendor/autoload.php';
 
-use Compo\Admin\CreateContent;
+use Compo\Admin\Content\CreateContent;
 
 $createContent = new CreateContent();
 $formData = $createContent->handleRequest();
 $components = $createContent->selectListComponents();
+
+//var_dump($formData);
+
+
 if (!empty($formData)) :
 
 	require_once "header.php";
@@ -75,7 +79,7 @@ if (!empty($formData)) :
 
 														</div>
 														<div class="mb-3">
-															<button type="submit" name="submitCreateContent" class="btn app-btn-primary">Vytvořit komponent</button>
+															<button type="submit" name="submitCreateContentExecute" class="btn app-btn-primary">Vytvořit komponent</button>
 														</div>
 
 													</div>

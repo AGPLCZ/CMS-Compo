@@ -88,8 +88,34 @@ final class PageRenderer
         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
         $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
-        $form .= '<button type="submit" class="btn btn-primary" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
+        $form .= '<button type="submit" name="submitEditContent" class="btn btn-primary" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
         $form .= '</form>';
+
+        return $form;
+    }
+
+    
+    public function CreateContentButon($pages_id, $order)
+    {
+
+        $form = '<section>
+        <div class="container">
+            <div class="inner-container-small text-center mb-4 mb-md-6">
+        ';
+        $form .= '<form method="POST" action="' . $this->url . '/admin/createContent.php">';
+        $form .= '<input type="hidden" name="pages_id" value="' . htmlspecialchars($pages_id) . '">';
+        $form .= '<input type="hidden" name="order" value="' . htmlspecialchars($order) . '">';
+        $form .= '<button type="submit" name="submitCreateContent" class="btn btn-primary">+</button>';
+        $form .= '</form>';
+        $form .= '</div></div>
+        </section>
+        <section class="pt-0">
+        <div class="container">
+            <div class="row g-4 g-sm-6" style="margin-bottom: 150px;">
+            </div>
+        </div>
+        </section>
+    ';
 
         return $form;
     }
@@ -125,32 +151,6 @@ final class PageRenderer
         return DB::queryFirstField($sql, $contents_id, $field, $language);
     }
 
-
-    public function CreateContentButon($pages_id,$order)
-    {
-
-        $form = '<section>
-        <div class="container">
-            <div class="inner-container-small text-center mb-4 mb-md-6">
-        ';
-        $form .= '<form method="POST" action="' . $this->url . '/admin/createContent.php">';
-        $form .= '<input type="hidden" name="pages_id" value="' . htmlspecialchars($pages_id) . '">';
-        $form .= '<input type="hidden" name="order" value="' . htmlspecialchars($order) . '">';
-        $form .= '<button type="submit" name="submitPageRender" class="btn btn-primary">+</button>';
-        $form .= '</form>';
-        $form .= '</div></div>
-    </section>
-    <section class="pt-0">
-	<div class="container">
-		<div class="row g-4 g-sm-6" style="margin-bottom: 150px;">
-		</div>
-	</div>
-</section>
-
-    ';
-
-        return $form;
-    }
 
     public function renderComponents()
     {
