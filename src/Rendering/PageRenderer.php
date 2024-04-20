@@ -83,7 +83,7 @@ final class PageRenderer
 
     public function renderComponentEditButton($contents_id, $column, $language)
     {
-        $form = '<form method="POST" action="' . $this->url . '/admin/edit.php" style="display: inline;">';
+        $form = '<form method="POST" action="' . $this->url . '/admin/editContent.php" style="display: inline;">';
         $form .= '<input type="hidden" name="akce" value="edit">';
         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';

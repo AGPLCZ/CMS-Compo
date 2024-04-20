@@ -7,10 +7,10 @@ use Compo\Admin\EditContent;
 
 $editContent = new EditContent();
 $formData = $editContent->handleRequest();
-var_dump($formData);
+//var_dump($formData);
 
 if (is_array($formData)) :
-require_once "header.php";
+	require_once "header.php";
 
 ?>
 
@@ -31,7 +31,7 @@ require_once "header.php";
 					</div>
 
 					<div class="col-auto">
-						<a class="btn app-btn-secondary" href="">
+						<a class="btn app-btn-secondary" href="<?php echo $formData['back_url'] ?>">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
 								<path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
 							</svg>
@@ -75,10 +75,11 @@ require_once "header.php";
 
 															<button type="submit" class="btn app-btn-primary" name="submit">Uložit změny</button>
 														</div>
+													</div>
 												</form>
 											<?php elseif (is_string($formData)) : ?>
 												<?php echo $formData . "Chyba!"; ?>
-											
+
 											</div>
 										</div>
 									</div>
@@ -92,7 +93,6 @@ require_once "header.php";
 		</div>
 	</div>
 
-	<?php endif; ?>
+<?php endif; ?>
 
-	<?php require_once "footer.php"; ?>
-
+<?php require_once "footer.php"; ?>

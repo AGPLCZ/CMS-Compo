@@ -12,14 +12,9 @@ use Compo\Rendering\PageRenderer;
 use Compo\Registry;
 use Compo\Admin\Auth\Auth;
 
-
-// $urlManager = new UrlManager;
-// echo $baseUrl = $urlManager->getUrl();
-
-
 $folder_located_project = "cms/CMS-Compo";
 $tamplate = "mizzle";
-$language = "en";
+$language = "cz";
 
 
 // Oříznutí lomítek na začátku a na konci řetězce
@@ -31,10 +26,6 @@ if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.
 }else{
     $config->set("path","");
 }
-
-
-
-
 
 
 $whatTemplate = new Template();
