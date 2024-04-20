@@ -16,46 +16,18 @@ class CreateContent
     }
 
 
-    // public function handleRequest()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         if (isset($_POST['submitPageRender'])) {
-    //             $this->prepareComponentSelection();
-    //         } elseif (isset($_POST['submitCreateContent'])) {
-    //             $this->createComponent();
-    //         }
-    //     }
-    // }
-
-    // public function handleRequest()
-    // {
-    //     global $back, $pages_id, $order; // Definice globálních proměnných
-
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         if (isset($_POST['submitPageRender'])) {
-    //             $result = $this->prepareComponentSelection();
-    //             $back = $result['back'];
-    //             $pages_id = $result['pages_id'];
-    //             $order = $result['order'];
-    //         } elseif (isset($_POST['submitCreateContent'])) {
-    //             $this->createComponent();
-    //         }
-    //     }
-    // }
-
     public function handleRequest()
     {
-        $data = [];
+        $formData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['submitPageRender'])) {
-                $data = $this->prepareComponentSelection();
+                $formData = $this->prepareComponentSelection();
             } elseif (isset($_POST['submitCreateContent'])) {
-                $data = $this->createComponent();
+                $formData = $this->createComponent();
             }
         }
-        return $data;
+        return $formData;
     }
-
 
     public function prepareComponentSelection()
 {
@@ -79,9 +51,6 @@ class CreateContent
         header("Location: {$back}");
         exit;
     }
-
-
-
 
     public function insertContent(int $pages_id): int
     {

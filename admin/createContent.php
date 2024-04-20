@@ -6,9 +6,9 @@ require_once '../vendor/autoload.php';
 use Compo\Admin\CreateContent;
 
 $createContent = new CreateContent();
-$data = $createContent->handleRequest();
+$formData = $createContent->handleRequest();
 $components = $createContent->selectListComponents();
-if (!empty($data)) :
+if (!empty($formData)) :
 
 	require_once "header.php";
 ?>
@@ -29,7 +29,7 @@ if (!empty($data)) :
 					</div>
 
 					<div class="col-auto">
-						<a class="btn app-btn-secondary" href="<?= htmlspecialchars($data['back']); ?>">
+						<a class="btn app-btn-secondary" href="<?= htmlspecialchars($formData['back']); ?>">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
 								<path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
 							</svg>
@@ -57,9 +57,9 @@ if (!empty($data)) :
 													<div class="form-group">
 
 														<div class="mb-3">
-															<input type="hidden" name="back" value="<?= htmlspecialchars($data['back']); ?>">
-															<input type="hidden" name="pages_id" value="<?= htmlspecialchars($data['pages_id']); ?>">
-															<input type="hidden" name="order" value="<?= htmlspecialchars($data['order']); ?>">
+															<input type="hidden" name="back" value="<?= htmlspecialchars($formData['back']); ?>">
+															<input type="hidden" name="pages_id" value="<?= htmlspecialchars($formData['pages_id']); ?>">
+															<input type="hidden" name="order" value="<?= htmlspecialchars($formData['order']); ?>">
 
 															<div class="form-group">
 																<div class="mb-3">
