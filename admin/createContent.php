@@ -10,34 +10,6 @@ $data = $createContent->handleRequest();
 $components = $createContent->selectListComponents();
 if (!empty($data)) :
 
-	//původní script
-	// $createContent = new CreateContent();
-	// $components = $createContent->selectListComponents();
-
-	// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	// 	if (isset($_POST['submitPageRender'])) {
-	// 		// První krok - data z index.php, příprava na výběr komponenty
-	// 		$pages_id = $_POST['pages_id'];
-	// 		$order = $_POST['order'] + 1;
-	// 		$back = $_SERVER['HTTP_REFERER'];
-	// 	} elseif (isset($_POST['submitCreateContent'])) {
-	// 		// Druhý krok - vytvoření komponenty
-	// 		$back = $_POST['back'];
-	// 		$pages_id = $_POST['pages_id'];
-	// 		$order = $_POST['order'];
-	// 		$list_components_id = $_POST['list_components_id'];
-
-	// 		$contents_id = $createContent->insertContent($pages_id);
-	// 		$createContent->insertComponents($pages_id, $list_components_id, $contents_id, $order);
-
-	// 		header("Location: {$back}");
-	// 		exit;
-	// 	}
-	// }
-	// $back = $back ?? '../index.php';
-	// $pages_id = $pages_id ?? '';
-	// $order = $order ?? '';
-
 	require_once "header.php";
 ?>
 	<div class="app-wrapper">
