@@ -1,15 +1,15 @@
 <header class="header-sticky header-absolute" data-bs-theme="dark">
 
 
-
 	<!-- Logo Nav START -->
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
 			<a class="navbar-brand me-0" href="#">
-			
-      <div style="display: flex; align-items: center;">
-      <div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>Compo.io </div>
+
+				<div style="display: flex; align-items: center;">
+					<div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>Compo.io
+				</div>
 			</a>
 			<!-- Logo END -->
 
@@ -20,9 +20,9 @@
 						<?php
 						echo $this->menu;
 						?>
-
-
 					</ul>
+				</ul>
+
 			</div>
 			<!-- Main navbar END -->
 
@@ -90,6 +90,9 @@
 		</div>
 	</nav>
 	<!-- Logo Nav END -->
+
+
+
+
 </header>
 <!-- Header END -->
-

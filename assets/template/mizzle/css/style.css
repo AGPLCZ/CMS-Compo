@@ -18172,13 +18172,12 @@ a.badge:hover {
     line-height: 2.2;
   }
   .navbar-expand-sm .dropdown.dropstart .dropdown-toggle:before {
-    content: "\f104";
-    margin-right: 0;
-    font-family: "Font Awesome 6 Free";
-    right: 1rem;
-    font-size: 0.8rem;
-    line-height: 2.2;
-    position: absolute;
+ content: '\f104';
+     display: inline-block;
+     font: 14px/1 FontAwesome;
+     font-size: 14px;
+     font-size: inherit;
+     text-rendering: auto;
   }
   .navbar-expand-sm .dropdown-menu-size-md {
     min-width: 22rem;

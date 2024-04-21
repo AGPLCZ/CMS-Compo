@@ -20,15 +20,15 @@
   <div class="container position-relative mt-5">
     <div class="row g-4 justify-content-between">
       <div class="col-lg-3">
-    <h3>Nadpis</h3>
-          <p class="mt-4 mb-2">A Bootstrap theme that's both stylish and functional, perfect for any type of technology or corporate website.</p>
+        <h3>Nadpis</h3>
+        <p class="mt-4 mb-2">A Bootstrap theme that's both stylish and functional, perfect for any type of technology or corporate website.</p>
       </div>
 
 
       <!-- Widget 2 START -->
       <div class="col-lg-8 col-xxl-7">
         <div class="row g-4">
-    
+
           <!-- Link block -->
           <div class="col-6 col-md-4">
             <h6 class="mb-2 mb-md-4">Quick links</h6>
@@ -62,7 +62,7 @@
               <li class="nav-item"><a class="nav-link" href="faq.html">Faqs</a></li>
 
             </ul>
-            
+
 
           </div>
 
@@ -92,7 +92,29 @@
 
 <!-- Theme Functions -->
 <script src="<?php echo $this->url ?>/assets/template/mizzle/js/functions.js"></script>
+<!-- Bootstrap JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+  document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+    dropdown.addEventListener('mouseleave', function() {
+      this.querySelector('.dropdown-togglee').style.color = '#fff'; // Nastaví barvu textu při opuštění dropdown
+    });
+
+  });
+
+
+  // document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+  //   var dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+
+  //   dropdown.addEventListener('mouseleave', function() {
+  //     dropdownToggle.style.color = '#fff'; // Nastaví barvu textu při opuštění dropdown
+  //     // Odebere třídu active, pokud je třeba
+  //     //   dropdown.classList.remove('active');
+  //   });
+
+  // });
+</script>
 
 
 </body>

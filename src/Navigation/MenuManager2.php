@@ -70,24 +70,65 @@ namespace Compo\Navigation {
             return $page;
         }
 
+        //         private function buildHtmlMenu($pages, $isSubmenu = false)
+        // {
+        //     $path = Registry::get('path');
+        //     $currentUrl = trim($_SERVER['REQUEST_URI'], '/');
+        //     $html = $isSubmenu ? '<div class="dropdown-menu">' : '<ul class="navbar-nav mx-auto">';
+
+        //     foreach ($pages as $page) {
+        //         $activeClass = '';
+        //         $pageUrl = trim($page['uri'], '/');
+
+        //         // Pokud je aktuální URL stejná jako URL stránky, přidáme třídu 'active'
+        //         if ($currentUrl === $pageUrl) {
+        //             $activeClass = 'active';
+        //         }
+
+        //         if (!empty($page['children'])) {
+        //             $html .= '<li class="nav-item dropdown ' . $activeClass . '">';
+        //             $html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '</a>';
+        //             $html .= $this->buildHtmlMenu($page['children'], true);
+        //             $html .= '</li>';
+        //         } else {
+        //             $href = !empty($page['uri']) && strpos($page['uri'], 'http') !== false ? $page['uri'] : '/' . $path . $pageUrl . '/';
+        //             $html .= $isSubmenu ? '<a class="dropdown-item ' . $activeClass . '" href="' . $href . '">' : '<li class="nav-item ' . $activeClass . '"><a class="nav-link" href="' . $href . '">';
+        //             $html .= $page['title'];
+        //             $html .= $isSubmenu ? '</a>' : '</a></li>';
+        //         }
+        //     }
+
+        //     $html .= $isSubmenu ? '</div>' : '</ul>';
+
+        //     return $html;
+        // }
+
+
         private function buildHtmlMenu($pages, $isSubmenu = false)
         {
             $path = Registry::get('path');
-            if ($path == ""){
-            $path="";
-            }else{
-            $path= $path . "/";   
+            if ($path == "") {
+                $path = "";
+            } else {
+                $path = $path . "/";
             }
-            
-            
+
+           
             $html = $isSubmenu ? '<div class="dropdown-menu">' : '<ul class="navbar-nav mx-auto">';
 
             foreach ($pages as $page) {
+
+
                 if (!empty($page['children'])) {
                     $html .= '<li class="nav-item dropdown">';
-                    //$html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '<i class="fas fa-chevron-down"></i></a>';
-                    // dropdown-toggle - přidat pro jiné šablony.  Tohle je náhrada pro Mizzle <i class="fas fa-chevron-down"> 
-                    $html .= '<a class="nav-link" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . ' <i class="fas fa-chevron-down"></i></a>';
+                
+                    if (Registry::get('template') == "mizzle"){
+                        $html .= '<a class="nav-link dropdown-togglee" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . ' <i class="fas fa-chevron-down"></i></a>';
+                    }else{
+
+                    $html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '</a>';  
+                    }
+                                  
                     $html .= $this->buildHtmlMenu($page['children'], true);
                     $html .= '</li>';
                 } else {
@@ -98,7 +139,7 @@ namespace Compo\Navigation {
                     $html .= $isSubmenu ? '</a>' : '</a></li>';
                 }
             }
-    
+
 
             $html .= $isSubmenu ? '</div>' : '</ul>';
 

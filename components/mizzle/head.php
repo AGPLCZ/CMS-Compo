@@ -48,6 +48,8 @@
     .navbar-nav .nav-item .nav-link {
       text-transform: none !important;
     }
+
+
   </style>
 
 	<!-- Dark mode -->
