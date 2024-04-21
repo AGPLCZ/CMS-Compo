@@ -24,6 +24,15 @@ class FlashManager
         }
     }
 
+
+    public static function issetFlashMessage()
+    {
+        if (isset($_SESSION['flash_messages'])) {
+            return true;
+        }
+    }
+
+
     public static function clearSession()
     {
         session_unset();

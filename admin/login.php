@@ -5,6 +5,9 @@ require_once '../config.php';
 require_once '../vendor/autoload.php';
 //session_start();
 use Compo\Admin\Auth\Auth;
+use Compo\Admin\Auth\FlashManager;
+
+
 
 
 if (Auth::isLoggedIn()){
@@ -15,21 +18,14 @@ if (Auth::isLoggedIn()){
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $rememberMe = isset($_POST['rememberMe']) && $_POST['rememberMe'] == 'on';
 
 
-    if (Auth::login($username, $password, $rememberMe)) {
-    //  echo $_POST['rememberMe'];
-    // echo $username;
-    // echo $rememberMe;
+    if (Auth::login($username, $password)) {
        Auth::redirect('index.php'); // Přesměrování na hlavní stránku
     } else {
-        echo "Neplatné uživatelské jméno nebo heslo.";
+        FlashManager::setFlashMessage("Neplatné uživatelské jméno nebo heslo.", 'error');
     }
 }
-
-
-
 
 ?>
 
@@ -38,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
 <html lang="cs">
 
 <head>
-    <title>Admin Dashboard </title>
+    <title>Admin Dashboard</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -54,25 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
 
 </head>
 
-<!-- <form action="login.php" method="post">
-        <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-        <label for="inputEmail" class="sr-only">User</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="User" required autofocus>
-
-
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Password" required value="Přihlásit">
-
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
-
 <body class="app app-login p-0">
     <div class="row g-0 app-auth-wrapper">
         <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
             <div class="d-flex flex-column align-content-end">
                 <div class="app-auth-body mx-auto">
                     <div class="app-auth-branding mb-4"><a class="app-logo" href="login.php"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"></a></div>
-                    <h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
+                    <h2 class="auth-heading text-center mb-5">Sign in to your editorial system</h2>
                     <div class="auth-form-container text-start">
                         <form class="auth-form login-form" action="login.php" method="post">
                             <div class="email mb-3">
@@ -85,12 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                                 <input id="signin-password" name="password" type="password" class="form-control signin-password" placeholder="Password" required="required">
                                 <div class="extra mt-3 row justify-content-between">
                                     <div class="col-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="rememberMe" value="on" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">
-                                                Remember me
-                                            </label>
-                                        </div>
+                                        
                                     </div><!--//col-6-->
                                     <div class="col-6">
                                         <div class="forgot-password text-end">
@@ -104,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                             </div>
                         </form>
 
-                        <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="signup.html">here</a>.</div>
                     </div><!--//auth-form-container-->
 
                 </div><!--//auth-body-->
@@ -119,10 +97,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
             <div class="auth-background-overlay p-3 p-lg-5">
                 <div class="d-flex flex-column align-content-end h-100">
                     <div class="h-100"></div>
-                    <div class="overlay-content p-3 p-lg-4 rounded">
-                        <h5 class="mb-3 overlay-title">Explore Portal Admin Template</h5>
-                        <div>Portal is a free Bootstrap 5 admin dashboard template. You can download and view the template license <a href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">here</a>.</div>
+                    <?php if (FlashManager::issetFlashMessage()):?> 
+                     <div class="overlay-content p-3 p-lg-1 rounded">
+                       
+                         <?= FlashManager::showFlashMessage(); ?>
                     </div>
+                    <?php endif ?>
                 </div>
             </div><!--//auth-background-overlay-->
         </div><!--//auth-background-col-->
