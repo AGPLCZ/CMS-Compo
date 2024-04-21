@@ -79,7 +79,7 @@ $results = DB::query($query2);
 						<td class="cell"><form method="POST" action="editComponentsListContentsId.php"><input type="hidden" name="editComponentsListContentsId" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentId"><?= htmlspecialchars($row['contents_id']) ?></button></form></td>
 						<td class="cell"><form method="POST" action="editComponentsListContentsName.php"><input type="hidden" name="editComponentsListContentsName" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentName"><?= htmlspecialchars($row['contents_name']) ?></button></form></td>
 						<td class="cell"><form method="POST	" action="editComponentsListContentsOrder.php"><input type="hidden" name="editComponentsListContentsOrdereditComponentsListContentsOrder" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentOrder"><?= htmlspecialchars($row['order']) ?></button></form></td>
-						<td class="cell"><form method="POST" action="deleteComponents.php"><input type="hidden" name="deleteComponents" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitComponentsDel">Delete item</button>
+						<td class="cell"><form method="POST" action="deleteComponets.php"><input type="hidden" name="deleteComponents" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitComponentsDel">Delete item</button>
 							</form>
 						</td>
 					</tr>
