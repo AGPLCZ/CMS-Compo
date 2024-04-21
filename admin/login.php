@@ -7,7 +7,6 @@ require_once '../vendor/autoload.php';
 use Compo\Admin\Auth\Auth;
 
 
-
 if (Auth::isLoggedIn()){
     Auth::redirect('index.php'); // Upravte cestu podle potřeby
 }

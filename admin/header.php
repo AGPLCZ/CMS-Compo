@@ -4,19 +4,15 @@
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
 require_once '../vendor/autoload.php';
-//require_once '../db.meekro.php'; 
 require_once "../config.php";
-
 
 use Compo\Admin\Auth\Auth;
 
+if (!Auth::isLoggedIn()){
+  Auth::logout();
+  Auth::redirect('login.php'); // Upravte cestu podle potřeby
+}
 
-
-// if (Auth::isLoggedIn()) {
-//   $timeLeft = Auth::getTimeUntilLogout();
-// }
-
-//Warning: session_id(): Session ID cannot be changed when a session is active in C:\xampp\htdocs\cms\CMS-Compo\src\Admin\Auth\Auth.php on line 63
 
 ?>
 
@@ -64,7 +60,7 @@ use Compo\Admin\Auth\Auth;
 
             <!--//col-->
             <div class="col-auto">
-              <!-- <?php echo "Zbývající čas do odhlášení: " . $timeLeft . " sekund"; ?> -->
+
 
             </div>
 

@@ -2,7 +2,9 @@
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
 require_once "header.php";
-
+use Compo\Admin\Auth\FlashManager;
+use Compo\Admin\Auth\Auth;
+//FlashManager::setFlashMessage("Nějaká zpráva", 'success');
 
 $pages = DB::query("SELECT pages_id, title FROM `pages` WHERE 1");
 
@@ -36,6 +38,7 @@ $results = DB::query($query2);
 		<div class="container-xl">
 			<div class="row g-3 mb-4 align-items-center mt-4 justify-content-between">
 				<div class="tab-content" id="orders-table-tab-content">
+				<?= FlashManager::showFlashMessage(); ?>
 					<div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
 						<?php
 						$lastPageId = null;
