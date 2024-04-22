@@ -19,12 +19,12 @@ $language = "cz";
 
 // Oříznutí lomítek na začátku a na konci řetězce
 $trimmed_folder_located_project = trim($folder_located_project, '/');
-$config = new Registry();
-$config->set("template",$tamplate);
+$registry = new Registry();
+$registry->set("template",$tamplate);
 if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
-    $config->set("path",$trimmed_folder_located_project);
+    $registry->set("path",$trimmed_folder_located_project);
 }else{
-    $config->set("path","");
+    $registry->set("path","");
 }
 
 

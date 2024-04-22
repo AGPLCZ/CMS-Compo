@@ -3,6 +3,7 @@
 namespace Compo\Navigation {
 
     use Compo\Registry;
+    use Compo\Navigation\UrlManager;
     use DB;
 
 
@@ -11,10 +12,30 @@ namespace Compo\Navigation {
         private $pages = [];
         private $pageTree = [];
 
+        private $urls;
+        private $urlss;
+        private $urlManager;
+        public $url;
+        public $urlName;
+
         public function __construct()
         {
             $this->loadPages();
             $this->buildTree();
+
+
+            $this->urlManager = new UrlManager();
+            $this->urls = $this->urlManager->getSegment(0);
+            $this->urlss = $this->urlManager->getSegment(1);
+        
+    
+            if ($this->urls == null) {
+                $this->urls = "index";
+            }
+    
+            $this->url = $this->urlManager->getUrl();
+            $this->urlName = $this->urlManager->getUrlName();
+
         }
 
         private function loadPages()
@@ -106,35 +127,53 @@ namespace Compo\Navigation {
 
         private function buildHtmlMenu($pages, $isSubmenu = false)
         {
+
+            //pokud je projekt ve složce
             $path = Registry::get('path');
             if ($path == "") {
                 $path = "";
             } else {
                 $path = $path . "/";
             }
+            //--
 
-           
+            // $currentUrl = trim($_SERVER['REQUEST_URI'], '/');
+            // if (substr($currentUrl, 0, strlen($path)) == $path) {
+            //     // Odebrání cesty ze začátku URL
+            //     $currentUrl = substr($currentUrl, strlen($path));
+            // }
+        
+             $currentUrl = $this->urls;
+
             $html = $isSubmenu ? '<div class="dropdown-menu">' : '<ul class="navbar-nav mx-auto">';
 
             foreach ($pages as $page) {
+                $activeClass = '';
+                $pageUrl = trim($page['uri'], '/');
 
+                // Pokud je aktuální URL stejná jako URL stránky, přidáme třídu 'active'
+                if ($currentUrl == $pageUrl) {
+                    $activeClass = 'active';                
+                }
+                //ladění
+                //echo "currentUrl: " . $currentUrl . " I " . "pageUrl: " . $pageUrl . " Active: " . $activeClass . "<br>";
 
                 if (!empty($page['children'])) {
                     $html .= '<li class="nav-item dropdown">';
-                
-                    if (Registry::get('template') == "mizzle"){
-                        $html .= '<a class="nav-link dropdown-togglee" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . ' <i class="fas fa-chevron-down"></i></a>';
-                    }else{
 
-                    $html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '</a>';  
+                    if (Registry::get('template') == "mizzle") {
+                        $html .= '<a class="nav-link dropdown-togglee" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . ' <i class="fas fa-chevron-down"></i></a>';
+                    } else {
+
+                        $html .= '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown' . $page['pages_id'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $page['title'] . '</a>';
                     }
-                                  
+
                     $html .= $this->buildHtmlMenu($page['children'], true);
                     $html .= '</li>';
                 } else {
                     //
                     $href = !empty($page['uri']) && strpos($page['uri'], 'http') !== false ? $page['uri'] : '/' . $path . trim($page['uri'], '/') . '/';
-                    $html .= $isSubmenu ? '<a class="dropdown-item" href="' . $href . '">' : '<li class="nav-item"><a class="nav-link" href="' . $href . '">';
+                    $html .= $isSubmenu ? '<a class="dropdown-item" href="' . $href . '">' : '<li class="nav-item"><a class="nav-link ' . $activeClass .'" href="' . $href . '">';
                     $html .= $page['title'];
                     $html .= $isSubmenu ? '</a>' : '</a></li>';
                 }
@@ -152,17 +191,3 @@ namespace Compo\Navigation {
         }
     }
 }
-/*
-$children:
-│
-├── "" (kořenové stránky, tj. stránky bez parentId)
-│   ├── [0] Úvod (pages_id: 1, uri: index)
-│   ├── [1] Bitcoin VexlATM (pages_id: 2, uri: bitcoin)
-│   ├── [2] Blog (pages_id: 6, uri: blog)
-│   ├── [3] Lektorské služby pro děti (pages_id: 5, uri: https://dobrodruzi.cz)
-│   └── [4] Cestovní zápisky (pages_id: 10, uri: nic)
-│
-└── "10" (děti stránky s pages_id: 10, tj. Cestovní zápisky)
-    ├── [0] Cestovní deník (pages_id: 9, uri: travel, parentId: 10)
-    └── [1] Cestovní časová osa (pages_id: 8, uri: timeline, parentId: 10)
-*/
