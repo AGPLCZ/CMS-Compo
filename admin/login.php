@@ -8,11 +8,12 @@ use Compo\Admin\Auth\Auth;
 use Compo\Admin\Auth\FlashManager;
 
 
+$auth = new Auth();
 
-
-if (Auth::isLoggedIn()){
-    Auth::redirect('index.php'); // Upravte cestu podle potřeby
+if ($auth->isLoggedIn()) {
+    $auth->redirect('index.php');
 }
+
 
 // Zpracování přihlašovacího požadavku
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($_POST['password'])) {
@@ -20,8 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
     $password = $_POST['password'];
 
 
-    if (Auth::login($username, $password)) {
-       Auth::redirect('index.php'); // Přesměrování na hlavní stránku
+
+
+
+    if ($auth->login($username, $password)) {
+        $auth->redirect('index.php');
     } else {
         FlashManager::setFlashMessage("Neplatné uživatelské jméno nebo heslo.", 'error');
     }

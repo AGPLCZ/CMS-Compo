@@ -3,12 +3,17 @@
 namespace Compo\Admin\Auth;
 
 use DB;
+
 class Auth
 {
+    public function __construct() {
+        $this->initSession();
+    }
+
     /**
      * Starts a session if it has not already been started.
      */
-    private static function initSession() {
+    private function initSession() {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
@@ -17,18 +22,16 @@ class Auth
     /**
      * Checks if the user is logged in.
      */
-    public static function isLoggedIn()
+    public function isLoggedIn()
     {
-        self::initSession();
         return isset($_SESSION['user_id']);
     }
 
     /**
      * Attempt to log in with a username and password.
      */
-    public static function login($username, $password)
+    public function login($username, $password)
     {
-        self::initSession();
         $user = DB::queryFirstRow("SELECT id, password_hash FROM users WHERE username=%s", $username);
         if ($user && password_verify($password, $user['password_hash'])) {
             $_SESSION['user_id'] = $user['id'];
@@ -41,8 +44,7 @@ class Auth
     /**
      * Logs out the current user and clears the session.
      */
-    public static function logout() {
-        self::initSession();
+    public function logout() {
         session_unset();
         session_destroy();
     }
@@ -50,7 +52,7 @@ class Auth
     /**
      * Redirects to a specific page.
      */
-    public static function redirect($url)
+    public function redirect($url)
     {
         header("Location: $url");
         exit;

@@ -25,6 +25,7 @@ final class PageRenderer
     public $urlName;
     public $page_content;
     private $language = 'cz';
+    private $auth;
 
 
     public function __construct($template)
@@ -55,7 +56,8 @@ final class PageRenderer
 
         $this->loadComponentData();
 
-      
+
+        $this->auth = new Auth();
     }
 
     private function loadComponentData()
@@ -91,8 +93,15 @@ final class PageRenderer
         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
         $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
-        $form .= '<button type="submit" name="submitEditContent" class="btn btn-primary" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
+        $form .= '<button type="submit" name="submitEditContent" class="btn btn-primary  edit-button" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
         $form .= '</form>';
+        // $form = '<form method="POST" action="' . $this->url . '/admin/editContent.php" style="display: inline;">';
+        // $form .= '<input type="hidden" name="akce" value="edit">';
+        // $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
+        // $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
+        // $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
+        // $form .= '<button type="submit" name="submitEditContent" class="btn btn-primary edit-button" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
+        // $form .= '</form>';
 
 
         return $form;
@@ -101,7 +110,8 @@ final class PageRenderer
 
     public function CreateContentButon($pages_id, $order)
     {
-        if (Auth::isLoggedIn()) {
+
+        if ($this->auth->isLoggedIn()) {
 
 
 
@@ -138,7 +148,7 @@ final class PageRenderer
 
     public function getEditButton($field)
     {
-        if (Auth::isLoggedIn()) {
+        if ($this->auth->isLoggedIn()) {
             echo $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
         }
     }
@@ -147,7 +157,7 @@ final class PageRenderer
     {
         if (isset($this->page_content[$field])) {
 
-            if (Auth::isLoggedIn()) {
+            if ($this->auth->isLoggedIn()) {
                 echo htmlspecialchars($this->page_content[$field]) . $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
             } else {
                 echo htmlspecialchars($this->page_content[$field]);

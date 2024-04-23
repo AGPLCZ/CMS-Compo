@@ -8,9 +8,11 @@ require_once "../config.php";
 
 use Compo\Admin\Auth\Auth;
 
-if (!Auth::isLoggedIn()){
-  Auth::logout();
-  Auth::redirect('login.php'); // Upravte cestu podle potřeby
+$auth = new Auth();
+
+if (!$auth->isLoggedIn()) {
+  $auth->logout();
+  $auth->redirect('login.php'); // Upravte cestu podle potřeby
 }
 
 

@@ -40,17 +40,18 @@
             </ul>
           </div>
 
-          <!-- Link block -->
-          <div class="col-6 col-md-4">
-            <h6 class="mb-2 mb-md-4">Community</h6>
-            <ul class="nav flex-column">
-              <li class="nav-item"><a class="nav-link pt-0" href="#">Documents</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Supports <i class="bi bi-box-arrow-up-right small ms-1"></i></a></li>
-              <li class="nav-item"><a class="nav-link" href="faq.html">Faqs</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
 
-            </ul>
-          </div>
+          <div class="col-md-4">
+						<h6 class="mb-2 mb-md-4">Contact details</h6>
+						<ul class="list-group list-group-borderless">
+							<li class="d-flex mb-3"><i class="me-2 text-primary bi bi-geo-alt"></i>Brno, Heršpická, 40 </li>
+							<li class="d-flex mb-3"><i class="me-2 text-primary bi bi-headset"></i> (251) 854-6308 </li>
+							<li class="d-flex mb-3"><i class="me-2 text-primary bi bi-envelope"></i> help@example.com</li>
+							<li class="d-flex mb-3"><i class="me-2 text-primary bi bi-clock"></i>
+								<p class="mb-0">Mon - Fri: <strong>09:00 - 21:00</strong> <br>Sat - Sun: <strong>Closed</strong></p>
+							</li>
+						</ul>
+					</div>
 
           <!-- Link block -->
           <div class="col-md-4">
@@ -69,7 +70,59 @@
         </div>
         <br><br>
       </div>
+<!-- Divider -->
+<hr class="opacity-1 my-5 my-sm-6">
 
+<!-- Contact detail -->
+<div class="row g-4 align-items-center">
+  <!-- Title -->
+  <div class="col-xl-3 text-lg-center text-xl-start mb-4 mb-xl-0">
+    <h5 class="mb-1">Get in touch with us</h5>
+    <p class="mb-0">We look forward to hearing from you!</p>
+  </div>
+
+  <!-- Mobile number -->
+  <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-md-center">
+    <div class="position-relative d-flex align-items-center">
+      <div class="icon-lg bg-body rounded-circle flex-shrink-0">
+        <i class="bi bi-telephone heading-color"></i>
+      </div>
+      <div class="nav flex-column ps-3">
+        <div class="small text-body-secondary">Give us a call</div>
+        <p class="fw-semibold mt-1 mb-0"><a href="#" class="heading-color text-primary-hover stretched-link p-0">469-537-2410</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-md-center">
+    <div class="position-relative d-flex align-items-center">
+      <div class="icon-lg bg-body rounded-circle flex-shrink-0">
+        <i class="bi bi-envelope heading-color"></i>
+      </div>
+      <div class="nav flex-column ps-3">
+        <div class="small text-body-secondary">Send us an email</div>
+        <p class="fw-semibold mt-1 mb-0"><a href="#" class="heading-color text-primary-hover stretched-link p-0">example@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address -->
+  <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-md-center">
+    <div class="position-relative d-flex align-items-center">
+      <div class="icon-lg bg-body rounded-circle flex-shrink-0">
+        <i class="bi bi-geo-alt heading-color"></i>
+      </div>
+      <div class="nav flex-column ps-3">
+        <div class="small text-body-secondary">Visit us in</div>
+        <p class="fw-semibold heading-color mt-1 mb-0">55/123 Norman street, Banking road</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="padding-bottom:40px;"></div>
+<!-- Divider -->
     </div>
 
 
