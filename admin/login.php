@@ -3,10 +3,10 @@
 require_once '../db.meekro.php';
 require_once '../config.php';
 require_once '../vendor/autoload.php';
-//session_start();
+session_start();
 use Compo\Admin\Auth\Auth;
 use Compo\Admin\Auth\FlashManager;
-
+ 
 
 $auth = new Auth();
 
@@ -32,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="cs">
@@ -77,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                                     </div><!--//col-6-->
                                     <div class="col-6">
                                         <div class="forgot-password text-end">
-                                            <a href="reset-password.html">Forgot password?</a>
+                                            <a href="email.php">Forgot password?</a>
                                         </div>
                                     </div><!--//col-6-->
                                 </div><!--//extra-->

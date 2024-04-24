@@ -18,6 +18,7 @@ class ComposerStaticInitff050cd58922eb58e7f40674cd5e4e3b
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'K' => 
         array (
@@ -50,6 +51,10 @@ class ComposerStaticInitff050cd58922eb58e7f40674cd5e4e3b
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'Kielabokkie\\Bitcoin\\' => 
         array (
             0 => __DIR__ . '/..' . '/kielabokkie/bitcoin-address-validator/src',
@@ -78,6 +83,13 @@ class ComposerStaticInitff050cd58922eb58e7f40674cd5e4e3b
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'DB' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
+        'DBTransaction' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
+        'MeekroDB' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
+        'MeekroDBEval' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
+        'MeekroDBException' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
+        'MeekroDBWalk' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
+        'WhereClause' => __DIR__ . '/..' . '/sergeytsalkov/meekrodb/db.class.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
