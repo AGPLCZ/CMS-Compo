@@ -15,7 +15,6 @@ if (!$auth->isLoggedIn()) {
   $auth->redirect('login.php'); // Upravte cestu podle potřeby
 }
 
-
 ?>
 
 
@@ -26,18 +25,19 @@ if (!$auth->isLoggedIn()) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Redakční systém - Konstrakt Admin Bootstrap 5">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="description" content="Redakční systém">
 
+  <link rel="shortcut icon" href="favicon.ico">
+
+	<link rel="stylesheet" href="../plugin/fontawesome-icons-pro/css/all.css">
+	<link rel="stylesheet" href="../plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
 
   <!-- FontAwesome JS-->
   <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 
+
   <!-- App CSS -->
   <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
-
-
 
   <title>Redakční systém</title>
 
@@ -225,7 +225,7 @@ if (!$auth->isLoggedIn()) {
       <div class="sidepanel-inner d-flex flex-column">
         <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
         <div class="app-branding">
-          <a class="app-logo" href="index.php"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"><span class="logo-text">Administrace</span></a>
+          <a class="app-logo" href="index.php"><img class="logo-icon me-2" src="assets/images/app-logo.png" alt="logo"><span class="logo-text">Administrace</span></a>
 
         </div>
 

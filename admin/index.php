@@ -66,23 +66,34 @@ $results = DB::query($query2);
 				<div class="table-responsive">
 					<table class="table app-table-hover mb-0 text-left">
 						<tr>
-							<th class="cell">Components ID</th>						
-							<th class="cell">List Components Name</th>
-							<th class="cell">Change Contents</th>
-							<th class="cell">Rename Contents</th>
-							<th class="cell">Change Order</th>
-							<th class="cell">Drop Compnents</th>
+							<th class="cell">ID</th>						
+							<th class="cell">Components</th>
+							<th class="cell"></th>
+							<th class="cell"></th>
+							<th class="cell">Contents</th>
+							<th class="cell"></th>
+							<th class="cell"></th>
+							<th class="cell"></th>
+							<th class="cell"></th>
+							<th class="cell"></th>
 						</tr>
 					<?php
 							endif;
 					?>
-					<tr>
-						<td class="cell"><?= htmlspecialchars($row['components_id']) ?></td>
-						<td class="cell"><form method="POST" action="editComponentsListComponentsId.php"><input type="hidden" name="editComponentsListComponentsId" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitComponent"><?= htmlspecialchars($row['list_components_name']) ?></button></form></td>
-						<td class="cell"><form method="POST" action="editComponentsListContentsId.php"><input type="hidden" name="editComponentsListContentsId" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentId"><?= htmlspecialchars($row['contents_id']) ?></button></form></td>
-						<td class="cell"><form method="POST" action="editComponentsListContentsName.php"><input type="hidden" name="editComponentsListContentsName" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentName"><?= htmlspecialchars($row['contents_name']) ?></button></form></td>
-						<td class="cell"><form method="POST	" action="editComponentsListContentsOrder.php"><input type="hidden" name="editComponentsListContentsOrdereditComponentsListContentsOrder" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentOrder"><?= htmlspecialchars($row['order']) ?></button></form></td>
-						<td class="cell"><form method="POST" action="deleteComponets.php"><input type="hidden" name="deleteComponents" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitComponentsDel">Delete item</button>
+					<tr class="p-2">
+						<td class="cell text-danger">#<?= htmlspecialchars($row['components_id']) ?></td>
+						<td class="cell text-info"><?= htmlspecialchars($row['list_components_name']) ?></td>
+						<td class="cell"><form method="POST" action="editComponentsListComponentsId.php"><input type="hidden" name="editComponentsListComponentsId" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitComponent"><i class="bi bi-pencil-square text-info"></i> Change</button></form></td>
+						<td class="cell"></td>
+						<td class="cell text-success"><span class="badge bg-success" style="min-width: 40px;"><?= htmlspecialchars($row['contents_id']) ?></span> <?= htmlspecialchars($row['contents_name']) ?></td>
+						<td class="cell"><form method="POST" action="editComponentsListContentsId.php"><input type="hidden" name="editComponentsListContentsId" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentId"><i class="bi bi-pencil-square text-success"></i> Change</button></form></td>
+
+						<td class="cell"><form method="POST" action="editComponentsListContentsName.php"><input type="hidden" name="editComponentsListContentsName" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentName"><i class="bi bi-pencil-square text-success"></i> Rename</button></form></td>
+
+						<td class="cell"><?= htmlspecialchars($row['order']) ?></td>
+						<td class="cell"><form method="POST	" action="editComponentsListContentsOrder.php"><input type="hidden" name="editComponentsListContentsOrdereditComponentsListContentsOrder" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentOrder"><i class="bi bi-pencil-square"></i>Edit order</button></form></td>
+						
+						<td class="cell"><form method="POST" action="deleteComponets.php"><input type="hidden" name="deleteComponents" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary text-danger" name="submitComponentsDel">Drop item</button>
 							</form>
 						</td>
 					</tr>
@@ -102,6 +113,7 @@ $results = DB::query($query2);
 		</div>
 	</div>
 </div>
+
 
 <?php require_once "footer.php"; ?>
 

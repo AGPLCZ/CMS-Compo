@@ -1,5 +1,4 @@
 <?php
-
 require_once '../db.meekro.php';
 require_once '../config.php';
 require_once '../vendor/autoload.php';
@@ -13,23 +12,7 @@ $auth = new Auth();
 if ($auth->isLoggedIn()) {
     $auth->redirect('index.php');
 }
-
-
-// Zpracování přihlašovacího požadavku
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-
-
-
-
-    if ($auth->login($username, $password)) {
-        $auth->redirect('index.php');
-    } else {
-        FlashManager::setFlashMessage("Neplatné uživatelské jméno nebo heslo.", 'error');
-    }
-}
+$auth->handleLogin();
 
 ?>
 
@@ -54,14 +37,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
 </head>
 
 <body class="app app-login p-0">
-    <div class="row g-0 app-auth-wrapper">
-        <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
-            <div class="d-flex flex-column align-content-end">
-                <div class="app-auth-body mx-auto">
-                    <div class="app-auth-branding mb-4"><a class="app-logo" href="login.php"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"></a></div>
-                    <h2 class="auth-heading text-center mb-5">Sign in to your editorial system</h2>
-                    <div class="auth-form-container text-start">
-                        <form class="auth-form login-form" action="login.php" method="post">
+	<main class="d-flex w-100">
+		<div class="container d-flex flex-column">
+			<div class="row vh-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
+
+                    <?php if (FlashManager::issetFlashMessage()):?> 
+                     <div class="overlay-content p-3 p-lg-1 rounded">
+                         <?= FlashManager::showFlashMessage(); ?>
+                    </div>
+                    <?php endif ?>
+
+						<div class="text-center mt-4">
+							<h1 class="h2">Admin Tools</h1>
+							<p class="lead">
+								Sign in to your account to continue
+							</p>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-3">
+									  <form class="auth-form login-form" action="login.php" method="post">
                             <div class="email mb-3">
                                 <label class="sr-only" for="username">Username</label>
                                 <input id="username" name="username" type="text" class="form-control signin-email" placeholder="User name" required="required">
@@ -85,34 +83,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Log In</button>
                             </div>
                         </form>
-
-                    </div><!--//auth-form-container-->
-
-                </div><!--//auth-body-->
-
-
-            </div><!--//flex-column-->
-        </div><!--//auth-main-col-->
-        <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
-            <div class="auth-background-holder">
-            </div>
-            <div class="auth-background-mask"></div>
-            <div class="auth-background-overlay p-3 p-lg-5">
-                <div class="d-flex flex-column align-content-end h-100">
-                    <div class="h-100"></div>
-                    <?php if (FlashManager::issetFlashMessage()):?> 
-                     <div class="overlay-content p-3 p-lg-1 rounded">
-                       
-                         <?= FlashManager::showFlashMessage(); ?>
-                    </div>
-                    <?php endif ?>
-                </div>
-            </div><!--//auth-background-overlay-->
-        </div><!--//auth-background-col-->
-
-    </div><!--//row-->
-
-
+								</div>
+							</div>
+						</div>
+				
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </body>
 
 </html>

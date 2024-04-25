@@ -5,10 +5,10 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand me-0" href="#">
+			<a class="navbar-brand me-0" href="<?php echo $this->url ?>/">
 
 				<div style="display: flex; align-items: center;">
-					<div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>Compo.io
+				<img src="<?php echo $this->url ?>/assets/images/logo/android-chrome-512x512.png" style="width: 50px; margin-right: 9px;">	<!--<div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>-->
 				</div>
 			</a>
 			<!-- Logo END -->

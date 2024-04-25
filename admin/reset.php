@@ -8,13 +8,10 @@ use Compo\Admin\Auth\ResetPassword;
 
 
 $reset = new ResetPassword();
-$result = $reset->handleResetRequest();
+$token = $reset->handleResetRequest();
 
-if ($result['status'] === 'show_form' && isset($result['token'])) {
+if ($token):
 ?>
-
-
-
     <!DOCTYPE html>
     <html lang="cs">
 
@@ -36,44 +33,46 @@ if ($result['status'] === 'show_form' && isset($result['token'])) {
     </head>
 
     <body class="app app-login p-0">
-        <div class="row g-0 app-auth-wrapper">
-            <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
-                <div class="d-flex flex-column align-content-end">
-                    <div class="app-auth-body mx-auto">
-                        <div class="app-auth-branding mb-4"><a class="app-logo" href="login.php"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"></a></div>
-                        <h2 class="auth-heading text-center mb-5">Reset password</h2>
-                        <div class="auth-form-container text-start">
 
-                            <form method="post" class="auth-form login-forms" action="reset.php">
+        <main class="d-flex w-100">
+            <div class="container d-flex flex-column">
+                <div class="row vh-100">
+                    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+                        <div class="d-table-cell align-middle">
 
-                                <div class="password mb-3">
-                                    <input type="hidden" name="token" value="<?php echo htmlspecialchars($result['token']); ?>">
-                                    <label for="newPassword">New Password:</label>
-                                    <input type="password" class="form-control signin-password" id="newPassword" name="newPassword" required>
+                            <div class="text-center mt-4">
+                                <h1 class="h2">New password</h1>
+                                <p class="lead">
+                                    Enter any password
+                                </p>
+                            </div>
 
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="m-sm-3">
+                                        <form method="post" class="auth-form login-forms" action="reset.php">
+
+                                            <div class="password mb-3">
+                                                <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+                                                <label for="newPassword">New Password:</label>
+                                                <input type="password" class="form-control signin-password" id="newPassword" name="newPassword" required>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto" name="submitReset">Reset Password</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit"class="btn app-btn-primary w-100 theme-btn mx-auto" name="submitReset">Reset Password</button>
-                                </div>
-                            </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
-                <div class="auth-background-holder">
-                </div>
-                <div class="auth-background-mask"></div>
-                <div class="auth-background-overlay p-3 p-lg-5">
-
-                </div>
-            </div>
-        </div>
+        </main>
     </body>
 
     </html>
-
-
 <?php
-}
+endif;
 ?>
