@@ -1,4 +1,8 @@
 RewriteEngine On
+RewriteBase /CMS/CMS-Compo/
+# Neaplikovat pravidla, pokud URL odpovídá fyzickému souboru
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# Aplikovat pravidla, pokud URL odpovídá fyzické složce
+#RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ index.php [QSA,L]
+

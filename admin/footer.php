@@ -1,10 +1,10 @@
 	<!-- Javascript -->
-	<script src=" assets/plugins/popper.min.js">
+	<script src="<?php echo $this->url ?>/admin/assets/plugins/popper.min.js">
 	</script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo $this->url ?>/plugins/bootstrap-5.3.3/js/bootstrap.min.js"></script>
 
 	<!-- Page Specific JS -->
-	<script src="assets/js/app.js"></script>
+	<script src="<?php echo $this->url ?>/admin/assets/js/app.js"></script>
 
 	</body>
 

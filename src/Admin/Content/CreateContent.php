@@ -33,14 +33,14 @@ class CreateContent
 {
     $pages_id = $_POST['pages_id'];
     $order = $_POST['order'] + 1;
-    $back = $_SERVER['HTTP_REFERER'] ?? '../index.php';
+    $back = $_SERVER['HTTP_REFERER'] ?? '../index/';
 
     return ['pages_id' => $pages_id, 'order' => $order, 'back' => $back];
 }
 
     private function createComponentExecute()
     {
-        $back = $_POST['back'] ?? '../index.php';
+        $back = $_POST['back'] ?? '../index/';
         $pages_id = $_POST['pages_id'];
         $order = $_POST['order'];
         $list_components_id = $_POST['list_components_id'];

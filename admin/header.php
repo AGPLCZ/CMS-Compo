@@ -3,16 +3,17 @@
 // Nebezpečné zobrazovat
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
-require_once '../vendor/autoload.php';
-require_once "../config.php";
+// require_once '../vendor/autoload.php';
+// require_once "../config.php";
 
 use Compo\Admin\Auth\Auth;
+
 
 $auth = new Auth();
 
 if (!$auth->isLoggedIn()) {
   $auth->logout();
-  $auth->redirect('login.php'); // Upravte cestu podle potřeby
+  $auth->redirect('login/'); // Upravte cestu podle potřeby
 }
 
 ?>
@@ -29,15 +30,14 @@ if (!$auth->isLoggedIn()) {
 
   <link rel="shortcut icon" href="favicon.ico">
 
-	<link rel="stylesheet" href="../plugin/fontawesome-icons-pro/css/all.css">
-	<link rel="stylesheet" href="../plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="<?php echo $this->url ?>/plugin/fontawesome-icons-pro/css/all.css">
+	<link rel="stylesheet" href="<?php echo $this->url ?>/plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
 
   <!-- FontAwesome JS-->
-  <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-
+  <script defer src="<?php echo $this->url ?>/plugins/fontawesome/js/all.min.js"></script>
 
   <!-- App CSS -->
-  <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+  <link id="theme-style" rel="stylesheet" href="<?php echo $this->url ?>/admin/assets/css/portal.css">
 
   <title>Redakční systém</title>
 
@@ -190,7 +190,7 @@ if (!$auth->isLoggedIn()) {
               <!--//app-utility-item-->
 
               <div class="app-utility-item app-user-dropdown dropdown">
-                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/users/ag.jpg" alt="user profile"></a>
+                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="<?php echo $this->url ?>/admin/assets/images/users/ag.jpg" alt="user profile"></a>
                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                   <li><a class="dropdown-item" href="account.php">Účet</a></li>
                   <li><a class="dropdown-item" href="settings.php">Nastavení</a></li>
@@ -225,7 +225,7 @@ if (!$auth->isLoggedIn()) {
       <div class="sidepanel-inner d-flex flex-column">
         <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
         <div class="app-branding">
-          <a class="app-logo" href="index.php"><img class="logo-icon me-2" src="assets/images/app-logo.png" alt="logo"><span class="logo-text">Administrace</span></a>
+          <a class="app-logo" href="index"><img class="logo-icon me-2" src="<?php echo $this->url ?>/admin/assets/images/app-logo.png" alt="logo"><span class="logo-text">Admin Tools</span></a>
 
         </div>
 

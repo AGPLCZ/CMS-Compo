@@ -1,7 +1,7 @@
 <?php
-require_once '../db.meekro.php';
-require_once '../config.php';
-require_once '../vendor/autoload.php';
+// require_once '../db.meekro.php';
+// require_once '../config.php';
+// require_once '../vendor/autoload.php';
 session_start();
 
 use Compo\Admin\Auth\ResetPassword;
@@ -26,10 +26,10 @@ $reset->handleRequestSend();
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- FontAwesome JS-->
-    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script defer src="<?php echo $this->url ?>/admin/assets/plugins/fontawesome/js/all.min.js"></script>
 
     <!-- App CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+    <link id="theme-style" rel="stylesheet" href="<?php echo $this->url ?>/admin/assets/css/portal.css">
 
 </head>
 
@@ -50,7 +50,7 @@ $reset->handleRequestSend();
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-3">
-                                    <form method="post" class="auth-form login-forms" action="email.php">
+                                    <form method="post" class="auth-form login-forms" action="../email/">
                                         <div class="password mb-3">
                                             <label class="sr-only" for="email">Email:</label>
                                             <input type="email" class="form-control signin-password" id="email" name="email" required>

@@ -62,10 +62,10 @@ class Auth
             $password = $_POST['password'];
 
             if ($this->login($username, $password)) {
-                $this->redirect('index.php');
+                $this->redirect('index/');
             } else {
                 FlashManager::setFlashMessage("Neplatné uživatelské jméno nebo heslo.", 'danger');
-                $this->redirect('login.php');
+                $this->redirect('login/');
             }
         }
     }

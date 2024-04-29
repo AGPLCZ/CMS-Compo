@@ -35,7 +35,7 @@ class EmailSender
     {
         $this->mail->addAddress($toEmail);
         $this->mail->Subject = 'Reset Your Password';
-        $this->mail->Body    = 'Please click on the following link to reset your password: <a href="http://localhost/cms/CMS-Compo/admin/reset.php?token=' . urlencode($token) . '">Reset Password</a>';
+        $this->mail->Body    = 'Please click on the following link to reset your password: <a href="http://localhost/cms/CMS-Compo/admin/reset/?token=' . urlencode($token) . '">Reset Password</a>';
 
         try {
             $this->mail->send();

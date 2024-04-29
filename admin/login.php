@@ -1,7 +1,7 @@
 <?php
-require_once '../db.meekro.php';
-require_once '../config.php';
-require_once '../vendor/autoload.php';
+// require_once '../db.meekro.php';
+// require_once '../config.php';
+// require_once '../vendor/autoload.php';
 session_start();
 use Compo\Admin\Auth\Auth;
 use Compo\Admin\Auth\FlashManager;
@@ -10,7 +10,7 @@ use Compo\Admin\Auth\FlashManager;
 $auth = new Auth();
 
 if ($auth->isLoggedIn()) {
-    $auth->redirect('index.php');
+    $auth->redirect('../index');
 }
 $auth->handleLogin();
 
@@ -29,10 +29,10 @@ $auth->handleLogin();
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- FontAwesome JS-->
-    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script defer src="<?php echo $this->url ?>/admin/assets/plugins/fontawesome/js/all.min.js"></script>
 
     <!-- App CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+    <link id="theme-style" rel="stylesheet" href="<?php echo $this->url ?>/admin/assets/css/portal.css">
 
 </head>
 
@@ -59,7 +59,7 @@ $auth->handleLogin();
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-3">
-									  <form class="auth-form login-form" action="login.php" method="post">
+									  <form class="auth-form login-form" action="login/" method="post">
                             <div class="email mb-3">
                                 <label class="sr-only" for="username">Username</label>
                                 <input id="username" name="username" type="text" class="form-control signin-email" placeholder="User name" required="required">
@@ -74,7 +74,7 @@ $auth->handleLogin();
                                     </div><!--//col-6-->
                                     <div class="col-6">
                                         <div class="forgot-password text-end">
-                                            <a href="email.php">Forgot password?</a>
+                                            <a href="../email/">Forgot password?</a>
                                         </div>
                                     </div><!--//col-6-->
                                 </div><!--//extra-->

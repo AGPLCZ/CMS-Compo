@@ -11,6 +11,8 @@ use Compo\Rendering\Template;
 use Compo\Rendering\PageRenderer;
 use Compo\Registry;
 use Compo\Admin\Auth\Auth;
+use Compo\Rendering\AdminRenderer;
+
 
 $folder_located_project = "cms/CMS-Compo";
 $tamplate = "mizzle";
@@ -20,24 +22,37 @@ $language = "cz";
 // Oříznutí lomítek na začátku a na konci řetězce
 $trimmed_folder_located_project = trim($folder_located_project, '/');
 $registry = new Registry();
-$registry->set("template",$tamplate);
+$registry->set("template", $tamplate);
 if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
-    $registry->set("path",$trimmed_folder_located_project);
-}else{
-    $registry->set("path","");
+    $registry->set("path", $trimmed_folder_located_project);
+} else {
+    $registry->set("path", "");
 }
 
 
-$whatTemplate = new Template();
-$template = $whatTemplate->TemplateName();
+$urlManager = new UrlManager();
+$urls = $urlManager->getSegment(0);
+$urlss = $urlManager->getSegment(1);
 
 
-$pageRenderer = new PageRenderer($template);
-$pageRenderer->setLanguage($language);  // Nastavit jazyk na češtinu
-$pageRenderer->renderComponents();
+if ($urls == "admin") {
+    $adminRenderer = new AdminRenderer();
+    $adminRenderer->renderComponents();  
+} else {
+
+    $whatTemplate = new Template();
+    $template = $whatTemplate->TemplateName();
 
 
-//components - to jsou jména komponent které jdou vložit na různé stránky, komponenty to jsou html šablony pro kousky / části stránky
-//pages - to je hlavní menu ale zároveň se tím vytvoří stránka na kterou jde vkládat mnoho komponentů a tím se seskládá obsah stránky
-//page_components - zde se ukládá která komponenta patří k jaké stránce "pages"  a taky se určuje jaký text ke komponentě patří který je uložen "page_contents"  
-//page_contents - zde je uložen veškerý obsah všech komponent - komponenty odsud mohou čerpat obsah
+    $pageRenderer = new PageRenderer($template);
+    $pageRenderer->setLanguage($language);  // Nastavit jazyk na češtinu
+    $pageRenderer->renderComponents();
+}
+
+
+
+
+// components - to jsou jména komponent které jdou vložit na různé stránky, komponenty to jsou html šablony pro kousky / části stránky
+// pages - to je hlavní menu ale zároveň se tím vytvoří stránka na kterou jde vkládat mnoho komponentů a tím se seskládá obsah stránky
+// page_components - zde se ukládá která komponenta patří k jaké stránce "pages"  a taky se určuje jaký text ke komponentě patří který je uložen "page_contents"  
+// page_contents - zde je uložen veškerý obsah všech komponent - komponenty odsud mohou čerpat obsah

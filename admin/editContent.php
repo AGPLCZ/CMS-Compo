@@ -1,16 +1,16 @@
 <?php
-require_once '../db.meekro.php';
-require_once "../config.php";
-require_once '../vendor/autoload.php';
+// require_once '../db.meekro.php';
+// require_once "../config.php";
+// require_once '../vendor/autoload.php';
 
-use Compo\Admin\Content\EditContent;
+// use Compo\Admin\Content\EditContent;
 
-$editContent = new EditContent();
-$formData = $editContent->handleRequest();
-//var_dump($formData);
+// $editContent = new EditContent();
+// $formData = $editContent->handleRequest();
+// //var_dump($formData);
 
 if (is_array($formData)) :
-	require_once "header.php";
+
 
 ?>
 
@@ -95,4 +95,3 @@ if (is_array($formData)) :
 
 <?php endif; ?>
 
-<?php require_once "footer.php"; ?>

@@ -1,20 +1,19 @@
 <?php
-require_once '../db.meekro.php';
-require_once "../config.php";
-require_once '../vendor/autoload.php';
+// require_once '../db.meekro.php';
+// require_once "../config.php";
+// require_once '../vendor/autoload.php';
 
-use Compo\Admin\Content\CreateContent;
+// use Compo\Admin\Content\CreateContent;
 
-$createContent = new CreateContent();
-$formData = $createContent->handleRequest();
-$components = $createContent->selectListComponents();
+// $createContent = new CreateContent();
+// $formData = $createContent->handleRequest();
+// $components = $createContent->selectListComponents();
 
 //var_dump($formData);
 
 
 if (!empty($formData)) :
 
-	require_once "header.php";
 ?>
 	<div class="app-wrapper">
 
@@ -57,7 +56,7 @@ if (!empty($formData)) :
 
 											<div class="app-card-body">
 
-												<form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+												<form action="<?php echo $this->url ?>/admin/createContent/" method="post">
 													<div class="form-group">
 
 														<div class="mb-3">
@@ -101,6 +100,3 @@ if (!empty($formData)) :
 
 
 <?php endif ?>
-
-
-<?php require_once "footer.php"; ?>

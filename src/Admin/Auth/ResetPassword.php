@@ -15,7 +15,7 @@ class ResetPassword
         $user = DB::queryFirstRow("SELECT id FROM users WHERE email=%s", $email);
         if (!$user) {
             FlashManager::setFlashMessage("No user found with that email address.", 'danger');
-            header("Location: " . htmlspecialchars('login.php'));
+            header("Location: " . htmlspecialchars('../login/'));
             exit;
         }
 
@@ -38,7 +38,7 @@ class ResetPassword
         $user = DB::queryFirstRow("SELECT id FROM users WHERE reset_token=%s AND token_expiration>%d", $token, time());
         if (!$user) {
             FlashManager::setFlashMessage("Invalid or expired reset token.", 'danger');
-            header("Location: " . htmlspecialchars('login.php'));
+            header("Location: " . htmlspecialchars('../login/'));
             exit;
         }
         return $user['id'];
@@ -71,18 +71,18 @@ class ResetPassword
             $token = $this->requestReset($userEmail);
             if (!$token) {
                 FlashManager::setFlashMessage("Error creating reset token.", 'danger');
-                header("Location: " . htmlspecialchars('login.php'));
+                header("Location: " . htmlspecialchars('../login'));
                 exit;
             }
             $emailSender = new EmailSender();
             $send = $emailSender->sendResetEmail($userEmail, $token);
             if ($send == true) {
                 FlashManager::setFlashMessage("Reset instructions have been sent to your email.", 'success');
-                header("Location: " . htmlspecialchars('login.php'));
+                header("Location: " . htmlspecialchars('../login'));
                 exit;
             } else {
                 FlashManager::setFlashMessage("Failed to send email." . $send, 'danger');
-                header("Location: " . htmlspecialchars('login.php'));
+                header("Location: " . htmlspecialchars('../login'));
                 exit;
             }
         }
@@ -97,7 +97,7 @@ class ResetPassword
             if (!$userId) {
 
                 FlashManager::setFlashMessage("Invalid or expired reset token.", 'danger');
-                header("Location: " . htmlspecialchars('login.php'));
+                header("Location: " . htmlspecialchars('../login/'));
                 exit;
             }
             return $token;
@@ -112,12 +112,12 @@ class ResetPassword
             $userId = $this->verifyToken($token);
             if (!$userId) {
                 FlashManager::setFlashMessage("Invalid or expired reset token.", 'danger');
-                header("Location: " . htmlspecialchars('login.php'));
+                header("Location: " . htmlspecialchars('../login/'));
                 exit;
             }
             $this->resetPassword($userId, $newPassword);
             FlashManager::setFlashMessage("Your password has been reset successfully.", 'success');
-            header("Location: " . htmlspecialchars('login.php'));
+            header("Location: " . htmlspecialchars('../login/'));
             exit;
         }
     }

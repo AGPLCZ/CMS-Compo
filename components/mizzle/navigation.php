@@ -8,7 +8,7 @@
 			<a class="navbar-brand me-0" href="<?php echo $this->url ?>/">
 
 				<div style="display: flex; align-items: center;">
-				<img src="<?php echo $this->url ?>/assets/images/logo/android-chrome-512x512.png" style="width: 50px; margin-right: 9px;">	<!--<div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>-->
+				<img src="<?php echo $this->url ?>/assets/images/logo/android-chrome-512x512.png" style="width: 40px; margin-right: 9px;">	<!--<div class="icon-md flex-shrink-0 text-white bg-primary bg-opacity-90 rounded-circle" style="margin-right: 10px;"><i class="bi bi-diagram-3 fa-xl"></i></div>-->
 				</div>
 			</a>
 			<!-- Logo END -->

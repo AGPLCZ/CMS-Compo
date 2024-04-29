@@ -1,7 +1,7 @@
 <?php
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
-require_once "header.php";
+
 use Compo\Admin\Auth\FlashManager;
 use Compo\Admin\Auth\Auth;
 //FlashManager::setFlashMessage("Nějaká zpráva", 'success');
@@ -93,7 +93,7 @@ $results = DB::query($query2);
 						<td class="cell"><?= htmlspecialchars($row['order']) ?></td>
 						<td class="cell"><form method="POST	" action="editComponentsListContentsOrder.php"><input type="hidden" name="editComponentsListContentsOrdereditComponentsListContentsOrder" value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary" name="submitContentOrder"><i class="bi bi-pencil-square"></i>Edit order</button></form></td>
 						
-						<td class="cell"><form method="POST" action="deleteComponets.php"><input type="hidden" name="deleteComponents" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary text-danger" name="submitComponentsDel">Drop item</button>
+						<td class="cell"><form method="POST" action="deleteComponets/"><input type="hidden" name="deleteComponents" value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit" class="btn-sm app-btn-secondary text-danger" name="submitComponentsDel">Drop item</button>
 							</form>
 						</td>
 					</tr>
@@ -113,8 +113,4 @@ $results = DB::query($query2);
 		</div>
 	</div>
 </div>
-
-
-<?php require_once "footer.php"; ?>
-
 
