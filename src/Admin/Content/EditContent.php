@@ -54,7 +54,7 @@ class EditContent
             'back_url' => htmlspecialchars($this->urlManager->getBackPage()),
             'contents_id' => htmlspecialchars($contents_id),
             'column' => htmlspecialchars($column),
-            'value' => htmlspecialchars($data[$column]),  // Nyní je tato část bezpečná
+            'value' => htmlspecialchars($data[$column]),
             'language' => htmlspecialchars($language)
         ];
     }

@@ -35,6 +35,7 @@ $urls = $urlManager->getSegment(0);
 $urlss = $urlManager->getSegment(1);
 
 
+
 if ($urls == "admin") {
     $adminRenderer = new AdminRenderer();
     $adminRenderer->renderComponents();  

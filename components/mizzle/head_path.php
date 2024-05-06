@@ -1,7 +1,7 @@
 <main>
 	<section class="overflow-hidden pt-0">
 		<!-- Title and content -->
-		<div class="bg-dark position-relative pt-7 pb-8 px-4 px-md-0">
+		<div class="bg-dark position-relative pt-0 pb-8 px-4 px-md-0">
 			<!-- SVG decoration -->
 			<figure class="position-absolute top-0 start-0">
 				<svg class="fill-white" style="opacity:0.02" width="662" height="614" viewBox="0 0 662 614" xmlns="http://www.w3.org/2000/svg">
@@ -16,17 +16,16 @@
 				</svg>
 			</figure>
 
-			<!-- Curve SVG bg -->
+		
+			<!-- Curve SVG bg 
 			<figure class="position-absolute bottom-0 start-50 translate-middle-x mb-n6">
 				<svg class="fill-body" width="1994" height="182" viewBox="0 0 1994 182" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M1943.5 182H18.5H0.5V97.4995C630.5 -33 1325.5 -31.0001 1994 97.4995V182H1943.5Z"></path>
-				</svg>
+				</svg> -->
 			</figure>
-
-
-
-			<div style="margin-bottom: 130px;"></div>
+	
 			
 		</div>
 	</section>
 </main>
+<?php echo $this->CreateContentButon($data['pageId'],$data['componentOrder']); ?>
