@@ -1,0 +1,41 @@
+<section class="pt-0">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="container px-4 py-0" id="featured-3">
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div class="feature col">
+                        <p><i class="<?php $this->getContentOnly('content7'); ?> text-primary" style="font-size: 45px"></i></p>
+                        <h5 class="mb-3">
+                            
+                      {{ contentData.content1|default('Default Content') }}{{ editButtons.content1 | raw }}
+                         
+                        </h5>
+                        <p class="mb-0">
+                    {{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }}
+                        </p>
+                    </div>
+                    <div class="feature col">
+                        <p><i class="<?php $this->getContentOnly('content8'); ?> text-primary" style="font-size: 45px"></i></p>
+                        <h5 class="mb-3">
+                     {{ contentData.content3|default('Default Content') }}{{ editButtons.content3 | raw }}
+                        </h5>
+                        <p class="mb-0">
+                      {{ contentData.content3|default('Default Content') }}{{ editButtons.content3 | raw }}
+                        </p>
+                    </div>
+                    <div class="feature col">
+                        <p><i class="<?php $this->getContentOnly('content9'); ?> text-primary" style="font-size: 45px"></i></p>
+                        <h5 class="mb-3">
+                       {{ contentData.content4|default('Default Content') }}{{ editButtons.content4 | raw }}
+                        </h5>
+                        <p class="mb-0">
+                       {{ contentData.content5|default('Default Content') }}{{ editButtons.content5 | raw }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ createButton | raw }} 
+

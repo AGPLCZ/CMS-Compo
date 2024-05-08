@@ -26,20 +26,21 @@
 			<!-- Title & Content -->
 			<div class="inner-container text-center position-relative mb-9 mt-8">
 				<!-- Title -->
-				<h1 class="mt-4 text-white">Moderní řešení pro</h1>
+				<h1 class="mt-4 text-white">{{ contentData.content1|default('Default Content') }}{{ editButtons.content1 | raw }}</h1>
 				<h6 class="h1 cd-headline clip big-clip is-full-width text-primary mb-5">
-					<span class="text-white pt-0">Váš </span>
-					<span class="typed" data-type-text="Projekt&amp;&amp;E-shop"></span><span class="ityped-cursor">|</span>
+					<span class="text-white pt-0">{{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }} </span>
+					<span class="typed" data-type-text="{{ contentData.content3|default('Default Content') }}&amp;&amp;{{ contentData.content4|default('Default Content') }}"></span><span class="ityped-cursor">|</span>
 				</h6>
-
-				<p class="text-white opacity-7 mb-5">Otevřete svůj internetový obchod ještě dnes!</p>
+{{ editButtons.content3 | raw }}{{ editButtons.content4 | raw }}
+				<p class="text-white opacity-7 mb-5">{{ contentData.content5|default('Default Content') }}</p>
+				{{ editButtons.content5 | raw }}
 
 
 
 				<!-- List -->
 				<ul class="list-inline d-flex flex-wrap justify-content-center gap-2 gap-sm-5 mb-0">
-					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i> Od 50 Kč / měsíc</li>
-					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i>Trvá to 5 minut</li>
+					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i>{{ contentData.content7|default('Default Content') }}{{ editButtons.content7 | raw }}</li>
+					<li class="list-inline-item text-white"> <i class="bi bi-patch-check-fill text-primary me-2"></i>{{ contentData.content8|default('Default Content') }}{{ editButtons.content8 | raw }}</li>
 				</ul>
 			</div>
 		</div>
@@ -59,4 +60,3 @@
 		</div>
 	</section>
 </main>
-<?php echo $this->CreateContentButon($data['pageId'],$data['componentOrder']); ?>

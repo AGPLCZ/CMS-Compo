@@ -2,9 +2,9 @@
     <div class="container">
         <!-- Title -->
         <div class="inner-container-small text-center mb-4 mb-sm-5">
-            <h2 class="mb-4"><?= $componentRenderData['content7'] ?? 'Default Content' ?><?= $editButtons['content7'] ?></h2>
-            <p class="mb-4"><?= $componentRenderData['content8'] ?? 'Default Content' ?><?=  $editButtons['content8'] ?></p>
-            <a href="integrations.html" class="btn btn-dark mb-0">View all integrations</a>
+            <h2 class="mb-4">{{ contentData.content1|default('Default Content') }}{{ editButtons.content1 | raw }}</h2>
+            <p class="mb-4">{{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }}</p>
+            <a href="integrations.html" class="btn btn-dark mb-0">{{ contentData.content3|default('Default Content') }}{{ editButtons.content3 | raw }}</a>
         </div>
 
 
@@ -24,8 +24,8 @@
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3"><?= $componentRenderData['content1'] ?? 'Default Content' ?><?=  $editButtons['content1'] ?></h5>
-                    <p class="mb-0"><?= $componentRenderData['content2'] ?? 'Default Content' ?><?=  $editButtons['content2'] ?></p>
+                    <h5 class="mb-3">{{ contentData.content4|default('Default Content') }}{{ editButtons.content4 | raw }}</h5>
+                    <p class="mb-0">{{ contentData.content5|default('Default Content') }}{{ editButtons.content5 | raw }}</p>
                 </div>
             </div>
 
@@ -40,8 +40,8 @@
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3"><?= $componentRenderData['content3'] ?? 'Default Content' ?><?=  $editButtons['content3'] ?></h5>
-                    <p class="mb-0"><?= $componentRenderData['content4'] ?? 'Default Content' ?><?=  $editButtons['content4'] ?></p>
+                    <h5 class="mb-3">{{ contentData.content6|default('Default Content') }}{{ editButtons.content6 | raw }}</h5>
+                    <p class="mb-0">{{ contentData.content7|default('Default Content') }}{{ editButtons.content7 | raw }}</p>
                 </div>
             </div>
 
@@ -57,8 +57,8 @@
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3"><?= $componentRenderData['content5'] ?? 'Default Content' ?><?=  $editButtons['content5'] ?></h5>
-                    <p class="mb-0"><?= $componentRenderData['content6'] ?? 'Default Content' ?><?=  $editButtons['content6'] ?></p>
+                    <h5 class="mb-3">{{ contentData.content8|default('Default Content') }}{{ editButtons.content8 | raw }}</h5>
+                    <p class="mb-0">{{ contentData.content8|default('Default Content') }}{{ editButtons.content9 | raw }}</p>
                 </div>
             </div>
 
@@ -67,5 +67,5 @@
     </div>
 </section>
 
-<?= $componentRenderData['createButton'] ?>
+{{ createButton | raw }} 
 

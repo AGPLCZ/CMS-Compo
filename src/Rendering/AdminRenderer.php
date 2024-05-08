@@ -33,9 +33,11 @@ final class AdminRenderer
     private $twig;
 
 
+
     public function __construct()
     {
 
+        //Twig
         // Nastavení cesty k šablonám
         $loader = new FilesystemLoader('admin/templates/');
 
@@ -44,6 +46,12 @@ final class AdminRenderer
 
         // Nyní můžete renderovat Twig šablony
         // Příklad: echo $this->twig->render('index.twig', ['name' => 'John']);
+        // end Twig
+
+
+
+
+        $this->auth = new Auth();
 
 
         $this->urlManager = new UrlManager();
@@ -65,6 +73,14 @@ final class AdminRenderer
     }
 
 
+    private function isLogin()
+    {
+
+        if (!$this->auth->isLoggedIn()) {
+            $this->auth->logout();
+            $this->auth->redirect('login/');
+        }
+    }
 
     public function renderComponents()
     {
@@ -104,11 +120,17 @@ final class AdminRenderer
 
 
         if ($this->urlss == "EditComponentsOrder") {
+            $this->isLogin();
             $EditComponentsOrder = new EditComponentsOrder();
             $formData = $EditComponentsOrder->handleRequest();
-            require_once "admin/header.php";
-            echo $this->twig->render('EditComponentsOrder.twig', ['formData' => $formData]);
-            
+
+            if ($formData) {
+                $url = $this->url;
+                echo $this->twig->render('header.twig', ['url' => $url]);
+                echo $this->twig->render('EditComponentsOrder.twig', ['formData' => $formData]);
+                require_once "admin/footer.php";
+            }
+
             //require_once "admin/EditComponentsOrder.php";
             require_once "admin/footer.php";
         }

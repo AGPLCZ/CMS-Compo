@@ -1,0 +1,67 @@
+<section class="pt-0">
+	<div class="container">
+		<div class="row g-4 align-items-center">
+			<div class="container px-4 py-0" id="featured-3">
+				<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+					
+                    
+                    
+                    <div class="feature col">
+						<p>
+							{% set iconClass = contentData.content1|default('bi bi-star') %}
+							<i class="{{ iconClass }} text-primary" style="font-size: 45px;"></i>
+                            {{ editButtons.content1 | raw }}
+
+						</p>
+						<h5 class="mb-3">
+							{{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }}
+						</h5>
+						<p class="mb-0">
+							{{ contentData.content3|default('Default Content') }}{{ editButtons.content4 | raw }}
+						</p>
+					</div>
+					
+                    
+                    
+                    
+                    <div class="feature col">
+						<p>
+			
+							{% set iconClass = contentData.content4|default('bi bi-star') %}
+							<i class="{{ iconClass }} text-primary" style="font-size: 45px;"></i>
+                            {{ editButtons.content4 | raw }}
+
+						</p>
+						<h5 class="mb-3">
+							{{ contentData.content5|default('Default Content') }}{{ editButtons.content5 | raw }}
+						</h5>
+						<p class="mb-0">
+							{{ contentData.content6|default('Default Content') }}{{ editButtons.content6 | raw }}
+						</p>
+					</div>
+
+
+
+
+					<div class="feature col">
+						<p>
+	    					{% set iconClass = contentData.content7|default('bi bi-star') %}
+							<i class="{{ iconClass }} text-primary" style="font-size: 45px;"></i>
+                            {{ editButtons.content7 | raw }}
+						</p>
+						<h5 class="mb-3">
+							{{ contentData.content8|default('Default Content') }}{{ editButtons.content8 | raw }}
+						</h5>
+						<p class="mb-0">
+							{{ contentData.content9|default('Default Content') }}{{ editButtons.content9 | raw }}
+						</p>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ createButton | raw }}

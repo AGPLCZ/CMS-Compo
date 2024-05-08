@@ -1,0 +1,46 @@
+
+<section class="pt-0">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="container px-4 mt-4 my-3 py-0" id="hanging-icons">
+
+
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-dark flex-shrink-0 me-3">
+                            <i class="fad fa-hiking  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+
+
+                        </div>
+                        <div>
+                        
+                            <h5 class="mb-3">{{ contentData.content1|default('Default Content') }}{{ editButtons.content1 | raw }} </h5>
+                            <p class="mb-0">{{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }}</p>
+
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-dark flex-shrink-0 me-3">
+                            <i class="fad fa-campground  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+                        </div>
+                        <div>
+                            <h5 class="mb-3">{{ contentData.content3|default('Default Content') }}{{ editButtons.content3 | raw }}</h5>
+                            <p class="mb-0">{{ contentData.content4|default('Default Content') }}{{ editButtons.content4 | raw }}</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square text-dark flex-shrink-0 me-3">
+                            <i class="fad fa-axe rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+                        </div>
+                        <div>
+                            <h5 class="mb-3">{{ contentData.content5|default('Default Content') }}{{ editButtons.content5 | raw }}</h5>
+                            <p class="mb-0"{{ contentData.content6|default('Default Content') }}{{ editButtons.content6 | raw }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ createButton | raw }} 
+

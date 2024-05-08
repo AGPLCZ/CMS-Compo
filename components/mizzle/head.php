@@ -31,8 +31,8 @@
 	<link rel="stylesheet" href="<?php echo $this->url ?>/plugins/themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="<?php echo $this->url ?>/plugins/slick/slick.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-	<link rel="stylesheet" href="<?php echo $this->url ?>/plugin/fontawesome-icons-pro/css/all.css">
-	<link href="<?php echo $this->url ?>/plugin/fontawesome-icons-pro/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo $this->url ?>/plugins/fontawesome-icons-pro/css/all.css">
+	<link href="<?php echo $this->url ?>/plugins/fontawesome-icons-pro/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo $this->url ?>/plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
 
 
