@@ -97,4 +97,73 @@ class EditContent
         header("Location: " . htmlspecialchars($back));
         exit;
     }
+
+
+    // public function inPlaceEditing()
+    // {
+
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         $contents_id = $_POST['id'] ?? '';
+    //         $language = $_POST['language'] ?? 'cz';
+    //         $column = $_POST['column'] ?? '';
+    //         $value = $_POST['value'] ?? 'prd';
+    //         // $language = $_POST['language'] ?? 'cz';
+
+    //         echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value]);
+
+    //         DB::update('contents', [
+    //             $column => $value
+    //         ], "contents_id=%i", $contents_id);
+    //     }
+    // }
+
+
+
+
+    public function inPlaceEditing2()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $contents_id = $_POST['id'] ?? '';
+            $language = $_POST['language'] ?? 'cz';
+            $column = $_POST['column'] ?? '';
+            $value = $_POST['value'] ?? '';
+
+            if ($language == 'cz') {
+                // Aktualizace základního obsahu
+                DB::update('contents', [$column => $value], "contents_id=%i", $contents_id);
+                echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value]);
+            } else {
+                // Aktualizace nebo vložení lokalizovaného obsahu
+                $exists = DB::queryFirstField("SELECT content FROM content_localizations WHERE contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+                
+                if ($exists !== null) {
+                    // Aktualizace existujícího překladu
+                    DB::update('content_localizations', ['content' => $value], "contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+                } else {
+                    // Vytvoření nového překladu
+                    DB::insert('content_localizations', [
+                        'contents_id' => $contents_id,
+                        'field_name' => $column,
+                        'language' => $language,
+                        'content' => $value
+                    ]);
+                }
+                echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value, 'language' => $language]);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

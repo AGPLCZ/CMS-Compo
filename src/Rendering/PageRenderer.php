@@ -33,7 +33,7 @@ final class PageRenderer
     public function __construct($template)
     {
 
-    
+
         if (empty($template)) {
             throw new \InvalidArgumentException("Template nesmí být prázdný");
         }
@@ -58,11 +58,9 @@ final class PageRenderer
         $this->auth = new Auth();
 
 
-        $filePathTwig = "components/" . $this->template . "/templates"; 
+        $filePathTwig = "components/" . $this->template . "/templates";
         $loader = new FilesystemLoader($filePathTwig);
         $this->twig = new Environment($loader);
-
-
     }
 
     private function loadComponentData()
@@ -97,6 +95,13 @@ final class PageRenderer
     }
 
 
+    public function getLocalizedContent($contents_id, $field, $language = 'cz')
+    {
+        $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
+        return DB::queryFirstField($sql, $contents_id, $field, $language);
+    }
+
+
 
     public function renderComponents()
     {
@@ -107,13 +112,19 @@ final class PageRenderer
             if ($contentData) {
                 $this->page_content = $contentData;
 
+                //echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
+
+
                 $editButtons = [];
+                // Načtení překladů pro dané komponenty
                 foreach ($contentData as $field => $value) {
+                    // kontrola, zda je pole 'contentX'
                     if (strpos($field, 'content') === 0) {
+                        // Získání lokalizovaného obsahu z databáze
                         $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
                         $componentRenderData[$field] = $localizedContent ?: htmlspecialchars($value);
                         if ($this->auth->isLoggedIn()) {
-                            $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language);
+                            $editButtons[$field] = $this->renderComponentEditButton2($data['contentId'], $field, $this->language, $componentRenderData[$field]);
                         }
                     }
                 }
@@ -121,55 +132,46 @@ final class PageRenderer
                 $componentRenderData['createButton'] = $this->CreateContentButon($data['pageId'], $data['componentOrder']);
 
                 //vypnuto
-                if (1==0){
-                $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
-                if (file_exists($filePath)) {
-                    include $filePath;
-                } else {
-                    echo "Component <b>{$data['componentName']}</b> does not exist for template <b>{$this->template}</b>.";
+                if (1 == 0) {
+                    $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
+                    if (file_exists($filePath)) {
+                        include $filePath;
+                    } else {
+                        echo "Component <b>{$data['componentName']}</b> does not exist for template <b>{$this->template}</b>.";
+                    }
                 }
-            }
 
-            $url = $this->url;
-            $menu = $this->menu;
+                $url = $this->url;
+                $menu = $this->menu;
 
-            $twigName = $data['componentName'] . ".twig";
-            $templateTwig = $this->twig->load($twigName);
-            echo $templateTwig->render([
-                'contentData' => $componentRenderData,
-                'editButtons' => $editButtons,
-                'createButton' => $componentRenderData['createButton'],
-                'url' => $url,
-                'menu' => $menu
-            ]);
-
+                $twigName = $data['componentName'] . ".twig";
+                $templateTwig = $this->twig->load($twigName);
+                echo $templateTwig->render([
+                    'contentData' => $componentRenderData,
+                    'editButtons' => $editButtons,
+                    'createButton' => $componentRenderData['createButton'],
+                    'url' => $url,
+                    'menu' => $menu
+                ]);
             }
         }
     }
 
 
-
     private function render404()
     {
         header("HTTP/1.1 404 Not Found");
-        include "components/"  . $this->template . "/head.php";
-        include "components/"  . $this->template . "/navigation.php";
-        include "components/"  . $this->template . "/404.php";
-        include "components/"  . $this->template . "/footer.php";
+        require_once "components/"  . $this->template . "/head.php";
+        require_once "components/"  . $this->template . "/navigation.php";
+        require_once "components/"  . $this->template . "/404.php";
+        require_once "components/"  . $this->template . "/footer.php";
         exit;
     }
 
-    public function getLocalizedContent($contents_id, $field, $language = 'cz')
-    {
-        $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
-        return DB::queryFirstField($sql, $contents_id, $field, $language);
-    }
-
-    
 
 
 
-    public function renderComponentEditButton($contents_id, $column, $language)
+    public function renderComponentEditButton($contents_id, $column, $language, $componentRenderData)
     {
         $form = '<form method="POST" action="' . $this->url . '/admin/editContent/" style="display: inline;">';
         $form .= '<input type="hidden" name="akce" value="edit">';
@@ -180,6 +182,14 @@ final class PageRenderer
         $form .= '</form>';
         return $form;
     }
+
+
+    public function renderComponentEditButton2($contents_id, $column, $language, $componentRenderData)
+    {
+              $form = '<div contenteditable="true" class="editable-element"  data-language="' . $language  . '"  data-column="' . $column  . '" data-id="' . $contents_id . '">' . $componentRenderData . '</div>';
+        return $form;
+    }
+
 
 
     public function CreateContentButon($pages_id, $order)
@@ -238,7 +248,3 @@ final class PageRenderer
         }
     }
 }
-
-
-
-

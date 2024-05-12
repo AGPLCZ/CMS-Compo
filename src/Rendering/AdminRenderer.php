@@ -86,6 +86,7 @@ final class AdminRenderer
     {
 
 
+
         if ($this->urlss == "index") {
             require_once "admin/header.php";
             require_once "admin/components.php";
@@ -112,10 +113,12 @@ final class AdminRenderer
 
         if ($this->urlss == "editContent") {
             $editContent = new EditContent();
-            $formData = $editContent->handleRequest();
-            require_once "admin/header.php";
-            require_once "admin/editContent.php";
-            require_once "admin/footer.php";
+            // $editContent->handleRequest();
+            $editContent->inPlaceEditing2();
+            
+            // require_once "admin/header.php";
+            // require_once "admin/editContent.php";
+            // require_once "admin/footer.php";
         }
 
 

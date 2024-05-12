@@ -132,6 +132,72 @@
 
 
 
+<script>
+  {# document.querySelectorAll('.editable-element').forEach(element => {
+  element.addEventListener('blur', function() {
+    var id = this.getAttribute('data-id');
+    var language = this.getAttribute('data-language');
+     var column = this.getAttribute('data-column');
+    var value = this.innerText;
+
+    fetch('http://localhost/CMS/CMS-Compo/admin/editContent/', { // Upravte URL podle vaší potřeby
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'id=' + id + '&language=' + language  + '&column=' + column  + '&value=' + encodeURIComponent(value)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+}); #}
+
+
+document.querySelectorAll('.editable-element').forEach(element => {
+  // Uložení původního textu při načtení stránky nebo při focusu
+  element.dataset.originalText = element.innerText;
+
+  element.addEventListener('focus', function() {
+    this.dataset.originalText = this.innerText;
+  });
+
+  element.addEventListener('blur', function() {
+    var id = this.getAttribute('data-id');
+    var language = this.getAttribute('data-language');
+    var column = this.getAttribute('data-column');
+    var value = this.innerText;
+    var originalText = this.dataset.originalText;
+
+    // Porovnání původního textu s aktuálním
+    if (value !== originalText) {
+      fetch('http://localhost/CMS/CMS-Compo/admin/editContent/', { // Upravte URL podle vaší potřeby
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'id=' + id + '&language=' + language  + '&column=' + column  + '&value=' + encodeURIComponent(value)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    } else {
+      console.log('No changes detected, no data sent.');
+    }
+  });
+});
+
+</script>
+
+
 <!-- Bootstrap JS -->
 <script src="{{ url }}/assets/template/mizzle/js/bootstrap.bundle.min.js"></script>
 
