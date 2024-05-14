@@ -4,14 +4,17 @@ namespace Compo\Admin\Content;
 
 use Compo\Navigation\UrlManager;
 use DB;
+use Compo\Admin\Auth\Auth;
 
 class EditContent
 {
     private $urlManager;
+    private $auth;
 
     public function __construct()
     {
         $this->urlManager = new UrlManager();
+        $this->auth = new Auth();
     }
 
     public function handleRequest()
@@ -128,42 +131,33 @@ class EditContent
             $column = $_POST['column'] ?? '';
             $value = $_POST['value'] ?? '';
 
-            if ($language == 'cz') {
-                // Aktualizace základního obsahu
-                DB::update('contents', [$column => $value], "contents_id=%i", $contents_id);
-                echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value]);
-            } else {
-                // Aktualizace nebo vložení lokalizovaného obsahu
-                $exists = DB::queryFirstField("SELECT content FROM content_localizations WHERE contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
-                
-                if ($exists !== null) {
-                    // Aktualizace existujícího překladu
-                    DB::update('content_localizations', ['content' => $value], "contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+
+            if ($this->auth->isLoggedIn()) {
+                if ($language == 'cz') {
+                    // Aktualizace základního obsahu
+                    DB::update('contents', [$column => $value], "contents_id=%i", $contents_id);
+                    echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value]);
                 } else {
-                    // Vytvoření nového překladu
-                    DB::insert('content_localizations', [
-                        'contents_id' => $contents_id,
-                        'field_name' => $column,
-                        'language' => $language,
-                        'content' => $value
-                    ]);
+                    // Aktualizace nebo vložení lokalizovaného obsahu
+                    $exists = DB::queryFirstField("SELECT content FROM content_localizations WHERE contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+
+                    if ($exists !== null) {
+                        // Aktualizace existujícího překladu
+                        DB::update('content_localizations', ['content' => $value], "contents_id=%i AND field_name=%s AND language=%s", $contents_id, $column, $language);
+                    } else {
+                        // Vytvoření nového překladu
+                        DB::insert('content_localizations', [
+                            'contents_id' => $contents_id,
+                            'field_name' => $column,
+                            'language' => $language,
+                            'content' => $value
+                        ]);
+                    }
+                    echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value, 'language' => $language]);
                 }
-                echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value, 'language' => $language]);
+            }else{
+                echo json_encode(['error' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value, 'language' => $language]);
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

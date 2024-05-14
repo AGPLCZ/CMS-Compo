@@ -84,7 +84,7 @@ final class AdminRenderer
 
     public function renderComponents()
     {
-
+      
 
 
         if ($this->urlss == "index") {
@@ -143,6 +143,9 @@ final class AdminRenderer
             $deleteComponents = new DeleteComponents();
             $deleteComponents->deleteComponents();
         }
+
+
+    
     }
 
 

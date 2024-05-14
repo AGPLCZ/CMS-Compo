@@ -2,9 +2,9 @@
     <div class="container">
         <!-- Title -->
         <div class="inner-container-small text-center mb-4 mb-sm-5">
-            <h2 class="mb-4">{{ contentData.content1|default('Default Content') }}{{ editButtons.content1 | raw }}</h2>
-            <p class="mb-4">{{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }}</p>
-            <a href="integrations.html" class="btn btn-dark mb-0">{{ contentData.content3|default('Default Content') }}{{ editButtons.content3 | raw }}</a>
+            <h2 class="mb-4"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content1" data-id="{{contents_id}}">{{contentData.content1|default('Default Content')}}</div></h2>
+            <p class="mb-4"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contents_id}}">{{contentData.content2|default('Default Content')}}</div></p>
+            <a href="integrations.html" class="btn btn-dark mb-0"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contents_id}}">{{contentData.content3|default('Default Content')}}</div></a>
         </div>
 
 
@@ -24,8 +24,8 @@
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3">{{ contentData.content4|default('Default Content') }}{{ editButtons.content4 | raw }}</h5>
-                    <p class="mb-0">{{ contentData.content5|default('Default Content') }}{{ editButtons.content5 | raw }}</p>
+                    <h5 class="mb-3"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content4" data-id="{{contents_id}}">{{contentData.content4|default('Default Content')}}</div></h5>
+                    <p class="mb-0"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content5" data-id="{{contents_id}}">{{contentData.content5|default('Default Content')}}</div></p>
                 </div>
             </div>
 
@@ -40,8 +40,8 @@
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3">{{ contentData.content6|default('Default Content') }}{{ editButtons.content6 | raw }}</h5>
-                    <p class="mb-0">{{ contentData.content7|default('Default Content') }}{{ editButtons.content7 | raw }}</p>
+                    <h5 class="mb-3"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content6" data-id="{{contents_id}}">{{contentData.content6|default('Default Content')}}</div></h5>
+                    <p class="mb-0"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content7" data-id="{{contents_id}}">{{contentData.content7|default('Default Content')}}</div></p>
                 </div>
             </div>
 
@@ -57,8 +57,8 @@
                         </svg>
                     </figure>
                     <!-- Title -->
-                    <h5 class="mb-3">{{ contentData.content8|default('Default Content') }}{{ editButtons.content8 | raw }}</h5>
-                    <p class="mb-0">{{ contentData.content8|default('Default Content') }}{{ editButtons.content9 | raw }}</p>
+                    <h5 class="mb-3"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content8" data-id="{{contents_id}}">{{contentData.content8|default('Default Content')}}</div></h5>
+                    <p class="mb-0"><div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content8" data-id="{{contents_id}}">{{contentData.content8|default('Default Content')}}</div></p>
                 </div>
             </div>
 
@@ -66,6 +66,8 @@
 
     </div>
 </section>
-
+<!-- Přidání zobrazení dalších proměnných -->
+<p>Components id: <b>{{ components_id }}</b> Page id: <b>{{ page_id }}</b> Component Order: <b>{{ component_order }}</b> Component name: <b>{{ component_name }}</b> Contents id: <b>{{ contents_id }}</b></p>
 {{ createButton | raw }} 
 
+{{ editButtons.content9 | raw }}
