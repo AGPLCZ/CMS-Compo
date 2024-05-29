@@ -102,28 +102,8 @@ class EditContent
     }
 
 
-    // public function inPlaceEditing()
-    // {
 
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $contents_id = $_POST['id'] ?? '';
-    //         $language = $_POST['language'] ?? 'cz';
-    //         $column = $_POST['column'] ?? '';
-    //         $value = $_POST['value'] ?? 'prd';
-    //         // $language = $_POST['language'] ?? 'cz';
-
-    //         echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value]);
-
-    //         DB::update('contents', [
-    //             $column => $value
-    //         ], "contents_id=%i", $contents_id);
-    //     }
-    // }
-
-
-
-
-    public function inPlaceEditing2()
+    public function inPlaceEditing()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $contents_id = $_POST['id'] ?? '';

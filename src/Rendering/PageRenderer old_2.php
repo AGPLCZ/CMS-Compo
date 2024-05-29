@@ -101,6 +101,76 @@ final class PageRenderer
     }
 
 
+
+    // public function renderComponents()
+    // {
+    //     $componentRenderData = [];
+    //     foreach ($this->componentData as $data) {
+    //         $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
+
+    //         if ($contentData) {
+    //             $this->page_content = $contentData;
+
+    //             echo "Components id: <b>{$data['componentsId']}</b> Page id: <b>{$data['pageId']}</b> Component Order: <b>{$data['componentOrder']}</b> Component name: <b>{$data['componentName']}</b> Contents id: <b> {$data['contentId']}</b>";
+
+
+    //             $editButtons = [];
+    //             // Načtení překladů pro dané komponenty
+    //             foreach ($contentData as $field => $value) {
+    //                 // kontrola, zda je pole 'contentX'
+    //                 if (strpos($field, 'content') === 0) {
+    //                     // Získání lokalizovaného obsahu z databáze
+    //                     $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
+                        
+    //                     $componentRenderData[$field] = $localizedContent ?: htmlspecialchars($value);
+               
+
+    //                     if ($this->auth->isLoggedIn()) {
+    //                         $onEdit = "true";
+    //                         // $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language, $componentRenderData[$field], $onEdit);
+                           
+    //                     }else{
+    //                         $onEdit = "false";
+
+    //                     }
+    //                 }
+    //             }
+    //             $componentRenderData['editButtons'] = $editButtons;
+    //             $componentRenderData['createButton'] = $this->CreateContentButon($data['pageId'], $data['componentOrder']);
+
+    //             //vypnuto
+    //             if (1 == 0) {
+    //                 $filePath = "components/" . $this->template . "/" . $data['componentName'] . ".php";
+    //                 if (file_exists($filePath)) {
+    //                     include $filePath;
+    //                 } else {
+    //                     echo "Component <b>{$data['componentName']}</b> does not exist for template <b>{$this->template}</b>.";
+    //                 }
+    //             }
+
+    //             $url = $this->url;
+    //             $menu = $this->menu;
+
+    //             $twigName = $data['componentName'] . ".twig";
+    //             $templateTwig = $this->twig->load($twigName);
+    //             echo $templateTwig->render([
+    //                 'contentData' => $componentRenderData,
+    //                 'editButtons' => $editButtons,
+    //                 'createButton' => $componentRenderData['createButton'],
+    //                 'url' => $url,
+    //                 'menu' => $menu,
+    //                 //
+    //                 'language' => $this->language,
+    //                 'onEdit' => $onEdit,
+    //                 'contents_id' => $data['contentId'],
+    //                 'componentRenderData' => $componentRenderData[$field]
+
+    //             ]);
+    //         }
+    //     }
+    // }
+
+
     public function renderComponents()
 {
     $componentRenderData = [];
@@ -122,7 +192,7 @@ final class PageRenderer
 
                     if ($this->auth->isLoggedIn()) {
                         $onEdit = "true";
-                         $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language, $componentRenderData[$field], $onEdit);
+                       // $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language);
                     } else {
                         $onEdit = "false";
                     }
@@ -145,7 +215,7 @@ final class PageRenderer
                 'language' => $this->language,
                 'onEdit' => $onEdit,
                 'contents_id' => $data['contentId'],
-                'components_id' => $data['componentsId'],
+                'components_id' => $data['componentsId'], // Přidání dalších proměnných
                 'page_id' => $data['pageId'],
                 'component_order' => $data['componentOrder'],
                 'component_name' => $data['componentName']
@@ -169,9 +239,9 @@ final class PageRenderer
 
 
 
-    public function renderComponentEditButton($contents_id, $column, $language, $componentRenderData, $onEdit = 'false')
+    public function renderComponentEditButton($contents_id, $column, $language, $componentRenderData)
     {
-        $form = '<form method="POST" action="' . $this->url . '/admin/editContentt/" style="display: inline;">';
+        $form = '<form method="POST" action="' . $this->url . '/admin/editContent/" style="display: inline;">';
         $form .= '<input type="hidden" name="akce" value="edit">';
         $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
         $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
@@ -182,9 +252,17 @@ final class PageRenderer
     }
 
 
+    public function renderComponentEditButton2($contents_id, $column, $language, $componentRenderData, $onEdit = 'false')
+    {
+              $form = '<div contenteditable="' . $onEdit . '" class="editable-element"  data-language="' . $language  . '"  data-column="' . $column  . '" data-id="' . $contents_id . '">' . $componentRenderData . '</div>';
+        return $form;
+    }
+
+
 
     public function CreateContentButon($pages_id, $order)
     {
+
         if ($this->auth->isLoggedIn()) {
             $form = '<section>
             <div class="container">
@@ -204,7 +282,37 @@ final class PageRenderer
             </div>
             </section>
         ';
+
+
             return $form;
+        }
+    }
+
+
+
+    public function getContentOnly($field)
+    {
+        if (isset($this->page_content[$field])) {
+            echo htmlspecialchars($this->page_content[$field]);
+        }
+    }
+
+    public function getEditButton($field)
+    {
+        if ($this->auth->isLoggedIn()) {
+            echo $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
+        }
+    }
+
+    public function getContent($field)
+    {
+        if (isset($this->page_content[$field])) {
+
+            if ($this->auth->isLoggedIn()) {
+                echo htmlspecialchars($this->page_content[$field]) . $this->renderComponentEditButton($this->page_content['contents_id'], $field, $this->language);
+            } else {
+                echo htmlspecialchars($this->page_content[$field]);
+            }
         }
     }
 }

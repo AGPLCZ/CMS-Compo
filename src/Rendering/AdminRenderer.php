@@ -114,12 +114,18 @@ final class AdminRenderer
         if ($this->urlss == "editContent") {
             $editContent = new EditContent();
             // $editContent->handleRequest();
-            $editContent->inPlaceEditing2();
-            
+            $editContent->inPlaceEditing();
+        }
+
+        if (($this->urlss == "editContentt")){
+            $editContent = new EditContent();
+            $editContent->handleRequest();
+var_dump($form);
             // require_once "admin/header.php";
             // require_once "admin/editContent.php";
             // require_once "admin/footer.php";
         }
+
 
 
         if ($this->urlss == "EditComponentsOrder") {
