@@ -8,15 +8,17 @@ use DB;
 class EditComponentsOrder
 {
     private $urlManager;
+    private $urlsss;
 
     public function __construct()
     {
         $this->urlManager = new UrlManager();
+        $this->urlsss = $this->urlManager->getSegment(2);
     }
 
     public function handleRequest()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['akce'])) {
+           if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['akce'])) {
             if ($_POST['akce'] === 'edit') {
                 return $this->handleEdit();
             } elseif ($_POST['akce'] === 'update') {

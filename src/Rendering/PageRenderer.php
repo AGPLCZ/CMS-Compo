@@ -17,10 +17,8 @@ final class PageRenderer
     private $urls;
     private $urlss;
     private $urlManager;
-    private $base_url;
     private $menu;
     private $menuManager;
-    private $slash;
     public $baseUrl;
     public $url;
     public $urlName;
@@ -122,7 +120,6 @@ final class PageRenderer
 
                     if ($this->auth->isLoggedIn()) {
                         $onEdit = "true";
-                         $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language, $componentRenderData[$field], $onEdit);
                     } else {
                         $onEdit = "false";
                     }
@@ -144,11 +141,11 @@ final class PageRenderer
                 'menu' => $menu,
                 'language' => $this->language,
                 'onEdit' => $onEdit,
-                'contents_id' => $data['contentId'],
-                'components_id' => $data['componentsId'],
-                'page_id' => $data['pageId'],
-                'component_order' => $data['componentOrder'],
-                'component_name' => $data['componentName']
+                'contentsId' => $data['contentId'],
+                'componentsId' => $data['componentsId'],
+                'pageId' => $data['pageId'],
+                'componentOrder' => $data['componentOrder'],
+                'componentName' => $data['componentName']
             ]);
         }
     }
@@ -165,22 +162,6 @@ final class PageRenderer
         require_once "components/"  . $this->template . "/footer.php";
         exit;
     }
-
-
-
-
-    public function renderComponentEditButton($contents_id, $column, $language, $componentRenderData, $onEdit = 'false')
-    {
-        $form = '<form method="POST" action="' . $this->url . '/admin/editContentt/" style="display: inline;">';
-        $form .= '<input type="hidden" name="akce" value="edit">';
-        $form .= '<input type="hidden" name="contents_id" value="' . htmlspecialchars($contents_id) . '">';
-        $form .= '<input type="hidden" name="column" value="' . htmlspecialchars($column) . '">';
-        $form .= '<input type="hidden" name="language" value="' . htmlspecialchars($language) . '">';
-        $form .= '<button type="submit" name="submitEditContent" class="btn btn-primary  edit-button" style="padding: 7px 6px 7px 7px; margin-left: 10px; margin-top: 0px; margin-bottom: 0px; font-size: 12px;"><i class="fa fa-edit"></i></button>';
-        $form .= '</form>';
-        return $form;
-    }
-
 
 
     public function CreateContentButon($pages_id, $order)

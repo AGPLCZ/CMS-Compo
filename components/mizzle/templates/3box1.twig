@@ -4,13 +4,13 @@
 		<!-- Title -->
 		<div class="inner-container-small text-center mb-4 mb-sm-5">
 			<h2 class="mb-4">
-				<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content1" data-id="{{contents_id}}">{{contentData.content1|default('Default Content')}}</div>
+				<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content1" data-id="{{contentsId}}">{{contentData.content1|default('Default Content')}}</div>
 			</h2>
 			<p class="mb-4">
-				<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contents_id}}">{{contentData.content2|default('Default Content')}}</div>
+				<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contentsId}}">{{contentData.content2|default('Default Content')}}</div>
 			</p>
 			<a href="{{contentData.content13|default('Default Content')}}" class="btn btn-dark mb-0">
-				<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contents_id}}">{{contentData.content3|default('Default Content')}}</div>
+				<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contentsId}}">{{contentData.content3|default('Default Content')}}</div>
 			</a>
 		</div>
 
@@ -28,10 +28,10 @@
 					</div>
 					<!-- Title -->
 					<h5 class="mb-3">
-						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content4" data-id="{{contents_id}}">{{contentData.content4|default('Default Content')}}</div>
+						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content4" data-id="{{contentsId}}">{{contentData.content4|default('Default Content')}}</div>
 					</h5>
 					<p class="mb-0">
-						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content5" data-id="{{contents_id}}">{{contentData.content5|default('Default Content')}}</div>
+						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content5" data-id="{{contentsId}}">{{contentData.content5|default('Default Content')}}</div>
 					</p>
 				</div>
 			</div>
@@ -46,10 +46,10 @@
 					</div>
 					<!-- Title -->
 					<h5 class="mb-3">
-						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content6" data-id="{{contents_id}}">{{contentData.content6|default('Default Content')}}</div>
+						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content6" data-id="{{contentsId}}">{{contentData.content6|default('Default Content')}}</div>
 					</h5>
 					<p class="mb-0">
-						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content7" data-id="{{contents_id}}">{{contentData.content7|default('Default Content')}}</div>
+						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content7" data-id="{{contentsId}}">{{contentData.content7|default('Default Content')}}</div>
 					</p>
 				</div>
 			</div>
@@ -64,10 +64,10 @@
 					</div>
 					<!-- Title -->
 					<h5 class="mb-3">
-						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content8" data-id="{{contents_id}}">{{contentData.content8|default('Default Content')}}</div>
+						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content8" data-id="{{contentsId}}">{{contentData.content8|default('Default Content')}}</div>
 					</h5>
 					<p class="mb-0">
-						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content9" data-id="{{contents_id}}">{{contentData.content9|default('Default Content')}}</div>
+						<div contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content9" data-id="{{contentsId}}">{{contentData.content9|default('Default Content')}}</div>
 					</p>
 				</div>
 			</div>
@@ -77,30 +77,84 @@
 	</div>
 </section>
 
-<p class="mb-0">
 
-	<b>Icon1:</b>
-	<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content10" data-id="{{contents_id}}">{{contentData.content10|default('Default Content')}}</span>
-	<b>Icon2:</b>
-	<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content11" data-id="{{contents_id}}">{{contentData.content11|default('Default Content')}}</span>
-	<b>Icon3:</b>
-	<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content12" data-id="{{contents_id}}">{{contentData.content12|default('Default Content')}}</span>
-	<b>Odkaz:</b>
-	<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content13" data-id="{{contents_id}}">{{contentData.content13|default('Default Content')}}</span>
-	<b>Button:</b>
-	<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contents_id}}">{{contentData.content3|default('Default Content')}}</span>
+<div class="accordion accordion-flush mb-4 py-2 border border-warning bg-light border-left-0 border-right-0"" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Edit Componets
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      	<b>Icon1:</b>
+			<span contenteditable="{{onEdit}}" class="editable-element border border-success" data-language="{{language}}" data-column="content10" data-id="{{contentsId}}">{{contentData.content10|default('Default Content')}}</span>
+			<b>Icon2:</b>
+			<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content11" data-id="{{contentsId}}">{{contentData.content11|default('Default Content')}}</span>
+			<b>Icon3:</b>
+			<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content12" data-id="{{contentsId}}">{{contentData.content12|default('Default Content')}}</span>
+			<b>Odkaz:</b>
+			<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content13" data-id="{{contentsId}}">{{contentData.content13|default('Default Content')}}</span>
+			<b>Button:</b>
+			<span contenteditable="{{onEdit}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contentsId}}">{{contentData.content3|default('Default Content')}}</span>
 
-</p>
+</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Developer Tool
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      <p>Components id:
+			<b>{{ componentsId }}</b>
+			Page id:
+			<b>{{ pageId }}</b>
+			Component Order:
+			<b>{{ componentOrder }}</b>
+			Component name:
+			<b>{{ componentName }}</b>
+			Contents id:
+			<b>{{ contentsId }}</b>
+		</p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Acctions
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+      		<div class="btn-group" role="group" aria-label="Basic example">
+      <form method="POST" action="{{ url }}/admin/EditComponentsOrder/">
+					<input type="hidden" name="akce" value="edit">
+					<input type="hidden" name="components_id" value="{{ componentsId }}">
+					<button type="submit" class="btn btn-primary mx-3" name="submitContentOrder">
+						<i class="bi bi-arrow-bar-up"></i>
+						<i class="bi bi-pencil-square"></i>
+						Edit Order:
+						{{ componentOrder }}
+					</button>
+				</form>
 
-<p>Components id:
-	<b>{{ components_id }}</b>
-	Page id:
-	<b>{{ page_id }}</b>
-	Component Order:
-	<b>{{ component_order }}</b>
-	Component name:
-	<b>{{ component_name }}</b>
-	Contents id:
-	<b>{{ contents_id }}</b>
-</p>
-{{ createButton | raw }}
+				<form method="POST" action="{{ url }}/admin/createContent/">
+					<input type="hidden" name="pages_id" value="{{ pageId }}">
+					<input type="hidden" name="order" value="{{ componentOrder }}">
+					<button type="submit" name="submitCreateContent" class="btn btn-primary">
+						<i class="bi bi-arrow-bar-down"></i>
+						New Component
+					</button>
+				</form>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
