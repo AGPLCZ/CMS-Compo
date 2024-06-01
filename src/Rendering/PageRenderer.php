@@ -108,7 +108,6 @@ final class PageRenderer
         if ($contentData) {
             $this->page_content = $contentData;
 
-            $editButtons = [];
             // Načtení překladů pro dané komponenty
             foreach ($contentData as $field => $value) {
                 // kontrola, zda je pole 'contentX'
@@ -125,8 +124,7 @@ final class PageRenderer
                     }
                 }
             }
-            $componentRenderData['editButtons'] = $editButtons;
-            $componentRenderData['createButton'] = $this->CreateContentButon($data['pageId'], $data['componentOrder']);
+
 
             $url = $this->url;
             $menu = $this->menu;
@@ -135,8 +133,6 @@ final class PageRenderer
             $templateTwig = $this->twig->load($twigName);
             echo $templateTwig->render([
                 'contentData' => $componentRenderData,
-                'editButtons' => $editButtons,
-                'createButton' => $componentRenderData['createButton'],
                 'url' => $url,
                 'menu' => $menu,
                 'language' => $this->language,
@@ -151,8 +147,6 @@ final class PageRenderer
     }
 }
 
-
-
     private function render404()
     {
         header("HTTP/1.1 404 Not Found");
@@ -163,29 +157,4 @@ final class PageRenderer
         exit;
     }
 
-
-    public function CreateContentButon($pages_id, $order)
-    {
-        if ($this->auth->isLoggedIn()) {
-            $form = '<section>
-            <div class="container">
-                <div class="inner-container-small text-center mb-4 mb-md-6">
-            ';
-            $form .= '<form method="POST" action="' . $this->url . '/admin/createContent/">';
-            $form .= '<input type="hidden" name="pages_id" value="' . htmlspecialchars($pages_id) . '">';
-            $form .= '<input type="hidden" name="order" value="' . htmlspecialchars($order) . '">';
-            $form .= '<button type="submit" name="submitCreateContent" class="btn btn-primary">+</button>';
-            $form .= '</form>';
-            $form .= '</div></div>
-            </section>
-            <section class="pt-0">
-            <div class="container">
-                <div class="row g-4 g-sm-6" style="margin-bottom: 150px;">
-                </div>
-            </div>
-            </section>
-        ';
-            return $form;
-        }
-    }
 }

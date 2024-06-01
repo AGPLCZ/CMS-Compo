@@ -119,11 +119,11 @@ final class AdminRenderer
 
         if (($this->urlss == "editContentt")){
             $editContent = new EditContent();
-            $editContent->handleRequest();
-var_dump($form);
-            // require_once "admin/header.php";
-            // require_once "admin/editContent.php";
-            // require_once "admin/footer.php";
+            $formData = $editContent->handleRequest();
+
+            require_once "admin/header.php";
+            require_once "admin/editContent.php";
+            require_once "admin/footer.php";
         }
 
 

@@ -192,7 +192,7 @@ final class PageRenderer
 
                     if ($this->auth->isLoggedIn()) {
                         $onEdit = "true";
-                       // $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language);
+                        $editButtons[$field] = $this->renderComponentEditButton($data['contentId'], $field, $this->language);
                     } else {
                         $onEdit = "false";
                     }
