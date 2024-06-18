@@ -142,12 +142,15 @@ class UrlManager
         return basename($_SERVER['PHP_SELF'], '.php');
     }
 
-    /** Odkud uživatel přišel */
     public function getBackPage()
     {
-        return $_SERVER["HTTP_REFERER"];
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            return $_SERVER["HTTP_REFERER"];
+        } else {
+            // Návratová URL není dostupná, vrátíme alternativní URL nebo hlavní stránku
+            return $this->getUrl();
+        }
     }
-
 
 
     /**

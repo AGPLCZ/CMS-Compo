@@ -19566,7 +19566,7 @@ video {
 
 section {
   padding-top: 0.5rem; /* -----------------------------------------   mezera mezi příspěvky */
-  padding-bottom: 0.5rem;
+  padding-bottom: 7.5rem;
 }
 
 @media (max-width: 1199.98px) {

@@ -32,4 +32,3 @@
         </div>
     </div>
 </section>
-<?php echo $this->CreateContentButon($data['pageId'],$data['componentOrder']); ?>

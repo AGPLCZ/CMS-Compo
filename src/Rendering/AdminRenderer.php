@@ -84,7 +84,7 @@ final class AdminRenderer
 
     public function renderComponents()
     {
-      
+
 
 
         if ($this->urlss == "index") {
@@ -117,7 +117,7 @@ final class AdminRenderer
             $editContent->inPlaceEditing();
         }
 
-        if (($this->urlss == "editContentt")){
+        if (($this->urlss == "editContentt")) {
             $editContent = new EditContent();
             $formData = $editContent->handleRequest();
 
@@ -126,10 +126,10 @@ final class AdminRenderer
             require_once "admin/footer.php";
         }
 
+     
 
 
         if ($this->urlss == "EditComponentsOrder") {
-            $this->isLogin();
             $EditComponentsOrder = new EditComponentsOrder();
             $formData = $EditComponentsOrder->handleRequest();
 
@@ -149,9 +149,6 @@ final class AdminRenderer
             $deleteComponents = new DeleteComponents();
             $deleteComponents->deleteComponents();
         }
-
-
-    
     }
 
 

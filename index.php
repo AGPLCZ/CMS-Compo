@@ -16,13 +16,14 @@ use Compo\Rendering\AdminRenderer;
 
 $folder_located_project = "cms/CMS-Compo";
 $tamplate = "mizzle";
-$language = "cz";
+
 
 
 // Oříznutí lomítek na začátku a na konci řetězce
 $trimmed_folder_located_project = trim($folder_located_project, '/');
 $registry = new Registry();
 $registry->set("template", $tamplate);
+
 if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
     $registry->set("path", $trimmed_folder_located_project);
 } else {
@@ -33,12 +34,39 @@ if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.
 $urlManager = new UrlManager();
 $urls = $urlManager->getSegment(0);
 $urlss = $urlManager->getSegment(1);
+$urlsss = $urlManager->getSegment(2);
+
+$back = $urlManager->getBackPage();
 
 
 
-if ($urls == "admin") {
+
+if (isset($_SESSION['language'])) {
+    $language = $_SESSION['language'];
+} else {
+    $language = "cs";
+}
+
+if (isset($_SESSION['language'])) {
+    $language = $_SESSION['language'];
+} else {
+    $language = "cs";
+}
+
+
+
+
+if ($urls == "tool") {
+    $_SESSION['tool'] = $urlss;
+    $edit = true;
+    header("Location: " . htmlspecialchars($back));
+} else if ($urls == "language") {
+    $_SESSION['language'] = $urlss;  // Uložení jazyka do session
+    header("Location: " . htmlspecialchars($back));
+    exit;
+} else if ($urls == "admin") {
     $adminRenderer = new AdminRenderer();
-    $adminRenderer->renderComponents();  
+    $adminRenderer->renderComponents();
 } else {
 
     $whatTemplate = new Template();

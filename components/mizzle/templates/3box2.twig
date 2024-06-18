@@ -1,44 +1,224 @@
-
+x2
 <section class="pt-0">
-    <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="container px-4 mt-4 my-3 py-0" id="hanging-icons">
+	<div class="container">
+		<div class="row g-4 align-items-center">
+			<div class="container px-4 mt-4 my-3 py-0" id="hanging-icons">
 
 
-                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                    <div class="col d-flex align-items-start">
-                        <div class="icon-square text-dark flex-shrink-0 me-3">
-                            <i class="fad fa-hiking  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
+				<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+					<div class="col d-flex align-items-start">
+						<div class="icon-square text-dark flex-shrink-0 me-3">
+							<i class="{{contentData.content10|default('fad fa-hiking')}} text-primary" style="font-size: 40px; padding: 10px;"></i>
+
+						</div>
+						<div>
+
+							<h5 class="mb-3">
+								<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content1" data-id="{{contentsId}}">{{contentData.content1|default('Default Content')}}</div>
+							</h5>
+							<p class="mb-0">
+								<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contentsId}}">{{contentData.content2|default('Default Content')}}</div>
+							</p>
+
+						</div>
+					</div>
+					<div class="col d-flex align-items-start">
+						<div class="icon-square text-dark flex-shrink-0 me-3">
+							<i class="{{contentData.content11|default('fad fa-hiking')}} text-primary" style="font-size: 40px; padding: 10px;"></i>
+
+						</div>
+						<div>
+
+							<h5 class="mb-3">
+								<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contentsId}}">{{contentData.content3|default('Default Content')}}</div>
+							</h5>
+							<p class="mb-0">
+								<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content4" data-id="{{contentsId}}">{{contentData.content4|default('Default Content')}}</div>
+							</p>
 
 
-                        </div>
-                        <div>
-                        
-                            <h5 class="mb-3">{{ contentData.content1|default('Default Content') }}{{ editButtons.content1 | raw }} </h5>
-                            <p class="mb-0">{{ contentData.content2|default('Default Content') }}{{ editButtons.content2 | raw }}</p>
+						</div>
+					</div>
+					<div class="col d-flex align-items-start">
+						<div class="icon-square text-dark flex-shrink-0 me-3">
+							<i class="{{contentData.content12|default('fad fa-hiking')}} text-primary" style="font-size: 40px; padding: 10px;"></i>
 
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <div class="icon-square text-dark flex-shrink-0 me-3">
-                            <i class="fad fa-campground  rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
-                        </div>
-                        <div>
-                            <h5 class="mb-3">{{ contentData.content3|default('Default Content') }}{{ editButtons.content3 | raw }}</h5>
-                            <p class="mb-0">{{ contentData.content4|default('Default Content') }}{{ editButtons.content4 | raw }}</p>
-                        </div>
-                    </div>
-                    <div class="col d-flex align-items-start">
-                        <div class="icon-square text-dark flex-shrink-0 me-3">
-                            <i class="fad fa-axe rounded text-primary" style="font-size: 45px; padding: 0px;"> </i>
-                        </div>
-                        <div>
-                            <h5 class="mb-3">{{ contentData.content5|default('Default Content') }}{{ editButtons.content5 | raw }}</h5>
-                            <p class="mb-0"{{ contentData.content6|default('Default Content') }}{{ editButtons.content6 | raw }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+						</div>
+						<div>
+
+
+							<h5 class="mb-3">
+								<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content5" data-id="{{contentsId}}">{{contentData.content5|default('Default Content')}}</div>
+							</h5>
+							<p class="mb-0">
+								<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content6" data-id="{{contentsId}}">{{contentData.content6|default('Default Content')}}</div>
+							</p>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			{% if onEdit == true %}
+
+
+				<div class="accordion accordion-flush">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="acordion{{ componentsId }}">
+							<button class="btn btn-white" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMaster{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseOne">
+								<i class="bi bi-view-list"></i>
+							</button>
+						</h2>
+						<div id="flush-collapseMaster{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-heading1" data-bs-parent="#acordion{{ componentsId }}">
+
+
+							<div class="container">
+								<div class="bg-white pt-1">
+									<h5 style="margin-left: 10px; margin-top: 3px;">
+										<i class="bi bi-pencil-square"></i>&nbsp;Admin tools &nbsp;
+										<i class="bi bi-arrow-bar-up"></i>
+									</h5>
+									<div>
+										<div class="accordion accordion-flush mb-0 py-0 border border-success border-left-0 border-right-0" id="accordionflushexample{{ componentsId }}">
+
+											<div class="accordion-item">
+												<h2 class="accordion-header" id="flush-heading1{{ componentsId }}">
+													<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseOne">
+														Edit componets
+													</button>
+												</h2>
+												<div id="flush-collapseOne{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-heading1" data-bs-parent="#accordionFlushExample">
+													<div class="accordion-body">
+														<b>Icon1:</b>
+														<i class="{{contentData.content10|default('bi bi-chat-square-dots-fill')}} text-primary" style="font-size: 20px; padding: 0px;"></i>
+														<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content10" data-id="{{contentsId}}">{{contentData.content10|default('Default Content')}}</span>
+														<b>Icon2:</b>
+														<i class="{{contentData.content11|default('bi bi-chat-square-dots-fill')}} text-primary" style="font-size: 20px; padding: 0px;"></i>
+														<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content11" data-id="{{contentsId}}">{{contentData.content11|default('Default Content')}}</span>
+														<b>Icon3:</b>
+														<i class="{{contentData.content12|default('bi bi-chat-square-dots-fill')}} text-primary" style="font-size: 20px; padding: 0px;"></i>
+														<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content12" data-id="{{contentsId}}">{{contentData.content12|default('Default Content')}}</span>
+
+														<span class="mx-3">
+															<a href="https://icons.getbootstrap.com/" target="_blank">
+																<i class="bi bi-grid-3x3-gap"></i>
+																Icon list</a>
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="accordion-item">
+												<h2 class="accordion-header" id="flush-heading2{{ componentsId }}">
+													<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseTwo">
+														Developer Tool
+													</button>
+												</h2>
+												<div id="flush-collapseTwo{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-heading2" data-bs-parent="#accordionFlushExample{{ componentsId }}">
+													<div class="accordion-body">
+														Components id:
+														<b>{{ componentsId }}</b>
+														Page id:
+														<b>{{ pageId }}</b>
+														Component Order:
+														<b>{{ componentOrder }}</b>
+														Component name:
+														<b>{{ componentName }}</b>
+														Contents id:
+														<b>{{ contentsId }}</b>
+
+													</div>
+												</div>
+											</div>
+											<div class="accordion-item">
+												<h2 class="accordion-header" id="flush-heading3{{ componentsId }}">
+													<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseThree">
+														Actions
+													</button>
+												</h2>
+												<div id="flush-collapse3{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-heading3" data-bs-parent="#accordionFlushExample">
+													<div class="accordion-body">
+														<div class="btn-group flex-column flex-sm-row" role="group" aria-label="Basic example">
+
+															<form method="POST" action="{{ url }}/admin/EditComponentsOrder/">
+																<input type="hidden" name="akce" value="edit">
+																<input type="hidden" name="components_id" value="{{ componentsId }}">
+																<button type="submit" class="btn btn-primary mx-2" name="submitContentOrder">
+																	<i class="bi bi-arrow-bar-up"></i>
+																	<i class="bi bi-pencil-square"></i>
+																	Edit Order:
+																	{{ componentOrder }}
+																</button>
+															</form>
+
+															<form method="POST" action="{{ url }}/admin/createContent/">
+																<input type="hidden" name="pages_id" value="{{ pageId }}">
+																<input type="hidden" name="order" value="{{ componentOrder }}">
+																<button type="submit" name="submitCreateContent" class="btn btn-primary mx-2">
+																	<i class="bi bi-arrow-bar-down"></i>
+																	New Component
+																</button>
+															</form>
+
+
+															<form method="POST" action="{{ url }}/admin/deleteComponets/">
+																<input type="hidden" name="deleteComponents" value="{{ componentsId }}">
+																<button type="submit" name="submitComponentsDel" class="btn btn-danger mx-2">
+																	<i class="bi bi-trash3"></i>
+																	Drop item
+																</button>
+															</form>
+
+
+															<form method="POST" action="{{ url }}/admin/editContentt/">
+																<input type="hidden" name="akce" value="edit">
+																<input type="hidden" name="contents_id" value="{{ contentsId }}">
+																<input type="hidden" name="column" value="content10">
+																<input type="hidden" name="language" value="{{ language }}">
+																<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+																	<i class="fa fa-edit">{{contentData.content10|default('bi bi-chat-square-dots-fill')}}</i>
+																</button>
+															</form>
+
+															<form method="POST" action="{{ url }}/admin/editContentt/">
+																<input type="hidden" name="akce" value="edit">
+																<input type="hidden" name="contents_id" value="{{ contentsId }}">
+																<input type="hidden" name="column" value="content11">
+																<input type="hidden" name="language" value="{{ language }}">
+																<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+																	<i class="fa fa-edit">{{contentData.content11|default('bi bi-chat-square-dots-fill')}}</i>
+																</button>
+															</form>
+
+															<form method="POST" action="{{ url }}/admin/editContentt/">
+																<input type="hidden" name="akce" value="edit">
+																<input type="hidden" name="contents_id" value="{{ contentsId }}">
+																<input type="hidden" name="column" value="content12">
+																<input type="hidden" name="language" value="{{ language }}">
+																<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+																	<i class="fa fa-edit">{{contentData.content12|default('bi bi-chat-square-dots-fill')}}</i>
+																</button>
+															</form>
+
+
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			{% endif %}
+		</div>
+	</div>
 </section>

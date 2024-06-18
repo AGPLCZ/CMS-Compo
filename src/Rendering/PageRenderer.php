@@ -23,9 +23,12 @@ final class PageRenderer
     public $url;
     public $urlName;
     public $page_content;
-    private $language = 'cz';
+    public $language;
     private $auth;
     private $twig;
+    public $edit;
+    private $isLogin;
+    private $onEdit = false;
 
     public function __construct($template)
     {
@@ -58,6 +61,35 @@ final class PageRenderer
         $filePathTwig = "components/" . $this->template . "/templates";
         $loader = new FilesystemLoader($filePathTwig);
         $this->twig = new Environment($loader);
+
+
+
+
+        if (isset($_SESSION['language'])) {
+            $this->language = $_SESSION['language'];
+        } else {
+            $this->language = 'cs';
+        }
+
+
+        if (isset($_SESSION['tool'])) {
+            $tool = $_SESSION['tool'];
+            if ($tool == "on") {
+                $this->edit = true;
+            } else {
+                $this->edit = false;
+            }
+        } else {
+            $this->edit = false;
+        }
+        // if (session_status() !== PHP_SESSION_ACTIVE) {
+        //     $this->edit = false;
+        // }
+
+
+        if ($this->auth->isLoggedIn()) {
+            $this->isLogin = true;
+        }
     }
 
     private function loadComponentData()
@@ -92,7 +124,7 @@ final class PageRenderer
     }
 
 
-    public function getLocalizedContent($contents_id, $field, $language = 'cz')
+    public function getLocalizedContent($contents_id, $field, $language = 'cs')
     {
         $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
         return DB::queryFirstField($sql, $contents_id, $field, $language);
@@ -100,52 +132,54 @@ final class PageRenderer
 
 
     public function renderComponents()
-{
-    $componentRenderData = [];
-    foreach ($this->componentData as $data) {
-        $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
+    {
+        $componentRenderData = [];
+        foreach ($this->componentData as $data) {
+            $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
 
-        if ($contentData) {
-            $this->page_content = $contentData;
+            if ($contentData) {
+                $this->page_content = $contentData;
 
-            // Načtení překladů pro dané komponenty
-            foreach ($contentData as $field => $value) {
-                // kontrola, zda je pole 'contentX'
-                if (strpos($field, 'content') === 0) {
-                    // Získání lokalizovaného obsahu z databáze
-                    $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
-                    
-                    $componentRenderData[$field] = $localizedContent ?: htmlspecialchars($value);
+                // Načtení překladů pro dané komponenty
+                foreach ($contentData as $field => $value) {
+                    // kontrola, zda je pole 'contentX'
+                    if (strpos($field, 'content') === 0) {
+                        // Získání lokalizovaného obsahu z databáze
+                        $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
 
-                    if ($this->auth->isLoggedIn()) {
-                        $onEdit = "true";
-                    } else {
-                        $onEdit = "false";
+                        $componentRenderData[$field] = $localizedContent ?: htmlspecialchars($value);
+
+
+                        if (($this->auth->isLoggedIn() == false) or ($this->edit == false)) {
+                            $this->onEdit = false;
+                        } else {
+                            $this->onEdit = true; 
+                        }
                     }
                 }
+
+
+                $url = $this->url;
+                $menu = $this->menu;
+
+                $twigName = $data['componentName'] . ".twig";
+                $templateTwig = $this->twig->load($twigName);
+                echo $templateTwig->render([
+                    'contentData' => $componentRenderData,
+                    'url' => $url,
+                    'menu' => $menu,
+                    'language' => $this->language,
+                    'onEdit' => $this->onEdit,
+                    'contentsId' => $data['contentId'],
+                    'componentsId' => $data['componentsId'],
+                    'pageId' => $data['pageId'],
+                    'componentOrder' => $data['componentOrder'],
+                    'componentName' => $data['componentName'],
+                    'isLogin' => $this->isLogin
+                ]);
             }
-
-
-            $url = $this->url;
-            $menu = $this->menu;
-
-            $twigName = $data['componentName'] . ".twig";
-            $templateTwig = $this->twig->load($twigName);
-            echo $templateTwig->render([
-                'contentData' => $componentRenderData,
-                'url' => $url,
-                'menu' => $menu,
-                'language' => $this->language,
-                'onEdit' => $onEdit,
-                'contentsId' => $data['contentId'],
-                'componentsId' => $data['componentsId'],
-                'pageId' => $data['pageId'],
-                'componentOrder' => $data['componentOrder'],
-                'componentName' => $data['componentName']
-            ]);
         }
     }
-}
 
     private function render404()
     {
@@ -156,5 +190,4 @@ final class PageRenderer
         require_once "components/"  . $this->template . "/footer.php";
         exit;
     }
-
 }

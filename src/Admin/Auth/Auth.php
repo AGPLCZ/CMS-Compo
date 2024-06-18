@@ -29,6 +29,7 @@ class Auth
         return isset($_SESSION['user_id']);
     }
 
+
     /**
      * Attempt to log in with a username/email and password.
      */
