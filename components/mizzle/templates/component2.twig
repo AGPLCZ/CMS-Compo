@@ -1,35 +1,225 @@
 c2
 <section class="pt-5 pt-sm-0">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Integration icons -->
-            <div class="col-lg-6 pe-xl-5 order-2">
-                <div class="row align-items-sm-center">
+	<div class="container">
+		<div
+			class="row align-items-center">
+			<!-- Integration icons -->
+			<div class="col-lg-6 pe-xl-5 order-2">
+				<div
+					class="row align-items-sm-center">
 
-                    <!-- Item -->
+					<!-- Item -->
 
-                    <img src="{{ url }}/assets/template/mizzle/images/saas-bg.jpg">
-
-
+					<img src="{{ url }}{{contentData.content12|default('/assets/template/mizzle/images/saas-bg.jpg')}}">
 
 
-                </div>
-            </div>
+				</div>
+			</div>
 
-            <!-- Integration content -->
-            <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0 ps-xl-5">
-                <!-- Title -->
-                <h2 class="mb-4">Seamless connections for enhanced performance</h2>
-                <p class="mb-4">Explore our array of integrations that effortlessly connect with your existing tools and amplify your workflow efficiency.</p>
-                <!-- List -->
-                <ul class="list-group list-group-borderless mb-4">
-                    <li class="list-group-item heading-color d-flex mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Connect with a wide range of third-party applications</li>
-                    <li class="list-group-item heading-color d-flex mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Automate tasks and reduce manual data entry</li>
-                    <li class="list-group-item heading-color d-flex mb-0"><i class="bi bi-patch-check text-primary me-2"></i>Rest assured that your data remains safe and protected</li>
-                </ul>
-                <!-- Button -->
-                <a href="https://mizzle.webestica.com/index-saas.html#" class="btn btn-dark mb-0">Know more</a>
-            </div>
-        </div>
-    </div>
-</section>
+			<!-- Integration content -->
+			<div
+				class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0 ps-xl-5">
+				<!-- Title -->
+				<h2 class="mb-4">
+					<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content1" data-id="{{contentsId}}">{{contentData.content1|default('Seamless connections for enhanced performance')}}</div>
+				</h2>
+				<p class="mb-4">
+					<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contentsId}}">{{contentData.content2|default('Explore our array of integrations that effortlessly connect with your existing tools and amplify your workflow efficiency.')}}</div>
+				</p>
+
+				<!-- List -->
+				<ul class="list-group list-group-borderless mb-4">
+					<li class="list-group-item heading-color d-flex mb-0">
+						<i class="bi bi-patch-check text-primary me-2"></i>
+						<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content3" data-id="{{contentsId}}">{{contentData.content3|default('Connect with a wide range of third-party applications')}}</div>
+					</li>
+					<li class="list-group-item heading-color d-flex mb-0">
+						<i class="bi bi-patch-check text-primary me-2"></i>
+						<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content4" data-id="{{contentsId}}">{{contentData.content4|default('Automate tasks and reduce manual data entry')}}</div>
+					</li>
+					<li class="list-group-item heading-color d-flex mb-0">
+						<i class="bi bi-patch-check text-primary me-2"></i>
+						<div contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content5" data-id="{{contentsId}}">{{contentData.content5|default('Rest assured that your data remains safe and protected')}}</div>
+					</li>
+				</ul>
+				<!-- Button -->
+				<a href="{{contentData.content11|default('https://google.com')}}" class="btn btn-dark mb-0">{{contentData.content10|default('Know more')}}</a>
+			</div>
+		</div>
+
+		{% if onEdit == true %}
+
+
+			<div class="accordion accordion-flush">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="acordion{{ componentsId }}">
+						<button class="btn btn-white" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMaster{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseOne">
+							<i class="bi bi-view-list"></i>
+						</button>
+					</h2>
+					<div id="flush-collapseMaster{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#acordion{{ componentsId }}">
+
+
+						<div class="container">
+							<div class="bg-white pt-1">
+								<h5 style="margin-left: 10px; margin-top: 3px;">
+									<i class="bi bi-pencil-square"></i>&nbsp;Admin tools &nbsp;
+									<i class="bi bi-arrow-bar-up"></i>
+								</h5>
+								<div>
+									<div class="accordion accordion-flush mb-0 py-0 border border-success border-left-0 border-right-0" id="accordionflushexample{{ componentsId }}">
+
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="flush-headingOne{{ componentsId }}">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseOne">
+													Edit componets
+												</button>
+											</h2>
+											<div id="flush-collapseOne{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+
+												<b>Button:</b>
+												<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content10" data-id="{{contentsId}}">{{contentData.content10|default('Know more')}}</span>
+												<b>Href:</b>
+												<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content11" data-id="{{contentsId}}">{{contentData.content11|default('#')}}</span>
+												<b>Image:</b>
+												<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content12" data-id="{{contentsId}}">{{contentData.content12|default('/assets/template/mizzle/images/saas-bg.jpg')}}</span>
+
+
+												<span class="mx-3">
+													<a href="https://icons.getbootstrap.com/" target="_blank">
+														<i class="bi bi-grid-3x3-gap"></i>
+														Icon list</a>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingTwo{{ componentsId }}">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseTwo">
+												Developer Tool
+											</button>
+										</h2>
+										<div id="flush-collapseTwo{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample{{ componentsId }}">
+											<div class="accordion-body">
+												Components id:
+												<b>{{ componentsId }}</b>
+												Page id:
+												<b>{{ pageId }}</b>
+												Component Order:
+												<b>{{ componentOrder }}</b>
+												Component name:
+												<b>{{ componentName }}</b>
+												Contents id:
+												<b>{{ contentsId }}</b>
+
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-heading3{{ componentsId }}">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseThree">
+												Actions
+											</button>
+										</h2>
+										<div id="flush-collapse3{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-heading3" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">
+												<div class="btn-group flex-column flex-sm-row" role="group" aria-label="Basic example">
+
+													<form method="POST" action="{{ url }}/admin/EditComponentsOrder/">
+														<input type="hidden" name="akce" value="edit">
+														<input type="hidden" name="components_id" value="{{ componentsId }}">
+														<button type="submit" class="btn btn-primary mx-2" name="submitContentOrder">
+															<i class="bi bi-arrow-bar-up"></i>
+															<i class="bi bi-pencil-square"></i>
+															Edit Order:
+															{{ componentOrder }}
+														</button>
+													</form>
+
+													<form method="POST" action="{{ url }}/admin/createContent/">
+														<input type="hidden" name="pages_id" value="{{ pageId }}">
+														<input type="hidden" name="order" value="{{ componentOrder }}">
+														<button type="submit" name="submitCreateContent" class="btn btn-primary mx-2">
+															<i class="bi bi-arrow-bar-down"></i>
+															New Component
+														</button>
+													</form>
+
+
+													<form method="POST" action="{{ url }}/admin/deleteComponets/">
+														<input type="hidden" name="deleteComponents" value="{{ componentsId }}">
+														<button type="submit" name="submitComponentsDel" class="btn btn-danger mx-2">
+															<i class="bi bi-trash3"></i>
+															Drop item
+														</button>
+													</form>
+
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-heading4{{ componentsId }}">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4{{ componentsId }}" aria-expanded="false" aria-controls="flush-collapseThree">
+												Edit components buttons
+											</button>
+										</h2>
+										<div id="flush-collapse4{{ componentsId }}" class="accordion-collapse collapse" aria-labelledby="flush-heading4" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">
+												<div class="btn-group flex-column flex-sm-row" role="group" aria-label="Basic example">
+
+
+													<form method="POST" action="{{ url }}/admin/editContentt/">
+														<input type="hidden" name="akce" value="edit">
+														<input type="hidden" name="contents_id" value="{{ contentsId }}">
+														<input type="hidden" name="column" value="content10">
+														<input type="hidden" name="language" value="{{ language }}">
+														<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+															<i class="fa fa-edit">{{contentData.content10|default('bi bi-truck-flatbed')}}</i>
+														</button>
+													</form>
+
+													<form method="POST" action="{{ url }}/admin/editContentt/">
+														<input type="hidden" name="akce" value="edit">
+														<input type="hidden" name="contents_id" value="{{ contentsId }}">
+														<input type="hidden" name="column" value="content11">
+														<input type="hidden" name="language" value="{{ language }}">
+														<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+															<i class="fa fa-edit">{{contentData.content11|default('bi bi-boxes')}}</i>
+														</button>
+													</form>
+
+
+													<form method="POST" action="{{ url }}/admin/editContentt/">
+														<input type="hidden" name="akce" value="edit">
+														<input type="hidden" name="contents_id" value="{{ contentsId }}">
+														<input type="hidden" name="column" value="content12">
+														<input type="hidden" name="language" value="{{ language }}">
+														<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+															<i class="fa fa-edit">{{contentData.content12|default('bi bi-people')}}</i>
+														</button>
+													</form>
+
+													
+
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	{% endif %}
+</div></section>

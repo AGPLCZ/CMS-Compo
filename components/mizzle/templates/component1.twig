@@ -125,8 +125,7 @@ c1
 						<!-- Card START -->
 						<div class="card border p-4">
 
-
-							<img src="{{ url }}/assets/template/mizzle/images/saas-bg.jpg">
+							<img src="{{ url }}{{contentData.content17|default('/assets/template/mizzle/images/saas-bg.jpg')}}">
 
 
 						</div>
@@ -189,6 +188,8 @@ c1
 													<b>Icon4:</b>
 													<i class="{{contentData.content16|default('bi bi-shield-check')}} text-primary" style="font-size: 20px; padding: 0px;"></i>
 													<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content16" data-id="{{contentsId}}">{{contentData.content16|default('bi bi-shield-check')}}</span>
+													<b>Image:</b>
+													<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element border border-success" data-language="{{language}}" data-column="content17" data-id="{{contentsId}}">{{contentData.content17|default('/assets/template/mizzle/images/saas-bg.jpg')}}</span>
 
 
 													<span class="mx-3">
