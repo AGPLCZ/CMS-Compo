@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Stř 26. čen 2024, 01:16
+-- Vytvořeno: Stř 26. čen 2024, 01:19
 -- Verze serveru: 10.4.32-MariaDB
 -- Verze PHP: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Databáze: `green`
 --
+CREATE DATABASE IF NOT EXISTS `green` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `green`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Struktura tabulky `components`
 --
 
+DROP TABLE IF EXISTS `components`;
 CREATE TABLE `components` (
   `components_id` int(11) NOT NULL,
   `pages_id` int(11) NOT NULL,
@@ -35,6 +38,21 @@ CREATE TABLE `components` (
   `order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `components`:
+--   `list_components_id`
+--       `list_components` -> `list_components_id`
+--   `contents_id`
+--       `contents` -> `contents_id`
+--   `pages_id`
+--       `pages` -> `pages_id`
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `components`
+--
+
+TRUNCATE TABLE `components`;
 --
 -- Vypisuji data pro tabulku `components`
 --
@@ -72,6 +90,7 @@ INSERT INTO `components` (`components_id`, `pages_id`, `list_components_id`, `co
 -- Struktura tabulky `contents`
 --
 
+DROP TABLE IF EXISTS `contents`;
 CREATE TABLE `contents` (
   `contents_id` int(11) NOT NULL,
   `page_id` int(11) NOT NULL,
@@ -98,6 +117,17 @@ CREATE TABLE `contents` (
   `content20` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `contents`:
+--   `page_id`
+--       `pages` -> `pages_id`
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `contents`
+--
+
+TRUNCATE TABLE `contents`;
 --
 -- Vypisuji data pro tabulku `contents`
 --
@@ -142,6 +172,7 @@ INSERT INTO `contents` (`contents_id`, `page_id`, `name`, `content1`, `content2`
 -- Struktura tabulky `content_localizations`
 --
 
+DROP TABLE IF EXISTS `content_localizations`;
 CREATE TABLE `content_localizations` (
   `localization_id` int(11) NOT NULL,
   `contents_id` int(11) NOT NULL,
@@ -150,6 +181,15 @@ CREATE TABLE `content_localizations` (
   `content` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `content_localizations`:
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `content_localizations`
+--
+
+TRUNCATE TABLE `content_localizations`;
 --
 -- Vypisuji data pro tabulku `content_localizations`
 --
@@ -253,6 +293,7 @@ INSERT INTO `content_localizations` (`localization_id`, `contents_id`, `language
 -- Struktura tabulky `installed_templates`
 --
 
+DROP TABLE IF EXISTS `installed_templates`;
 CREATE TABLE `installed_templates` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -260,6 +301,15 @@ CREATE TABLE `installed_templates` (
   `path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `installed_templates`:
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `installed_templates`
+--
+
+TRUNCATE TABLE `installed_templates`;
 --
 -- Vypisuji data pro tabulku `installed_templates`
 --
@@ -277,11 +327,21 @@ INSERT INTO `installed_templates` (`id`, `name`, `description`, `path`) VALUES
 -- Struktura tabulky `list_components`
 --
 
+DROP TABLE IF EXISTS `list_components`;
 CREATE TABLE `list_components` (
   `list_components_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `list_components`:
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `list_components`
+--
+
+TRUNCATE TABLE `list_components`;
 --
 -- Vypisuji data pro tabulku `list_components`
 --
@@ -317,6 +377,7 @@ INSERT INTO `list_components` (`list_components_id`, `name`) VALUES
 -- Struktura tabulky `pages`
 --
 
+DROP TABLE IF EXISTS `pages`;
 CREATE TABLE `pages` (
   `pages_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -326,6 +387,15 @@ CREATE TABLE `pages` (
   `parent_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `pages`:
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pages`
+--
+
+TRUNCATE TABLE `pages`;
 --
 -- Vypisuji data pro tabulku `pages`
 --
@@ -342,18 +412,33 @@ INSERT INTO `pages` (`pages_id`, `title`, `uri`, `menu_order`, `visible_in_menu`
 -- Struktura tabulky `templates`
 --
 
+DROP TABLE IF EXISTS `templates`;
 CREATE TABLE `templates` (
   `tamplates_id` int(11) NOT NULL,
   `pages_id` int(11) NOT NULL,
   `templates_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `templates`:
+--   `pages_id`
+--       `pages` -> `pages_id`
+--   `templates_id`
+--       `installed_templates` -> `id`
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `templates`
+--
+
+TRUNCATE TABLE `templates`;
 -- --------------------------------------------------------
 
 --
 -- Struktura tabulky `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -363,6 +448,15 @@ CREATE TABLE `users` (
   `token_expiration` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- VZTAHY TABULKY `users`:
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `users`
+--
+
+TRUNCATE TABLE `users`;
 --
 -- Vypisuji data pro tabulku `users`
 --
@@ -510,7 +604,243 @@ ALTER TABLE `contents`
 ALTER TABLE `templates`
   ADD CONSTRAINT `fk_template_page` FOREIGN KEY (`pages_id`) REFERENCES `pages` (`pages_id`),
   ADD CONSTRAINT `fk_template_template_id` FOREIGN KEY (`templates_id`) REFERENCES `installed_templates` (`id`);
-COMMIT;
+
+
+--
+-- Metadata
+--
+USE `phpmyadmin`;
+
+--
+-- Metadata tabulky components
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky contents
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky content_localizations
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky installed_templates
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky list_components
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vypisuji data pro tabulku `pma__table_uiprefs`
+--
+
+INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, `last_update`) VALUES
+('root', 'green', 'list_components', '{\"sorted_col\":\"`list_components_id` ASC\"}', '2024-06-09 13:45:12');
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky pages
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vypisuji data pro tabulku `pma__table_uiprefs`
+--
+
+INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, `last_update`) VALUES
+('root', 'green', 'pages', '[]', '2024-06-02 05:21:55');
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky templates
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata tabulky users
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__column_info`
+--
+
+TRUNCATE TABLE `pma__column_info`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_uiprefs`
+--
+
+TRUNCATE TABLE `pma__table_uiprefs`;
+--
+-- Vypisuji data pro tabulku `pma__table_uiprefs`
+--
+
+INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, `last_update`) VALUES
+('root', 'green', 'users', '[]', '2024-05-08 10:52:23');
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__tracking`
+--
+
+TRUNCATE TABLE `pma__tracking`;
+--
+-- Metadata databáze green
+--
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__bookmark`
+--
+
+TRUNCATE TABLE `pma__bookmark`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__relation`
+--
+
+TRUNCATE TABLE `pma__relation`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__pdf_pages`
+--
+
+TRUNCATE TABLE `pma__pdf_pages`;
+--
+-- Vypisuji data pro tabulku `pma__pdf_pages`
+--
+
+INSERT INTO `pma__pdf_pages` (`db_name`, `page_descr`) VALUES
+('green', 'scena1');
+
+SET @LAST_PAGE = LAST_INSERT_ID();
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__table_coords`
+--
+
+TRUNCATE TABLE `pma__table_coords`;
+--
+-- Vypisuji data pro tabulku `pma__table_coords`
+--
+
+INSERT INTO `pma__table_coords` (`db_name`, `table_name`, `pdf_page_number`, `x`, `y`) VALUES
+('green', 'components', @LAST_PAGE, 606, 334),
+('green', 'content_localizations', @LAST_PAGE, 1129, 252),
+('green', 'contents', @LAST_PAGE, 951, 249),
+('green', 'installed_templates', @LAST_PAGE, 293, 171),
+('green', 'list_components', @LAST_PAGE, 286, 382),
+('green', 'pages', @LAST_PAGE, 606, 44),
+('green', 'templates', @LAST_PAGE, 348, 52),
+('green', 'users', @LAST_PAGE, 257, 546);
+
+--
+-- Vyprázdnit tabulku před vkládáním `pma__savedsearches`
+--
+
+TRUNCATE TABLE `pma__savedsearches`;
+--
+-- Vyprázdnit tabulku před vkládáním `pma__central_columns`
+--
+
+TRUNCATE TABLE `pma__central_columns`;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
