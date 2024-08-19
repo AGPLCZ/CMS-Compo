@@ -62,9 +62,7 @@ final class PageRenderer
         $loader = new FilesystemLoader($filePathTwig);
         $this->twig = new Environment($loader);
 
-
-
-
+        
         if (isset($_SESSION['language'])) {
             $this->language = $_SESSION['language'];
         } else {
@@ -153,7 +151,7 @@ final class PageRenderer
                         if (($this->auth->isLoggedIn() == false) or ($this->edit == false)) {
                             $this->onEdit = false;
                         } else {
-                            $this->onEdit = true; 
+                            $this->onEdit = true;
                         }
                     }
                 }
@@ -161,6 +159,7 @@ final class PageRenderer
 
                 $url = $this->url;
                 $menu = $this->menu;
+
 
                 $twigName = $data['componentName'] . ".twig";
                 $templateTwig = $this->twig->load($twigName);

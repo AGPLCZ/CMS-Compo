@@ -5,7 +5,7 @@ namespace Comgate\SDK\Entity\Response;
 use Comgate\SDK\Exception\Api\MissingParamException;
 use Comgate\SDK\Exception\ApiException;
 use Comgate\SDK\Http\Response;
-use GuzzleHttp\Psr7\Query;
+use Comgate\SDK\Http\Query;
 
 class PaymentCreateResponse
 {
@@ -47,10 +47,9 @@ class PaymentCreateResponse
 		}
 	}
 
-        /**
-         * 
-         * @return array<string, int|string>
-         */
+	/**
+	 * @return array<string, string|int>
+	 */
 	public function toArray(): array
 	{
 		return [

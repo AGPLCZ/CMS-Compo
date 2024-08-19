@@ -2,6 +2,7 @@
 
 namespace Comgate\SDK\Entity\Request;
 
+use Comgate\SDK\Entity\Money;
 use Comgate\SDK\Entity\Payment;
 use Comgate\SDK\Exception\LogicalException;
 
@@ -25,7 +26,7 @@ class PaymentCreateRequest implements IRequest
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<string, bool|string|int|null>
 	 */
 	public function toArray(): array
 	{
@@ -33,6 +34,7 @@ class PaymentCreateRequest implements IRequest
 		$output = $this->payment->getParams();
 
 		$output['price'] = $this->payment->getPrice()->get(); // in cents 10.25 => 1025
+		$output['businessFee'] =  $this->payment->getBusinessFee() !== null ? $this->payment->getBusinessFee()->get() : null; // in cents 10.25 => 1025
 		$output['prepareOnly'] = $this->payment->isPrepareOnly() ? 'true' : 'false';
 		$output['method'] = implode('+', $this->payment->getAllowedMethods());
 		unset($output['allowedMethods']);
@@ -43,7 +45,7 @@ class PaymentCreateRequest implements IRequest
 		unset($output['excludedMethods']);
 
 		// Optional
-		$output['preauth'] = (bool)$this->payment->isPreauth() ? 'true' : 'false';
+		$output['preauth'] = $this->payment->isPreauth() ? 'true' : 'false';
 		$output['test'] = $this->payment->isTest() ? 'true' : 'false';
 		$output['verification'] = $this->payment->isVerification() ? 'true' : 'false';
 		$output['embedded'] = $this->payment->isEmbedded() ? 'true' : 'false';

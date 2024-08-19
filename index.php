@@ -14,9 +14,11 @@ use Compo\Admin\Auth\Auth;
 use Compo\Rendering\AdminRenderer;
 
 
-$folder_located_project = "cms/CMS-Compo";
+$folder_located_project = "";
+if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+    $folder_located_project = "cms/CMS-Compo";
+}
 $tamplate = "mizzle";
-
 
 
 // Oříznutí lomítek na začátku a na konci řetězce
@@ -26,6 +28,7 @@ $registry->set("template", $tamplate);
 
 if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
     $registry->set("path", $trimmed_folder_located_project);
+
 } else {
     $registry->set("path", "");
 }
