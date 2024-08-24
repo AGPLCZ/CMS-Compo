@@ -108,7 +108,7 @@ class UrlManager
             $url .= ':' . $_SERVER['SERVER_PORT'];
         }
 
-        $url = $url . '/' . Registry::get('path');
+        $url = $url . '' . Registry::get('path');
 
         return $url;
     }

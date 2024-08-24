@@ -169,7 +169,7 @@
 
 
 <script>
-	document.querySelectorAll('.editable-element').forEach(element => { // Uložení původního textu při načtení stránky nebo při focusu
+	{# document.querySelectorAll('.editable-element').forEach(element => { // Uložení původního textu při načtení stránky nebo při focusu
 element.dataset.originalText = element.innerText;
 
 element.addEventListener('focus', function () {
@@ -185,7 +185,7 @@ var originalText = this.dataset.originalText;
 
 // Porovnání původního textu s aktuálním
 if (value !== originalText) {
-fetch('http://localhost/CMS/CMS-Compo/admin/editContent/', { // Upravte URL podle vaší potřeby
+fetch('{{ url }}/admin/editContent/', { // Upravte URL podle vaší potřeby
 method: 'POST',
 headers: {
 'Content-Type': 'application/x-www-form-urlencoded'
@@ -200,7 +200,49 @@ console.error('Error:', error);
 console.log('No changes detected, no data sent.');
 }
 });
+}); #}
+</script>
+
+
+
+<script>
+document.querySelectorAll('.editable-element').forEach(element => {
+    element.dataset.originalText = element.innerText;
+
+    element.addEventListener('focus', function () {
+        this.dataset.originalText = this.innerText;
+    });
+
+    element.addEventListener('blur', function () {
+        var id = this.getAttribute('data-id');
+        var language = this.getAttribute('data-language');
+        var column = this.getAttribute('data-column');
+        var value = this.innerText;
+        var originalText = this.dataset.originalText;
+
+        if (value !== originalText) {
+            fetch('{{ url }}/admin/editContent/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + id + '&language=' + language + '&column=' + column + '&value=' + encodeURIComponent(value)
+            }).then(response => response.json()).then(data => {
+                console.log('Success:', data);
+                element.classList.add('save-success');
+                setTimeout(() => element.classList.remove('save-success'), 2000);  // Změna trvá 2 sekundy
+            }).catch(error => {
+                console.error('Error:', error);
+                element.classList.add('save-error');
+                setTimeout(() => element.classList.remove('save-error'), 2000);  // Změna trvá 2 sekundy
+            });
+        } else {
+            console.log('No changes detected, no data sent.');
+        }
+    });
 });
+
+
 </script>
 
 
