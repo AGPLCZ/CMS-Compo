@@ -2,8 +2,6 @@
 
 namespace Comgate\SDK\Entity\Request;
 
-use Comgate\SDK\Entity\Money;
-
 interface IRequest
 {
 
@@ -17,7 +15,7 @@ interface IRequest
 	/**
 	 * Converts the request to array params.
 	 *
-	 * @return array<string, bool|string|int|null>
+	 * @return mixed[]
 	 */
 	public function toArray(): array;
 

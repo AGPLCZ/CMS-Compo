@@ -3,14 +3,13 @@
 namespace Comgate\SDK\Entity;
 
 use Comgate\SDK\Exception\Logical\ParamIsNotSetException;
-use Exception;
 
 class Payment
 {
 	/**
 	 * Payment parameters.
 	 *
-	 * @var array<string, bool|int|string|Money|array<int, string>>
+	 * @var array<string, int|string>
 	 */
 	protected $params = [
 		'test' => false,
@@ -24,37 +23,28 @@ class Payment
 		'excludedMethods' => [],
 		'account' => '',
 		'name' => '',
-		// 'fullName' => '',
-		// 'phone' => '',
-		// 'billingAddrCity' => '',
-		// 'billingAddrStreet' => '',
-		// 'billingAddrPostalCode' => '',
-		// 'billingAddrCountry' => '',
-		// 'delivery' => '',
-		// 'homeDeliveryCity' => '',
-		// 'homeDeliveryStreet' => '',
-		// 'homeDeliveryPostalCode' => '',
-		// 'homeDeliveryCountry' => '',
-		// 'category' => '',
+		// ... other params whithout default value
 	];
 
-	/**
-	 * @param string $paramName
-	 * @param mixed $value
-	 * @return $this
-	 */
-	public function setParam(string $paramName, $value): self
+        /**
+         *
+         * @param string $paramName
+         * @param mixed $value
+         * @return self
+         */
+	public function setParam($paramName, $value): self
 	{
 		$this->params[$paramName] = $value;
 
 		return $this;
 	}
 
-	/**
-	 * @param string $paramName
-	 * @return bool|int|string|Money|array<int, string>
-	 * @throws ParamIsNotSetException
-	 */
+        /**
+         *
+         * @param string $paramName
+         * @return string | Money
+         * @throws ParamIsNotSetException
+         */
 	public function getParam($paramName)
 	{
 		if (isset($this->params[$paramName])) {
@@ -64,18 +54,20 @@ class Payment
 		throw new ParamIsNotSetException("Param {$paramName} is not set.");
 	}
 
-	/**
-	 * @return array<string, bool|int|string|Money|array<int, string>>
-	 */
+        /**
+         *
+         * @return array<string, int|string>
+         */
 	public function getParams(): array
 	{
 		return $this->params;
 	}
 
-	/**
-	 * @param array<string, bool|int|string|Money> $params
-	 * @return self
-	 */
+        /**
+         *
+         * @param array<string, int|string> $params
+         * @return self
+         */
 	public function setParams(array $params): self
 	{
 		$this->params = $params;
@@ -98,18 +90,13 @@ class Payment
 		return $this;
 	}
 
-	/**
-	 *
-	 * @return Money
-	 */
+        /**
+         *
+         * @return Money
+         */
 	public function getPrice(): Money
 	{
-		$param = $this->getParam('price');
-		if (!($param instanceof Money)) {
-			throw new Exception("The Money value is not instance of Money");
-		}
-
-		return $param;
+		return $this->getParam('price');
 	}
 
 	/**
@@ -124,7 +111,7 @@ class Payment
 
 	public function getCurrency(): string
 	{
-		return (string) $this->getParamWithoutMoney('curr');
+		return $this->getParam('curr');
 	}
 
 	public function setCurrency(string $currency): self
@@ -136,7 +123,7 @@ class Payment
 
 	public function getLabel(): string
 	{
-		return (string) $this->getParamWithoutMoney('label');
+		return $this->getParam('label');
 	}
 
 	public function setLabel(string $label): self
@@ -148,7 +135,7 @@ class Payment
 
 	public function getReferenceId(): string
 	{
-		return (string) $this->getParamWithoutMoney('refId');
+		return $this->getParam('refId');
 	}
 
 	public function setReferenceId(string $referenceId): self
@@ -160,12 +147,12 @@ class Payment
 
 	public function getEmail(): string
 	{
-		return (string) $this->getParamWithoutMoney('email');
+		return $this->getParam('email');
 	}
 
 	public function isTest(): bool
 	{
-		return (bool)$this->getParam('test');
+		return(bool) $this->getParam('test');
 	}
 
 	public function setTest(bool $test): self
@@ -183,26 +170,26 @@ class Payment
 	}
 
 	/**
-	 * @return array<int, string>
+	 * @return array<string>
 	 */
 	public function getAllowedMethods(): array
 	{
-		return (array)$this->getParam('allowedMethods');
+		return(array) $this->getParam('allowedMethods');
 	}
 
 	/**
-	 * @return array<int, string>
+	 * @return array<string>
 	 */
 	public function getExcludedMethods(): array
 	{
-		return (array)$this->getParam('excludedMethods');
+		return(array) $this->getParam('excludedMethods');
 	}
 
-	/**
-	 *
-	 * @param array<int, string> $methods
-	 * @return self
-	 */
+        /**
+         *
+         * @param array<string, int|string> $methods
+         * @return self
+         */
 	public function setMethods(array $methods): self
 	{
 		$this->params['allowedMethods'] = $methods;
@@ -210,17 +197,13 @@ class Payment
 		return $this;
 	}
 
-	/**
-	 *
-	 * @param string $method
-	 * @return self
-	 */
+        /**
+         *
+         * @param string $method
+         * @return self
+         */
 	public function addMethod(string $method): self
 	{
-		if (!isset($this->params['allowedMethods']) || !is_array($this->params['allowedMethods'])) {
-			$this->params['allowedMethods'] = [];
-		}
-
 		$this->params['allowedMethods'][] = $method;
 
 		return $this;
@@ -228,10 +211,6 @@ class Payment
 
 	public function setoutMethod(string $method): self
 	{
-		if (!isset($this->params['excludedMethods']) || !is_array($this->params['excludedMethods'])) {
-			$this->params['excludedMethods'] = [];
-		}
-
 		$this->params['excludedMethods'][] = $method;
 
 		return $this;
@@ -239,7 +218,7 @@ class Payment
 
 	public function getCountry(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('country');
+		return $this->getParam('country');
 	}
 
 	public function setCountry(string $country): self
@@ -251,7 +230,7 @@ class Payment
 
 	public function getAccount(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('account');
+		return $this->getParam('account');
 	}
 
 	public function setAccount(string $account): self
@@ -263,7 +242,7 @@ class Payment
 
 	public function getName(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('name');
+		return $this->getParam('name');
 	}
 
 	public function setName(string $name): self
@@ -275,7 +254,7 @@ class Payment
 
 	public function getLang(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('lang');
+		return $this->getParam('lang');
 	}
 
 	public function setLang(string $lang): self
@@ -287,7 +266,7 @@ class Payment
 
 	public function getTransactionId(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('transactionId');
+		return $this->getParam('transactionId');
 	}
 
 	public function setTransactionId(string $transactionId): self
@@ -299,7 +278,7 @@ class Payment
 
 	public function isPrepareOnly(): bool
 	{
-		return (bool)$this->getParam('prepareOnly');
+		return(bool) $this->getParam('prepareOnly');
 	}
 
 	public function setPrepareOnly(bool $prepareOnly): self
@@ -309,7 +288,7 @@ class Payment
 		return $this;
 	}
 
-	public function isPreauth(): bool
+	public function isPreauth(): ?bool
 	{
 		return (bool)$this->getParam('preauth');
 	}
@@ -323,7 +302,7 @@ class Payment
 
 	public function isInitRecurring(): bool
 	{
-		return (bool)$this->getParam('initRecurring');
+		return(bool) $this->getParam('initRecurring');
 	}
 
 	public function setInitRecurring(bool $initRecurring): self
@@ -335,7 +314,7 @@ class Payment
 
 	public function isVerification(): bool
 	{
-		return (bool)$this->getParam('verification');
+		return(bool) $this->getParam('verification');
 	}
 
 	public function setVerification(bool $verification): self
@@ -347,7 +326,7 @@ class Payment
 
 	public function isEmbedded(): bool
 	{
-		return (bool)$this->getParam('embedded');
+		return(bool) $this->getParam('embedded');
 	}
 
 	public function setEmbedded(bool $embedded): self
@@ -362,7 +341,7 @@ class Payment
 	 */
 	public function getPayerId(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('payerId');
+		return $this->getParam('payerId');
 	}
 
 	/**
@@ -380,7 +359,7 @@ class Payment
 	 */
 	public function getApplePayPayload(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('applePayPayload');
+		return $this->getParam('applePayPayload');
 	}
 
 	/**
@@ -398,7 +377,7 @@ class Payment
 	 */
 	public function getExpirationTime(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('expirationTime');
+		return $this->getParam('expirationTime');
 	}
 
 	/**
@@ -417,7 +396,7 @@ class Payment
 	 */
 	public function getInitRecurringId(): ?string
 	{
-		return (string) $this->getParamWithoutMoney('initRecurringId');
+		return $this->getParam('initRecurringId');
 	}
 
 	/**
@@ -432,7 +411,7 @@ class Payment
 
 	public function isDynamicExpiration(): bool
 	{
-		return (bool)$this->getParam('dynamicExpiration');
+		return(bool) $this->getParam('dynamicExpiration');
 	}
 
 	public function setDynamicExpiration(bool $dynamicExpiration): self
@@ -442,183 +421,4 @@ class Payment
 		return $this;
 	}
 
-	public function getPhone(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('phone');
-	}
-
-	public function setPhone(string $phone): self
-	{
-		$this->setParam('phone', $phone);
-
-		return $this;
-	}
-
-	public function getFullName(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('fullName');
-	}
-
-	public function setFullName(string $fullName): self
-	{
-		$this->setParam('fullName', $fullName);
-
-		return $this;
-	}
-
-	public function getBillingAddrCity(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('billingAddrCity');
-	}
-
-	public function setBillingAddrCity(string $billingAddrCity): self
-	{
-		$this->setParam('billingAddrCity', $billingAddrCity);
-
-		return $this;
-	}
-
-	public function getBillingAddrStreet(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('billingAddrStreet');
-	}
-
-	public function setBillingAddrStreet(string $billingAddrStreet): self
-	{
-		$this->setParam('billingAddrStreet', $billingAddrStreet);
-
-		return $this;
-	}
-
-	public function getBillingAddrPostalCode(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('billingAddrPostalCode');
-	}
-
-	public function setBillingAddrPostalCode(string $billingAddrPostalCode): self
-	{
-		$this->setParam('billingAddrPostalCode', $billingAddrPostalCode);
-
-		return $this;
-	}
-
-	public function getBillingAddrCountry(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('billingAddrCountry');
-	}
-
-	public function setBillingAddrCountry(string $billingAddrCountry): self
-	{
-		$this->setParam('billingAddrCountry', $billingAddrCountry);
-
-		return $this;
-	}
-
-	public function getDelivery(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('delivery');
-	}
-
-	public function setDelivery(string $delivery): self
-	{
-		$this->setParam('delivery', $delivery);
-
-		return $this;
-	}
-
-	public function getHomeDeliveryCity(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('homeDeliveryCity');
-	}
-
-	public function setHomeDeliveryCity(string $homeDeliveryCity): self
-	{
-		$this->setParam('homeDeliveryCity', $homeDeliveryCity);
-
-		return $this;
-	}
-
-	public function getHomeDeliveryStreet(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('homeDeliveryStreet');
-	}
-
-	public function setHomeDeliveryStreet(string $homeDeliveryStreet): self
-	{
-		$this->setParam('homeDeliveryStreet', $homeDeliveryStreet);
-
-		return $this;
-	}
-
-	public function getHomeDeliveryPostalCode(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('homeDeliveryPostalCode');
-	}
-
-	public function setHomeDeliveryPostalCode(string $homeDeliveryPostalCode): self
-	{
-		$this->setParam('homeDeliveryPostalCode', $homeDeliveryPostalCode);
-
-		return $this;
-	}
-
-	public function getHomeDeliveryCountry(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('homeDeliveryCountry');
-	}
-
-	public function setHomeDeliveryCountry(string $homeDeliveryCountry): self
-	{
-		$this->setParam('homeDeliveryCountry', $homeDeliveryCountry);
-
-		return $this;
-	}
-
-	public function getCategory(): ?string
-	{
-		return (string) $this->getParamWithoutMoney('category');
-	}
-
-	public function setCategory(string $category): self
-	{
-		$this->setParam('category', $category);
-
-		return $this;
-	}
-
-	public function getBusinessFee(): ?Money
-	{
-		$param = $this->params['businessFee'] ?? null;
-
-		if ($param !== null && !($param instanceof Money)) {
-			throw new Exception("The Money value is not instance of Money");
-		}
-
-		return $param;
-	}
-
-	/**
-	 * @param int|float|Money $businessFee
-	 */
-	public function setBusinessFee($businessFee): self
-	{
-		$this->setParam('businessFee', Money::of($businessFee));
-
-		return $this;
-	}
-
-	/**
-	 * @param string $attributeName
-	 * @return bool|int|string
-	 * @throws Exception
-	 */
-	private function getParamWithoutMoney(string $attributeName)
-	{
-		$param = $this->getParam($attributeName);
-		if ($param instanceof Money) {
-			throw new Exception("There is a Money value in {$attributeName} attribute");
-		}
-
-		return $param;
-	}
 }

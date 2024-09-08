@@ -6,7 +6,7 @@ use Comgate\SDK\Exception\Api\MissingParamException;
 use Comgate\SDK\Exception\Api\PreauthException;
 use Comgate\SDK\Exception\ApiException;
 use Comgate\SDK\Http\Response;
-use Comgate\SDK\Http\Query;
+use GuzzleHttp\Psr7\Query;
 
 class PreauthCancelResponse
 {

@@ -28,6 +28,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -38,6 +39,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -48,6 +50,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -58,6 +61,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -68,6 +72,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -78,6 +83,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -88,6 +94,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void
@@ -98,6 +105,7 @@ class FileLogger implements LoggerInterface
 	}
 
 	/**
+         * mixed nahradit
 	 * @param $message
 	 * @param array<mixed> $context
 	 * @return void

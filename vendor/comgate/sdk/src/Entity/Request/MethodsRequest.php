@@ -17,7 +17,7 @@ class MethodsRequest implements IRequest
 	}
 
 	/**
-	 * @return array<string, string|int>
+	 * @return mixed[]
 	 */
 	public function toArray(): array
 	{

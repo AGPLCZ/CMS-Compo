@@ -6,7 +6,7 @@ namespace Comgate\SDK\Entity\Response;
 use Comgate\SDK\Entity\Method;
 use Comgate\SDK\Entity\Money;
 use Comgate\SDK\Http\Response;
-use Comgate\SDK\Http\Query;
+use GuzzleHttp\Psr7\Query;
 use Comgate\SDK\Exception\Api\PaymentNotFoundException;
 use Comgate\SDK\Exception\ApiException;
 
@@ -73,9 +73,10 @@ class PaymentStatusResponse
 		}
 	}
 
-	/**
-	 * @return array<string, bool|string|int|null>
-	 */
+         /**
+         *
+         * @return array<string, bool|int|string>
+         */
 	public function toArray(): array
 	{
 		$output = [

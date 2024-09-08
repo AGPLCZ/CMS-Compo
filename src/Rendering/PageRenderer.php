@@ -9,6 +9,9 @@ use DB;
 use Compo\Admin\Auth\Auth;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Compo\Models\Component; 
+use Compo\Models\Content;
+use Compo\Models\ContentLocalization;  
 
 final class PageRenderer
 {
@@ -90,29 +93,21 @@ final class PageRenderer
         }
     }
 
+    
     private function loadComponentData()
     {
-        $this->componentData = DB::query("SELECT 
-                lc.name AS componentName,
-                c.contents_id AS contentId,
-                c.order AS componentOrder,
-                c.pages_id AS pageId,
-                c.components_id AS componentsId
-            FROM 
-                pages AS p
-            JOIN 
-                components AS c ON p.pages_id = c.pages_id
-            JOIN 
-                list_components AS lc ON c.list_components_id = lc.list_components_id
-            WHERE 
-                p.uri = %s
-            ORDER BY 
-                c.order
-            ", $this->urls);
 
-        if (empty($this->componentData)) {
+        $this->componentData = Component::join('list_components', 'components.list_components_id', '=', 'list_components.list_components_id')
+        ->join('pages', 'pages.pages_id', '=', 'components.pages_id')
+        ->where('pages.uri', $this->urls)
+        ->select('list_components.name as componentName', 'components.contents_id', 'components.order', 'components.pages_id', 'components.components_id')
+        ->orderBy('components.order')
+        ->get();
+    
+        if ($this->componentData->isEmpty()) {
             $this->render404();
-        }
+        }  
+
     }
 
 
@@ -122,31 +117,44 @@ final class PageRenderer
     }
 
 
+    // public function getLocalizedContent($contents_id, $field, $language = 'cs')
+    // {
+    //       // Pokud chceš přejít na Eloquent, bylo by třeba i tuto část přepsat
+    //       $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
+    //       return DB::queryFirstField($sql, $contents_id, $field, $language);
+    // }
+
+
+    // Funkce pro získání lokalizovaného obsahu pomocí Eloquentu
     public function getLocalizedContent($contents_id, $field, $language = 'cs')
     {
-        $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
-        return DB::queryFirstField($sql, $contents_id, $field, $language);
+        // Použití Eloquent pro získání lokalizovaného obsahu
+        $localization = ContentLocalization::where('contents_id', $contents_id)
+            ->where('field_name', $field)
+            ->where('language', $language)
+            ->first();
+
+        // Vracíme obsah, nebo null pokud nebyl lokalizovaný obsah nalezen
+        return $localization ? $localization->content : null;
     }
 
-
-    public function renderComponents()
+  public function renderComponents()
     {
         $componentRenderData = [];
+
         foreach ($this->componentData as $data) {
-            $contentData = DB::queryFirstRow("SELECT * FROM contents WHERE contents_id = %i", $data['contentId']);
+            // Použití Eloquent pro načtení obsahu
+            $contentData = Content::find($data->contents_id);
 
             if ($contentData) {
-                $this->page_content = $contentData;
+                $this->page_content = $contentData->toArray(); // Převod na pole pro snadnější použití v šabloně
 
                 // Načtení překladů pro dané komponenty
-                foreach ($contentData as $field => $value) {
-                    // kontrola, zda je pole 'contentX'
+                foreach ($contentData->getAttributes() as $field => $value) {
+                    // Kontrola, zda je pole 'contentX'
                     if (strpos($field, 'content') === 0) {
-                        // Získání lokalizovaného obsahu z databáze
-                        $localizedContent = $this->getLocalizedContent($data['contentId'], $field, $this->language);
-
+                        $localizedContent = $this->getLocalizedContent($data->contents_id, $field, $this->language);
                         $componentRenderData[$field] = $localizedContent ?: htmlspecialchars($value);
-
 
                         if (($this->auth->isLoggedIn() == false) or ($this->edit == false)) {
                             $this->onEdit = false;
@@ -157,28 +165,25 @@ final class PageRenderer
                 }
 
 
-                $url = $this->url;
-                $menu = $this->menu;
-
-
-                $twigName = $data['componentName'] . ".twig";
+                $twigName = $data->componentName . ".twig";
                 $templateTwig = $this->twig->load($twigName);
                 echo $templateTwig->render([
                     'contentData' => $componentRenderData,
-                    'url' => $url,
-                    'menu' => $menu,
+                    'url' => $this->url,
+                    'menu' => $this->menu,
                     'language' => $this->language,
                     'onEdit' => $this->onEdit,
-                    'contentsId' => $data['contentId'],
-                    'componentsId' => $data['componentsId'],
-                    'pageId' => $data['pageId'],
-                    'componentOrder' => $data['componentOrder'],
-                    'componentName' => $data['componentName'],
+                    'contentsId' => $data->contents_id,
+                    'componentsId' => $data->components_id,
+                    'pageId' => $data->pages_id,
+                    'componentOrder' => $data->order,
+                    'componentName' => $data->componentName,
                     'isLogin' => $this->isLogin
                 ]);
             }
         }
     }
+
 
     private function render404()
     {

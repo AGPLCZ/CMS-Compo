@@ -15,7 +15,7 @@ class FileResponse
      * @param string $fileName
      * @return void
      */
-	public function saveToFile(string $directory, string $fileName = '')
+	public function saveToFile($directory, $fileName = '')
 	{
 		if (strlen($fileName) === 0) {
 			$fileName = $this->getFilename();

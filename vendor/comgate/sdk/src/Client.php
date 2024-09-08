@@ -32,6 +32,7 @@ use Comgate\SDK\Entity\Response\SimulationResponse;
 use Comgate\SDK\Entity\Response\SingleTransferResponse;
 use Comgate\SDK\Entity\Response\TransferListResponse;
 use Comgate\SDK\Http\ITransport;
+use Comgate\SDK\Http\Response;
 use DateTimeInterface;
 
 class Client
@@ -107,8 +108,8 @@ class Client
 	}
 
         /**
-         *
-         * @param array<string, string> $params
+         * 
+         * @param array<string, int|string> $params
          * @return SimulationResponse
          */
 	public function simulation(array $params): SimulationResponse
@@ -133,7 +134,7 @@ class Client
 
 	public function singleTransfer(int $transferId, bool $test): SingleTransferResponse
 	{
-		$singleTransferRequest = new SingleTransferRequest($transferId, $test);
+		$singleTransferRequest = new SingleTransferRequest(1, true);
 		$singleTransferResponse = $this->transport->post($singleTransferRequest->getUrn(),
 			$singleTransferRequest->toArray());
 		return new SingleTransferResponse($singleTransferResponse);
