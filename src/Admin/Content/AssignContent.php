@@ -1,5 +1,4 @@
 <?php
-
 namespace Compo\Admin\Content;
 
 use Compo\Navigation\UrlManager;
@@ -28,9 +27,11 @@ class AssignContent
                 $this->formData = $this->getContentById((int) $_POST['contents_id']);
                 $this->formData['pages'] = $this->getPages();
                 $this->formData['components'] = $this->getListComponents();
+                $this->formData['current_list_components_id'] = $this->formData['list_components_id'] ?? '';
+                $this->formData['current_order'] = $_POST['current_order'] ?? 0;
             }
 
-            if (isset($_POST['assignContent'])) {
+            if (isset($_POST['assignContent']) && !empty($_POST['pages_id']) && !empty($_POST['list_components_id'])) {
                 $this->assignContentToPage();
             }
         }
@@ -53,19 +54,18 @@ class AssignContent
 
     private function assignContentToPage(): void
     {
-        $pages_id = (int) $_POST['pages_id'];
-        $contents_id = (int) $_POST['contents_id'];
-        $list_components_id = (int) $_POST['list_components_id'];
-        $order = (int) $_POST['order'];
+        if (!isset($_POST['pages_id'], $_POST['list_components_id'], $_POST['contents_id'], $_POST['order'])) {
+            die("Error: Missing data for assignment.");
+        }
 
         DB::insert('components', [
-            'pages_id' => $pages_id,
-            'list_components_id' => $list_components_id,
-            'contents_id' => $contents_id,
-            'order' => $order
+            'pages_id' => (int)$_POST['pages_id'],
+            'list_components_id' => (int)$_POST['list_components_id'],
+            'contents_id' => (int)$_POST['contents_id'],
+            'order' => (int)$_POST['order']
         ]);
 
-        header("Location: components.php"); // Přesměrování po úspěšném přiřazení
+        header("Location: /admin/contentList");
         exit;
     }
 }

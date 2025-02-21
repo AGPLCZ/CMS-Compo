@@ -10,7 +10,9 @@ use Compo\Admin\Auth\FlashManager;
 use Compo\Admin\Content\CreateContent;
 use Compo\Admin\Content\CreateContentWhere;
 use Compo\Admin\Content\EditContent;
+use Compo\Admin\Content\EditPageId;
 use Compo\Admin\Components\EditComponentsOrder;
+use Compo\Admin\Components\ComponentsRenderer;
 use Compo\Admin\Components\EditComponentsListContentsName;
 use Compo\Admin\Components\DeleteComponents;
 use Compo\Admin\Components\Page;
@@ -35,6 +37,7 @@ final class AdminRenderer
     public $page_content;
     private $auth;
     private $twig;
+    public $flashMessage;
 
 
 
@@ -51,8 +54,6 @@ final class AdminRenderer
         // Nyní můžete renderovat Twig šablony
         // Příklad: echo $this->twig->render('index.twig', ['name' => 'John']);
         // end Twig
-
-
 
 
         $this->auth = new Auth();
@@ -74,6 +75,13 @@ final class AdminRenderer
         $this->urlName = $this->urlManager->getUrlName();
 
         $this->auth = new Auth();
+
+
+        // Uložení URL jako veřejnou proměnnou, aby byla dostupná všude
+        $this->baseUrl = $this->url;
+
+        // Flash zpráva, aby byla přístupná všude
+        $this->flashMessage = FlashManager::showFlashMessage();
     }
 
 
@@ -89,6 +97,8 @@ final class AdminRenderer
     public function renderComponents()
     {
 
+       $flashMessage = $this->flashMessage;
+       $baseUrl = $this->baseUrl;
 
 
         if ($this->urlss == "index") {
@@ -97,6 +107,9 @@ final class AdminRenderer
             require_once "admin/footer.php";
         }
         if ($this->urlss == "components") {
+            $componentsRenderer = new ComponentsRenderer();
+            $results = $componentsRenderer->getComponentsData();
+            $pages = $componentsRenderer->getComponentsPages();
             require_once "admin/header.php";
             require_once "admin/components.php";
             require_once "admin/footer.php";
@@ -108,15 +121,13 @@ final class AdminRenderer
             require_once "admin/footer.php";
         }
 
-        if ($this->urlss == "assignContent.php") {
-            require_once "admin/header.php";
+        if ($this->urlss == "assignContent") {
             $assignContent = new AssignContent();
             $formData = $assignContent->getFormData();
+            require_once "admin/header.php";
             require_once "admin/assignContent.php";
             require_once "admin/footer.php";
         }
-
-
 
         if ($this->urlss == "viewContentDetails") {
             require_once "admin/header.php";
@@ -164,6 +175,20 @@ final class AdminRenderer
             require_once "admin/header.php";
             require_once "admin/createPage.php";
             require_once "admin/footer.php";
+        }
+
+
+        if ($this->urlss == "editPageId") {
+            $editPage = new EditPageId();
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $editPage->handleRequest(); // Spustí se pouze při odeslání formuláře
+            } else {
+                $pages = $editPage->getPages(); // Seznam stránek pro formulář
+                require_once "admin/header.php";
+                require_once "admin/editPageId.php"; // Načtení formuláře
+                require_once "admin/footer.php";
+            }
         }
 
 

@@ -1,4 +1,6 @@
 <?php
+
+/*
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
 
@@ -29,7 +31,7 @@ ORDER BY pages.pages_id, components.order
 ";
 
 $results = DB::query($query2);
-
+*/
 
 
 ?>
@@ -38,7 +40,9 @@ $results = DB::query($query2);
 		<div class="container-xl">
 			<div class="row g-3 mb-4 align-items-center mt-4 justify-content-between">
 				<div class="tab-content" id="orders-table-tab-content">
-					<?= FlashManager::showFlashMessage(); ?>
+					
+				<?= $flashMessage; ?>
+				
 					<div class="tab-pane fade show active" id="orders-all" role="tabpanel"
 						aria-labelledby="orders-all-tab">
 						<?php
@@ -103,23 +107,18 @@ $results = DB::query($query2);
 									<td class="cell text-danger">#<?= htmlspecialchars($row['components_id']) ?></td>
 									<td class="cell text-info"><?= htmlspecialchars($row['list_components_name']) ?></td>
 									<td class="cell">
-										<form method="POST" action="editComponentsListComponentsId.php"><input type="hidden"
-												name="editComponentsListComponentsId"
+										<form method="POST" action="editListComponentId.php"><input type="hidden"
+												name="editListComponentId"
 												value="<?= htmlspecialchars($row['components_id']) ?>"><button type="submit"
 												class="btn-sm app-btn-secondary" name="submitComponent"><i
-													class="bi bi-pencil-square text-info"></i> Change</button></form>
+													class="bi bi-pencil-square text-info"></i> Change component</button>
+										</form>
 									</td>
 									<td class="cell"></td>
 									<td class="cell text-success"><span class="badge bg-success"
-											style="min-width: 40px;"><?= htmlspecialchars($row['contents_id']) ?></span>
+											style="min-width: 40px;">#<?= htmlspecialchars($row['contents_id']) ?></span>
 										<?= htmlspecialchars($row['contents_name']) ?></td>
-									<td class="cell">
-										<form method="POST" action="editComponentsListContentsId.php"><input type="hidden"
-												name="editComponentsListContentsId"
-												value="<?= htmlspecialchars($row['contents_id']) ?>"><button type="submit"
-												class="btn-sm app-btn-secondary" name="submitContentId"><i
-													class="bi bi-pencil-square text-success"></i> Change</button></form>
-									</td>
+
 
 									<td class="cell">
 										<form method="POST" action="editComponentsListContentsName"><input type="hidden"
@@ -128,6 +127,23 @@ $results = DB::query($query2);
 												class="btn-sm app-btn-secondary" name="submitContentName"><i
 													class="bi bi-pencil-square text-success"></i> Rename</button></form>
 									</td>
+
+
+									<td class="cell">
+
+										<form method="GET" action="/admin/editPageId">
+											<input type="hidden" name="components_id"
+												value="<?= htmlspecialchars($row['components_id']) ?>">
+											<button type="submit" class="btn-sm app-btn-secondary" name="submitContentId">
+												<i class="bi bi-pencil-square text-success"></i> Change page
+											</button>
+										</form>
+
+
+
+									</td>
+
+
 
 									<td class="cell"><?= htmlspecialchars($row['order']) ?></td>
 									<td class="cell">

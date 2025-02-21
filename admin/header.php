@@ -30,14 +30,14 @@ if (!$auth->isLoggedIn()) {
 
   <link rel="shortcut icon" href="favicon.ico">
 
-	<link rel="stylesheet" href="<?php echo $this->url ?>/plugin/fontawesome-icons-pro/css/all.css">
-	<link rel="stylesheet" href="<?php echo $this->url ?>/plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="<?= $baseUrl; ?>/plugin/fontawesome-icons-pro/css/all.css">
+	<link rel="stylesheet" href="<?= $baseUrl; ?>/plugins/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
 
   <!-- FontAwesome JS-->
-  <script defer src="<?php echo $this->url ?>/plugins/fontawesome/js/all.min.js"></script>
+  <script defer src="<?= $baseUrl; ?>/plugins/fontawesome/js/all.min.js"></script>
 
   <!-- App CSS -->
-  <link id="theme-style" rel="stylesheet" href="<?php echo $this->url ?>/admin/assets/css/portal.css">
+  <link id="theme-style" rel="stylesheet" href="<?= $baseUrl; ?>/admin/assets/css/portal.css">
 
   <title>Redakční systém</title>
 
@@ -190,7 +190,7 @@ if (!$auth->isLoggedIn()) {
               <!--//app-utility-item-->
 
               <div class="app-utility-item app-user-dropdown dropdown">
-                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="<?php echo $this->url ?>/admin/assets/images/users/ag.jpg" alt="user profile"></a>
+                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="<?= $baseUrl; ?>/admin/assets/images/users/ag.jpg" alt="user profile"></a>
                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                   <li><a class="dropdown-item" href="account.php">Účet</a></li>
                   <li><a class="dropdown-item" href="settings.php">Nastavení</a></li>
@@ -225,7 +225,7 @@ if (!$auth->isLoggedIn()) {
       <div class="sidepanel-inner d-flex flex-column">
         <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
         <div class="app-branding">
-          <a class="app-logo" href="index"><img class="logo-icon me-2" src="<?php echo $this->url ?>/admin/assets/images/app-logo.png" alt="logo"><span class="logo-text">Admin Tools</span></a>
+          <a class="app-logo" href="index"><img class="logo-icon me-2" src="<?= $baseUrl; ?>/admin/assets/images/app-logo.png" alt="logo"><span class="logo-text">Admin Tools</span></a>
 
         </div>
 
@@ -389,7 +389,7 @@ if (!$auth->isLoggedIn()) {
             <!--//nav-item-->
             <li class="nav-item">
               <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-              <a class="nav-link" href="<?php echo $this->url ?>/admin/components">
+              <a class="nav-link" href="<?= $baseUrl; ?>/admin/components">
                 <span class="nav-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-textarea-t" viewBox="0 0 16 16">
                     <path d="M1.5 2.5A1.5 1.5 0 0 1 3 1h10a1.5 1.5 0 0 1 1.5 1.5v3.563a2 2 0 0 1 0 3.874V13.5A1.5 1.5 0 0 1 13 15H3a1.5 1.5 0 0 1-1.5-1.5V9.937a2 2 0 0 1 0-3.874V2.5zm1 3.563a2 2 0 0 1 0 3.874V13.5a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V9.937a2 2 0 0 1 0-3.874V2.5A.5.5 0 0 0 13 2H3a.5.5 0 0 0-.5.5v3.563zM2 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
@@ -404,7 +404,7 @@ if (!$auth->isLoggedIn()) {
             <!--//nav-item-->
             <li class="nav-item">
               <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-              <a class="nav-link" href="<?php echo $this->url ?>/admin/contentList">
+              <a class="nav-link" href="<?= $baseUrl; ?>/admin/contentList">
                 <span class="nav-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-textarea-t" viewBox="0 0 16 16">
                     <path d="M1.5 2.5A1.5 1.5 0 0 1 3 1h10a1.5 1.5 0 0 1 1.5 1.5v3.563a2 2 0 0 1 0 3.874V13.5A1.5 1.5 0 0 1 13 15H3a1.5 1.5 0 0 1-1.5-1.5V9.937a2 2 0 0 1 0-3.874V2.5zm1 3.563a2 2 0 0 1 0 3.874V13.5a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V9.937a2 2 0 0 1 0-3.874V2.5A.5.5 0 0 0 13 2H3a.5.5 0 0 0-.5.5v3.563zM2 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
@@ -432,7 +432,7 @@ if (!$auth->isLoggedIn()) {
             <!--//nav-item-->
             <li class="nav-item">
               <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-              <a class="nav-link" href="<?php echo $this->url ?>/admin/pages">
+              <a class="nav-link" href="<?= $baseUrl; ?>/admin/pages">
                 <span class="nav-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
@@ -446,7 +446,7 @@ if (!$auth->isLoggedIn()) {
             <!--//nav-item-->
             <li class="nav-item">
               <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-              <a class="nav-link" href="adminer">
+              <a class="nav-link" href="https://dbadmin.webglobe.cz/">
                 <span class="nav-icon">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z" />

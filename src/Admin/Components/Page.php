@@ -29,10 +29,10 @@ class Page
 
             if (isset($_POST['delete_pages_id'])) {
                 $this->deletePage((int) $_POST['delete_pages_id']);
-                header("Location: pages.php"); // Přesměrování zpět na seznam stránek
+                header("Location: /admin/pages"); // Přesměrování zpět na seznam stránek
                 exit;
             }
-            
+
 
             if (isset($_POST['pages_id']) && !empty($_POST['title']) && !empty($_POST['uri'])) {
                 $this->formData = [
@@ -64,6 +64,10 @@ class Page
                     'visible_in_menu' => $this->formData['visible_in_menu'],
                     'parent_id' => $this->formData['parent_id']
                 ], "pages_id=%i", $this->formData['pages_id']);
+
+                header("Location: /admin/pages"); 
+                exit;
+
             } else {
                 // INSERT
                 DB::insert('pages', [
@@ -76,6 +80,10 @@ class Page
 
                 // Po vložení nové stránky nastavíme $formData na existující stránku
                 $this->formData = $this->getPageByUri($this->formData['uri']) ?? [];
+
+
+                header("Location: /admin/pages"); 
+                exit;
             }
         }
     }
@@ -83,30 +91,26 @@ class Page
     {
         // Získáme všechna contents_id spojená s pages_id
         $contents_ids = DB::queryFirstColumn("SELECT contents_id FROM contents WHERE page_id=%i", $pages_id);
-    
+
         if (!empty($contents_ids)) {
             // Smažeme lokalizace obsahu
             DB::query("DELETE FROM content_localizations WHERE contents_id IN (%li)", $contents_ids);
-    
+
             // Smažeme obsahové bloky spojené se stránkou
             DB::query("DELETE FROM contents WHERE page_id=%i", $pages_id);
         }
-    
+
         // Smažeme komponenty spojené se stránkou
         DB::query("DELETE FROM components WHERE pages_id=%i", $pages_id);
-    
+
         // Nakonec smažeme samotnou stránku
         DB::delete('pages', "pages_id=%i", $pages_id);
-    
+
         // Přesměrování zpět na seznam stránek
-        header("Location: " . $this->urlManager->getFullUrl());
+        header("Location: /admin/pages");
         exit;
     }
-    
-    
-    
-    
-    
+
 
     public function getPageById(int $pages_id): ?array
     {

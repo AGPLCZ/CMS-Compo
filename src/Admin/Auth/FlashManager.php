@@ -12,16 +12,14 @@ class FlashManager
         ];
     }
 
-    public static function showFlashMessage()
+    public static function showFlashMessage(): string
     {
-        if (isset($_SESSION['flash_messages'])) {
-            $message = $_SESSION['flash_messages']['message'];
-            $type = $_SESSION['flash_messages']['type'];
-
-            echo "<div class='alert alert-{$type}'>{$message}</div>";
-
-            unset($_SESSION['flash_messages']);
+        if (isset($_SESSION['flash_message'])) {
+            $message = '<div class="alert">' . $_SESSION['flash_message'] . '</div>';
+            unset($_SESSION['flash_message']);
+            return $message;
         }
+        return ''; // Pokud není žádná zpráva, vrátíme prázdný řetězec
     }
 
 

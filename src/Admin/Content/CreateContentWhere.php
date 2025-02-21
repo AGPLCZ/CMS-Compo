@@ -44,18 +44,19 @@ class CreateContentWhere
         $order = $_POST['order'];
         $list_components_id = $_POST['list_components_id'];
 
-        $contents_id = $this->insertContent($pages_id);
+        $contents_id = $this->insertContent($pages_id, $list_components_id);
         $this->insertComponents($pages_id, $list_components_id, $contents_id, $order);
 
         header("Location: {$back}");
         exit;
     }
 
-    public function insertContent(int $pages_id): int
+    public function insertContent(int $pages_id, int $list_components_id): int
     {
         $data = [
             'page_id' => $pages_id,
             'name' => 'Nový Obsah',
+            'list_components_id' => $list_components_id
         ];
         DB::insert('contents', $data);
         return DB::insertId();

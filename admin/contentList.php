@@ -8,6 +8,9 @@ use Compo\Admin\Auth\Auth;
 // FlashManager::setFlashMessage("Nějaká zpráva", 'success');
 
 // Získáme všechny obsahové bloky, které nejsou přiřazeny k žádné stránce v `components`
+
+
+// Získáme všechny obsahové bloky, které nejsou přiřazeny k žádné stránce v `components`
 $query = "
 SELECT c.contents_id, c.page_id, c.name 
 FROM contents c
@@ -40,6 +43,7 @@ $freeContents = DB::query($query);
 											<th class="cell">Name</th>
 											<th class="cell">Detail</th>
 											<th class="cell">Akce</th>
+											<th class="cell">Akce</th>
 										</tr>
 										<?php foreach ($freeContents as $content): ?>
 											<tr class="p-2">
@@ -61,15 +65,20 @@ $freeContents = DB::query($query);
 												</td>
 
 												<td class="cell">
-													<form method="POST" action="assignContentToPage.php"
-														style="display:inline-block;">
+													<form method="POST" action="assignContent">
 														<input type="hidden" name="contents_id"
 															value="<?= htmlspecialchars($content['contents_id']); ?>">
+														<input type="hidden" name="current_list_components_id"
+															value="<?= htmlspecialchars($content['list_components_id'] ?? ''); ?>">
+														<input type="hidden" name="current_order"
+															value="<?= htmlspecialchars($content['order'] ?? 0); ?>">
 														<button type="submit" class="btn-sm app-btn-secondary"
 															name="assignContent">
 															<i class="bi bi-link-45deg text-success"></i> Přiřadit
 														</button>
 													</form>
+												</td>
+												<td class="cell">
 													<form method="POST" action="deleteContent.php"
 														style="display:inline-block;"
 														onsubmit="return confirm('Opravdu chcete tento obsah smazat?');">

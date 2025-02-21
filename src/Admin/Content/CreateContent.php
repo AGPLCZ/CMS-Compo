@@ -24,53 +24,50 @@ class CreateContent
                 $formData = $this->prepareComponent();
             } elseif (isset($_POST['submitCreateContentExecute'])) {
                 $formData = $this->createComponentExecute();
+                header("Location: {$formData['back']}");
+                exit;
             }
         }
         return $formData;
     }
 
     public function prepareComponent()
-{
-    $pages_id = $_POST['pages_id'];
-    $order = isset($_POST['order']) ? (int) $_POST['order'] : 0;
+    {
+        $pages_id = $_POST['pages_id'];
+        $order = isset($_POST['order']) ? (int) $_POST['order'] : 0;
 
-    $back = $_SERVER['HTTP_REFERER'] ?? '../index/';
+        $back = $_SERVER['HTTP_REFERER'] ?? '../index/';
 
-    return ['pages_id' => $pages_id, 'order' => $order, 'back' => $back];
-}
+        return ['pages_id' => $pages_id, 'order' => $order, 'back' => $back];
+    }
 
-    private function createComponentExecute()
+    private function createComponentExecute(): array
     {
         $back = $_POST['back'] ?? '../index/';
         $pages_id = $_POST['pages_id'];
         $order = $_POST['order'];
         $list_components_id = $_POST['list_components_id'];
 
-        $contents_id = $this->insertContent($pages_id);
+        $contents_id = $this->insertContent($pages_id, $list_components_id);
         $this->insertComponents($pages_id, $list_components_id, $contents_id, $order);
 
-        header("Location: {$back}");
-        exit;
+        return [
+            'contents_id' => $contents_id,
+            'pages_id' => $pages_id,
+            'order' => $order,
+            'list_components_id' => $list_components_id,
+            'back' => $back
+        ];
     }
 
-    public function insertContent(int $pages_id): int
+    public function insertContent(int $pages_id, int $list_components_id): int
     {
         $data = [
             'page_id' => $pages_id,
             'name' => 'Nový Obsah',
-            // 'content1' => 'Content 1',
-            // 'content2' => 'Content 2',
-            // 'content3' => 'Content 3',
-            // 'content4' => 'Content 4',
-            // 'content5' => 'Content 5',
-            // 'content6' => 'Content 6',
-            // 'content7' => 'Content 7',
-            // 'content8' => 'Content 8',
-            // 'content9' => 'Content 9',
-            // 'content10' => 'Content 10',
-            // 'content11' => 'Content 11',
-            // 'content12' => 'Content 12',
+            'list_components_id' => $list_components_id
         ];
+
         DB::insert('contents', $data);
         return DB::insertId();
     }
