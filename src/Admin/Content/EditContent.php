@@ -34,9 +34,9 @@ class EditContent
     {
         $contents_id = $_POST['contents_id'];
         $column = $_POST['column'];
-        $language = $_POST['language'] ?? 'cz';  // Default to 'cz' if not set
+        $language = $_POST['language'] ?? 'cs';  // Default to 'cs' if not set
 
-        if ($language === 'cz') {
+        if ($language === 'cs') {
             $data = DB::queryFirstRow("SELECT %b FROM contents WHERE contents_id=%i", $column, $contents_id);
             $data = [$column => $data[$column] ?? ''];  // Abychom se vyhnuli chybám, zkontrolujeme a nastavíme defaultní hodnotu
         } else {
@@ -69,10 +69,10 @@ class EditContent
         $contents_id = $_POST['contents_id'];
         $column = $_POST['column'];
         $value = $_POST['value'];
-        $language = $_POST['language'] ?? 'cz';
+        $language = $_POST['language'] ?? 'cs';
         $back = $_POST['back'];
 
-        if ($language === 'cz') {
+        if ($language === 'cs') {
             DB::update('contents', [
                 $column => $value
             ], "contents_id=%i", $contents_id);
@@ -108,13 +108,13 @@ class EditContent
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $contents_id = $_POST['id'] ?? '';
-            $language = $_POST['language'] ?? 'cz';
+            $language = $_POST['language'] ?? 'cs';
             $column = $_POST['column'] ?? '';
             $value = $_POST['value'] ?? '';
 
 
             if ($this->auth->isLoggedIn()) {
-                if ($language == 'cz') {
+                if ($language == 'cs') {
                     // Aktualizace základního obsahu
                     DB::update('contents', [$column => $value], "contents_id=%i", $contents_id);
                     echo json_encode(['success' => true, 'id' => $contents_id, 'column' => $column, 'value' => $value]);

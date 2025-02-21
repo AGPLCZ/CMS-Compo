@@ -19,9 +19,9 @@ let config = {
   COLORFUL: false,
   PAUSED: false,
   BACK_COLOR: {
- r: 255,
-  g: 255,
-  b: 255,
+  r: 0,
+  g: 0,
+  b: 0,
   },
   TRANSPARENT: false,
   BLOOM: true,
@@ -1466,13 +1466,16 @@ function resizeCanvas() {
   }
 }
 
-canvas.onmousemove = (e) => {
-  pointers[0].moved = pointers[0].down;
-  pointers[0].dx = (e.offsetX - pointers[0].x) * 5.0;
-  pointers[0].dy = (e.offsetY - pointers[0].y) * 5.0;
-  pointers[0].x = e.offsetX;
-  pointers[0].y = e.offsetY;
-};
+document.addEventListener("mousemove", (e) => {
+  pointers[0].moved = true;
+  pointers[0].dx = (e.clientX - pointers[0].x) * 5.0;
+  pointers[0].dy = (e.clientY - pointers[0].y) * 5.0;
+  pointers[0].x = e.clientX;
+  pointers[0].y = e.clientY;
+});
+
+
+
 
 canvas.onmousedown = () => {
   pointers[0].down = true;

@@ -8,11 +8,15 @@ use DB;
 use Compo\Admin\Auth\Auth;
 use Compo\Admin\Auth\FlashManager;
 use Compo\Admin\Content\CreateContent;
+use Compo\Admin\Content\CreateContentWhere;
 use Compo\Admin\Content\EditContent;
 use Compo\Admin\Components\EditComponentsOrder;
+use Compo\Admin\Components\EditComponentsListContentsName;
 use Compo\Admin\Components\DeleteComponents;
+use Compo\Admin\Components\Page;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Compo\Admin\Content\AssignContent;
 
 
 final class AdminRenderer
@@ -92,6 +96,39 @@ final class AdminRenderer
             require_once "admin/components.php";
             require_once "admin/footer.php";
         }
+        if ($this->urlss == "components") {
+            require_once "admin/header.php";
+            require_once "admin/components.php";
+            require_once "admin/footer.php";
+        }
+
+        if ($this->urlss == "contentList") {
+            require_once "admin/header.php";
+            require_once "admin/contentList.php";
+            require_once "admin/footer.php";
+        }
+
+        if ($this->urlss == "assignContent.php") {
+            require_once "admin/header.php";
+            $assignContent = new AssignContent();
+            $formData = $assignContent->getFormData();
+            require_once "admin/assignContent.php";
+            require_once "admin/footer.php";
+        }
+
+
+
+        if ($this->urlss == "viewContentDetails") {
+            require_once "admin/header.php";
+            require_once "admin/viewContentDetails.php";
+            require_once "admin/footer.php";
+        }
+
+        if ($this->urlss == "pages") {
+            require_once "admin/header.php";
+            require_once "admin/pages.php";
+            require_once "admin/footer.php";
+        }
         if ($this->urlss == "login") {
             require_once "admin/login.php";
         }
@@ -110,6 +147,36 @@ final class AdminRenderer
             require_once "admin/createContent.php";
             require_once "admin/footer.php";
         }
+        if ($this->urlss == "createContentWhere") {
+            $createContent = new CreateContentWhere();
+            $formData = $createContent->handleRequest();
+            $components = $createContent->selectListComponents();
+            $pages = $createContent->getPages(); // Přidáno pro správné načtení stránek
+            require_once "admin/header.php";
+            require_once "admin/createContentWhere.php"; // Ujisti se, že tento soubor existuje
+            require_once "admin/footer.php";
+        }
+
+        if ($this->urlss == "createPage") {
+            $createPage = new Page();
+            $formData = $createPage->getFormData();
+            $pages = $createPage->getPages(); // Pro seznam nadřazených stránek
+            require_once "admin/header.php";
+            require_once "admin/createPage.php";
+            require_once "admin/footer.php";
+        }
+
+
+        if ($this->urlss == "editComponentsListContentsName") {
+            $createPage = new Page();
+            $editComponent = new EditComponentsListContentsName();
+            $formData = $editComponent->handleRequest();
+            require_once "admin/header.php";
+            require_once "admin/editComponentsListContentsName.php";
+            require_once "admin/footer.php";
+        }
+
+
 
         if ($this->urlss == "editContent") {
             $editContent = new EditContent();
@@ -120,13 +187,12 @@ final class AdminRenderer
         if (($this->urlss == "editContentt")) {
             $editContent = new EditContent();
             $formData = $editContent->handleRequest();
-
             require_once "admin/header.php";
             require_once "admin/editContent.php";
             require_once "admin/footer.php";
         }
 
-     
+
 
 
         if ($this->urlss == "EditComponentsOrder") {

@@ -9,9 +9,9 @@ use DB;
 use Compo\Admin\Auth\Auth;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Compo\Models\Component; 
+use Compo\Models\Component;
 use Compo\Models\Content;
-use Compo\Models\ContentLocalization;  
+use Compo\Models\ContentLocalization;
 
 final class PageRenderer
 {
@@ -65,7 +65,7 @@ final class PageRenderer
         $loader = new FilesystemLoader($filePathTwig);
         $this->twig = new Environment($loader);
 
-        
+
         if (isset($_SESSION['language'])) {
             $this->language = $_SESSION['language'];
         } else {
@@ -93,20 +93,20 @@ final class PageRenderer
         }
     }
 
-    
+
     private function loadComponentData()
     {
 
         $this->componentData = Component::join('list_components', 'components.list_components_id', '=', 'list_components.list_components_id')
-        ->join('pages', 'pages.pages_id', '=', 'components.pages_id')
-        ->where('pages.uri', $this->urls)
-        ->select('list_components.name as componentName', 'components.contents_id', 'components.order', 'components.pages_id', 'components.components_id')
-        ->orderBy('components.order')
-        ->get();
-    
+            ->join('pages', 'pages.pages_id', '=', 'components.pages_id')
+            ->where('pages.uri', $this->urls)
+            ->select('list_components.name as componentName', 'components.contents_id', 'components.order', 'components.pages_id', 'components.components_id')
+            ->orderBy('components.order')
+            ->get();
+
         if ($this->componentData->isEmpty()) {
             $this->render404();
-        }  
+        }
 
     }
 
@@ -115,15 +115,6 @@ final class PageRenderer
     {
         $this->language = $lang;
     }
-
-
-    // public function getLocalizedContent($contents_id, $field, $language = 'cs')
-    // {
-    //       // Pokud chceš přejít na Eloquent, bylo by třeba i tuto část přepsat
-    //       $sql = "SELECT content FROM content_localizations WHERE contents_id = %i AND field_name = %s AND language = %s";
-    //       return DB::queryFirstField($sql, $contents_id, $field, $language);
-    // }
-
 
     // Funkce pro získání lokalizovaného obsahu pomocí Eloquentu
     public function getLocalizedContent($contents_id, $field, $language = 'cs')
@@ -138,13 +129,12 @@ final class PageRenderer
         return $localization ? $localization->content : null;
     }
 
-  public function renderComponents()
+    public function renderComponents()
     {
         $componentRenderData = [];
 
         foreach ($this->componentData as $data) {
-            // Použití Eloquent pro načtení obsahu
-            $contentData = Content::find($data->contents_id);
+            $contentData = Content::find($data->contents_id);  // Použití Eloquent pro načtení obsahu
 
             if ($contentData) {
                 $this->page_content = $contentData->toArray(); // Převod na pole pro snadnější použití v šabloně
@@ -188,10 +178,10 @@ final class PageRenderer
     private function render404()
     {
         header("HTTP/1.1 404 Not Found");
-        require_once "components/"  . $this->template . "/head.php";
-        require_once "components/"  . $this->template . "/navigation.php";
-        require_once "components/"  . $this->template . "/404.php";
-        require_once "components/"  . $this->template . "/footer.php";
+        require_once "components/" . $this->template . "/head.php";
+        require_once "components/" . $this->template . "/navigation.php";
+        require_once "components/" . $this->template . "/404.php";
+        require_once "components/" . $this->template . "/footer.php";
         exit;
     }
 }

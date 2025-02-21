@@ -97,13 +97,10 @@ $back = $urlManager->getBackPage();
 if (isset($_SESSION['language'])) {
     $language = $_SESSION['language'];
 } else {
-    $language = "cs";
-}
-
-if (isset($_SESSION['language'])) {
-    $language = $_SESSION['language'];
-} else {
-    $language = "cs";
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    $supported_langs = ['cs', 'en', 'es', 'gn', 'de'];
+    $language = in_array($lang, $supported_langs) ? $lang : 'cs';
+    $_SESSION['language'] = $language; // Uložit do session
 }
 
 
@@ -124,7 +121,6 @@ if ($urls == "tool") {
 
     $whatTemplate = new Template();
     $template = $whatTemplate->TemplateName();
-
 
     $pageRenderer = new PageRenderer($template);
     $pageRenderer->setLanguage($language);  // Nastavit jazyk na češtinu

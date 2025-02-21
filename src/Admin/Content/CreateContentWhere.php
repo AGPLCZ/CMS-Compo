@@ -1,12 +1,10 @@
 <?php
-
 namespace Compo\Admin\Content;
 
 use Compo\Navigation\UrlManager;
 use DB;
 
-
-class CreateContent
+class CreateContentWhere
 {
     private $urlManager;
 
@@ -14,7 +12,6 @@ class CreateContent
     {
         $this->urlManager = new UrlManager();
     }
-
 
     public function handleRequest()
     {
@@ -30,18 +27,19 @@ class CreateContent
     }
 
     public function prepareComponent()
-{
-    $pages_id = $_POST['pages_id'];
-    $order = isset($_POST['order']) ? (int) $_POST['order'] : 0;
+    {
+        $order = $_POST['order'] ?? 0;
+        $back = $_SERVER['HTTP_REFERER'] ?? '../index/';
 
-    $back = $_SERVER['HTTP_REFERER'] ?? '../index/';
-
-    return ['pages_id' => $pages_id, 'order' => $order, 'back' => $back];
-}
+        return [
+            'order' => $order + 1,
+            'back' => $back
+        ];
+    }
 
     private function createComponentExecute()
     {
-        $back = $_POST['back'] ?? '../index/';
+        $back = $_POST['back'] ?? 'components/';
         $pages_id = $_POST['pages_id'];
         $order = $_POST['order'];
         $list_components_id = $_POST['list_components_id'];
@@ -58,18 +56,6 @@ class CreateContent
         $data = [
             'page_id' => $pages_id,
             'name' => 'Nový Obsah',
-            // 'content1' => 'Content 1',
-            // 'content2' => 'Content 2',
-            // 'content3' => 'Content 3',
-            // 'content4' => 'Content 4',
-            // 'content5' => 'Content 5',
-            // 'content6' => 'Content 6',
-            // 'content7' => 'Content 7',
-            // 'content8' => 'Content 8',
-            // 'content9' => 'Content 9',
-            // 'content10' => 'Content 10',
-            // 'content11' => 'Content 11',
-            // 'content12' => 'Content 12',
         ];
         DB::insert('contents', $data);
         return DB::insertId();
@@ -84,6 +70,11 @@ class CreateContent
             'order' => $order
         ];
         DB::insert('components', $data);
+    }
+
+    public function getPages(): array
+    {
+        return DB::query("SELECT pages_id, title FROM pages ORDER BY title ASC");
     }
 
     public function selectListComponents(): array

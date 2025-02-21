@@ -1,6 +1,10 @@
 <main>
+
+
 	<section
 		class="overflow-hidden pt-0">
+
+
 		<!-- Title and content -->
 		<div
 			class="bg-dark position-relative pt-7 pb-8 px-4 px-md-0">
@@ -34,9 +38,9 @@
 				</h1>
 				<h6 class="h1 cd-headline clip big-clip is-full-width text-primary mb-5">
 					<span class="text-white pt-0">
-						<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contentsId}}">{{contentData.content2|default('Váš')}}</span>
+						<span contenteditable="{{onEdit ? 'true' : 'false'}}" class="editable-element" data-language="{{language}}" data-column="content2" data-id="{{contentsId}}">{{contentData.content2|default('udržení ')}}</span>
 					</span>
-					<span class="typed" data-type-text="{{ contentData.content3|default('projekt') }}&amp;&amp;{{ contentData.content4|default('e-shop') }}"></span>
+					<span class="typed" data-type-text="{{ contentData.content3|default('projekt') }}&amp;&amp;{{ contentData.content4|default('e-shop') }} &amp;&amp;{{ contentData.content5|default('e-shop') }} &amp;&amp;{{ contentData.content6|default('e-shop') }}"></span>
 					{# <span class="ityped-cursor">|</span> #}
 				</h6>
 				<!--
@@ -130,6 +134,30 @@
 															<i class="fa fa-edit">Edit</i>
 														</button>
 													</form>
+
+														<form method="POST" action="{{ url }}/admin/editContentt/">
+														<input type="hidden" name="akce" value="edit">
+														<input type="hidden" name="contents_id" value="{{ contentsId }}">
+														<input type="hidden" name="column" value="content5">
+														<input type="hidden" name="language" value="{{ language }}">
+														<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+															<i class="fa fa-edit">Edit</i>
+														</button>
+													</form>
+
+
+
+														<form method="POST" action="{{ url }}/admin/editContentt/">
+														<input type="hidden" name="akce" value="edit">
+														<input type="hidden" name="contents_id" value="{{ contentsId }}">
+														<input type="hidden" name="column" value="content6">
+														<input type="hidden" name="language" value="{{ language }}">
+														<button type="submit" name="submitEditContent" class="btn btn-primary mx-2">
+															<i class="fa fa-edit">Edit</i>
+														</button>
+													</form>
+
+
 												</div>
 
 
