@@ -1,13 +1,12 @@
 <?php
+session_start();
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
-session_start();
+
 
 require_once "config.php";
 require_once 'vendor/autoload.php';
 
-
-use Illuminate\Database\Capsule\Manager as Capsulee;
 use Compo\Navigation\UrlManager;
 use Compo\Rendering\Template;
 use Compo\Rendering\PageRenderer;
@@ -16,58 +15,16 @@ use Compo\Admin\Auth\Auth;
 use Compo\Rendering\AdminRenderer;
 
 
-
-// Zjistíme, zda jsme na localhostu
-if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
-
-    // Inicializace Eloquentu
-    $capsule = new Capsulee;
-
-    $capsule->addConnection([
-        'driver'    => 'mysql',
-        'host'      => '127.0.0.1', // uprav podle tvé konfigurace
-        'database'  => 'green', // uprav podle tvé konfigurace
-        'username'  => 'root', // uprav podle tvé konfigurace
-        'password'  => '', // uprav podle tvé konfigurace
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
-    ]);
-
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-} else {
-    // Inicializace Eloquentu
-    $capsule = new Capsulee;
-
-    $capsule->addConnection([
-        'driver'    => 'mysql',
-        'host'      => '127.0.0.1', // uprav podle tvé konfigurace
-        'database'  => 'dobrodruzi_py', // uprav podle tvé konfigurace
-        'username'  => 'dobrodruzi.cz', // uprav podle tvé konfigurace
-        'password'  => 'e4gXbzJ7qmtM', // uprav podle tvé konfigurace
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
-    ]);
-
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-}
-
-
-
-
+//localhost
 $folder_located_project = "";
 if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
     $folder_located_project = "cms/CMS-Compo";
 }
 
-
+//tamplate
 $tamplate = "mizzle";
 $registry = new Registry();
 $registry->set("template", $tamplate);
-
 
 
 // Oříznutí lomítek na začátku a na konci řetězce
@@ -81,19 +38,16 @@ if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.
 
 
 
-
-
-
+// IRL Manager
 $urlManager = new UrlManager();
 $urls = $urlManager->getSegment(0);
 $urlss = $urlManager->getSegment(1);
 $urlsss = $urlManager->getSegment(2);
-
 $back = $urlManager->getBackPage();
 
 
 
-
+//Language
 if (isset($_SESSION['language'])) {
     $language = $_SESSION['language'];
 } else {
@@ -105,7 +59,7 @@ if (isset($_SESSION['language'])) {
 
 
 
-
+//Url rozcestník 
 if ($urls == "tool") {
     $_SESSION['tool'] = $urlss;
     $edit = true;
@@ -118,7 +72,6 @@ if ($urls == "tool") {
     $adminRenderer = new AdminRenderer();
     $adminRenderer->renderComponents();
 } else {
-
     $whatTemplate = new Template();
     $template = $whatTemplate->TemplateName();
 

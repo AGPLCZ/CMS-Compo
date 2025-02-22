@@ -45,7 +45,7 @@ class EditContent
                 $originalData = DB::queryFirstRow("SELECT %b FROM contents WHERE contents_id=%i", $column, $contents_id);
                 $data = [$column => $originalData[$column] ?? ''];
             } else {
-                $data = [$column => $data['content']];  // Ujistěte se, že data jsou správně formátovaná
+                $data = [$column => $data['content']];  
             }
         }
 

@@ -6,8 +6,6 @@ use Compo\Navigation\UrlManager;
 use Compo\Registry;
 
 
-
-
 class Template
 {
     private $urlManager;

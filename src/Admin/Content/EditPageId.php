@@ -7,7 +7,7 @@ class EditPageId
 {
     public function __construct()
     {
-        echo ("🔥 Skript editPageId.php byl načten!");
+    
     }
 
     public function handleRequest()
